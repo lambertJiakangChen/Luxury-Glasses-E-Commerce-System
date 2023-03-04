@@ -15,10 +15,10 @@ public class LoadDatabase {
 	private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 	
 	  @Bean
-	  CommandLineRunner initDatabase(AccountDao dao) {
+	  CommandLineRunner initDatabase(AccountDao accountDao) {
 
 	    return args -> {
-	    	log.info("Preloading " + dao.save(new Account((long) 1, "justinB31", "justin", "bieber", "justin1@gmail.com", "Qwerty12", "regular", null)));
+	    	log.info("Preloading " + accountDao.save(new Account((long) 1, "justinB31", "justin", "bieber", "justin1@gmail.com", "Qwerty12", "regular", null)));
 	    };
 	  }
 	
