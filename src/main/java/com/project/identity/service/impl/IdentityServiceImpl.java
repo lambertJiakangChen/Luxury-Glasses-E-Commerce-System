@@ -19,6 +19,24 @@ public class IdentityServiceImpl implements IdentityService{
 	AccountDao accountDao;
 	
 	@Override
+	public void registerAccount(String username, String fName, String lName, String email, String password, String type) throws Exception {
+		
+		//register regular account
+		
+		// username already exists >> choose another username
+		if (usernameExists(username)) {
+			throw new Exception("Username Already Exists.");
+		}
+		
+		// add account to DB
+		long id = accountDao.count() + 1;
+		accountDao.save(new Account(id, username, fName, lName, email, password, type, null));
+		
+		
+		
+	}
+	
+	@Override
 	public boolean isRegisteredAccount(String username, String password) {
 		if (findAccountbyUserAndPass(username, password) != null) {
 			return true;
@@ -45,53 +63,93 @@ public class IdentityServiceImpl implements IdentityService{
 		return accountDao.findAll();
 	}
 
-	@Override
-	public void editAccountDetails(String property, String oldValue, String newValue) {
+//	@Override
+//	public void editAccountDetails(String property, String oldValue, String newValue) {
+//		
+//		switch(property) {
+//		case "username":
+//			updateUsername(newValue);
+//		case "firstName":
+//			updateFirstName(newValue);
+//		case "lastName":
+//			updateLastName(newValue);
+//		case "address":
+//			updateAddress(newValue);
+//		case "email":
+//			updateEmail(newValue);
+//		case "password":
+//			updatePassword(oldValue, newValue);
+//		}
+//		
+//	}
+	
+	@Override 
+	public void editUsername(Long accId, String oldValue, String newValue) {
+		Account acc = accountDao.getById(accId);
+		acc.setUsername(newValue);
 		
-		switch(property) {
-		case "username":
-			updateUsername(newValue);
-		case "firstName":
-			updateFirstName(newValue);
-		case "lastName":
-			updateLastName(newValue);
-		case "address":
-			updateAddress(newValue);
-		case "email":
-			updateEmail(newValue);
-		case "password":
-			updatePassword(oldValue, newValue);
+		accountDao.saveAndFlush(acc);
+		
+		System.out.println("Username updated");
+	}
+
+	@Override
+	public void editPassword(Long accId, String oldValue, String newValue) throws Exception {
+		Account acc = accountDao.getById(accId);
+		if(!acc.getPassword().equals(oldValue)) {
+			throw new Exception("Current Password is incorrect.");
+		}
+		acc.setPassword(newValue);
+		
+		accountDao.saveAndFlush(acc);
+		System.out.println("Password updated");
+	}
+
+	@Override
+	public void editFirstName(Long accId, String oldValue, String newValue) {
+		Account acc = accountDao.getById(accId);
+		acc.setfName(newValue);
+		
+		accountDao.saveAndFlush(acc);
+		
+		System.out.println("First Name updated");
+		
+	}
+
+	@Override
+	public void editLastName(Long accId, String oldValue, String newValue) {
+		Account acc = accountDao.getById(accId);
+		acc.setlName(newValue);
+		
+		accountDao.saveAndFlush(acc);
+		
+		System.out.println("Last Name updated");
+		
+	}
+
+	@Override
+	public void editEmail(Long accId, String oldValue, String newValue) {
+		Account acc = accountDao.getById(accId);
+		acc.setEmail(newValue);
+		
+		accountDao.saveAndFlush(acc);
+		
+		System.out.println("Email updated");
+		
+	}
+	
+	protected boolean usernameExists(String username) {
+		
+		for (Account acc: accountDao.findAll()) {
+			
+			if (acc.getUsername().equals(username)) {
+				return true;
+			}
 		}
 		
-	}
-	private void updatePassword(String oldValue, String newValue) {
-		// TODO Auto-generated method stub
+		return false;
 		
 	}
 
-	private void updateEmail(String newValue) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void updateAddress(String newValue) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void updateLastName(String newValue) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void updateFirstName(String newValue) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void updateUsername(String newValue) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }
