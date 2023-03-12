@@ -8,8 +8,10 @@ import java.util.Set;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "ITEM")
 public class Item {
 
 	@Id @GeneratedValue
@@ -24,6 +26,8 @@ public class Item {
 	private List<Double> dimension = new ArrayList<Double>(); // 3-measurements (lens width-lens height-frame width)
 	private Set<String> category = new HashSet<String>();
 	private Set<String> colors = new HashSet<String>();
+	
+//	private int stock; 
 	
 	
 	
