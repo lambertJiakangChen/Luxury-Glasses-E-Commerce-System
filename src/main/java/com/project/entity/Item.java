@@ -32,7 +32,7 @@ public class Item {
 	
 	
 	
-	public Item(Long id, String itemName, String shape, String size, Double price, 
+	public Item(Long id, String itemName, String brand, String shape, String size, Double price, 
 			String material, Double weight, Double lensWidth, Double lensHeight, Double frameWidth, HashSet<String> category, 
 			HashSet<String> colors) {
 		super();

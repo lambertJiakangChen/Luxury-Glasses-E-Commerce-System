@@ -21,12 +21,12 @@ public class CatalogService implements CatalogServiceInterface {
 	private CatalogDao catalogDao;
 
 	@Override
-	public void addItem(String itemName, String shape, String size, Double price, 
+	public void addItem(String itemName, String brand, String shape, String size, Double price, 
 			String material, Double weight, Double lensWidth, Double lensHeight, 
 			Double frameWidth, HashSet<String> category, HashSet<String> colors) {
 
 		if (!itemExists(itemName)) {
-			Item item = new Item( (catalogDao.count()+1), itemName, shape, size, price,  material, weight, lensWidth, 
+			Item item = new Item( (catalogDao.count()+1), itemName, brand, shape, size, price,  material, weight, lensWidth, 
 					lensHeight, frameWidth, category, colors);
 			catalogDao.save(item);
 		}

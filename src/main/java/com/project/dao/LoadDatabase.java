@@ -44,9 +44,9 @@ public class LoadDatabase {
 	    return args -> {
 	    	log.info("Preloading " + accountDao.save(new Account((long) 1, "justinB31", "justin", "bieber", "justin1@gmail.com", "Qwerty12", "regular", null)));
 	    	
-	    	catalogDao.save(new Item((long) 1,"Oakley" ,"Evelyn", "Cat eye", "wide", 22.95, "titanium", 12.0, 56.0, 37.0, 140.0, category, color));
-	    	catalogDao.save(new Item((long) 2,"Carrera", "Yomary", "Cat eye", "wide", 25.95, "TR90", 19.2, 57.0, 48.0, 140.0, category1, color1));
-	    	catalogDao.save(new Item((long) 3,"Oakley", "Cicely", "Geometric", "wide", 15.00, "TR90", 20.0, 56.18, 45.96, 139.0, category2, color2));
+	    	catalogDao.save(new Item((long) 1, "Evelyn", "Oakley" , "Cat eye", "wide", 22.95, "titanium", 12.0, 56.0, 37.0, 140.0, category, color));
+	    	catalogDao.save(new Item((long) 2, "Yomary", "Carrera", "Cat eye", "wide", 25.95, "TR90", 19.2, 57.0, 48.0, 140.0, category1, color1));
+	    	catalogDao.save(new Item((long) 3, "Cicely", "Oakley", "Geometric", "wide", 15.00, "TR90", 20.0, 56.18, 45.96, 139.0, category2, color2));
 		    
             catalogDao.findAll().forEach(item -> {
               log.info("Preloaded " + item);});
