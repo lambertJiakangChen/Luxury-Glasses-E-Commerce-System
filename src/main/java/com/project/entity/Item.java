@@ -16,6 +16,7 @@ public class Item {
 
 	@Id @GeneratedValue
 	private Long id;
+	private String brand;
 	private String itemName;
 	private String shape;
 	private String size;
@@ -88,6 +89,14 @@ public class Item {
 
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
+	}
+	
+	public String getBrand() {
+		return this.brand;
+	}
+	
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 	
 	
@@ -209,10 +218,9 @@ public class Item {
 		this.category.remove(ncategory);
 	}
 	
-	public void containsCategory(String ncategory) {
-		this.category.contains(ncategory);
+	public boolean containsCategory(String ncategory) {
+		return this.category.contains(ncategory);
 	}
-	
 	/*
 	 * Get, Add and Remove the color available of the eyewear
 	 * 
@@ -230,19 +238,19 @@ public class Item {
 		this.colors.remove(ncolor);
 	}
 	
-	public void containsColor(String ncolor) {
-		this.colors.contains(ncolor);
+	public boolean containsColor(String ncolor) {
+		return this.colors.contains(ncolor);
 	}
 
 
 	@Override
 	public String toString() {
-		return "Item [id=" + getId() + ", itemName=" + getItemName() + ", shape=" + getShape() 
+		return "Item [id=" + getId() + ", brand=" + getBrand() +", itemName=" + getItemName() + ", shape=" + getShape() 
 				+ ", size=" + getSize() + ", price=" + getPrice() 
-				+ ", weight=" + getWeight() + ", demiension=" 
+				+ ", weight=" + getWeight() + ", material=" + getMaterial() + ", demiension=" 
 				+ getLensWidth() + "-" + getLensHeight() + "-" 
-				+ getFrameWidth() + ", category=" + category.toString() 
-				+ ", colors=" + colors.toString() + "]";
+				+ getFrameWidth() + ", category=" + getCategory()
+				+ ", colors=" + getColors() + "]";
 	}
 
 
