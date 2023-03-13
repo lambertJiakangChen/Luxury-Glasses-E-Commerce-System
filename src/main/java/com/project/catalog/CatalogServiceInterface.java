@@ -21,5 +21,15 @@ public interface CatalogServiceInterface {
 	boolean itemExists(String itemName);
 
 	Collection<Item> sortCatalog(String sort);
+	
+	Collection<Item> sortPrice(String sort);
+	
+	Collection<Item> sortItemName(String sort);
+	
+	Collection<Item> filterbybrand(String brand);
+	
+	Collection<Item> filterbycate(String cate);
+	
+	Collection<Item> filterbycolor(String color);
 
 }
