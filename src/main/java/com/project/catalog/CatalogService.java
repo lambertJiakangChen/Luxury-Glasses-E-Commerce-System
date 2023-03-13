@@ -63,5 +63,55 @@ public class CatalogService implements CatalogServiceInterface {
 		//Assume non-descending for now
 		return catalogDao.findAll(Sort.by(sort));
 	}
+	
+	@Override
+	public Collection<Item> sortPrice(String sort){
+		if (sort.equals("ascending"))
+			return catalogDao.findAll(Sort.by(Sort.Direction.ASC, "price"));
+		else
+			return catalogDao.findAll(Sort.by(Sort.Direction.DESC, "price"));
+	}
+	
+	@Override
+	public Collection<Item> sortItemName(String sort){
+		if (sort.equals("ascending"))
+			return catalogDao.findAll(Sort.by(Sort.Direction.ASC, "itemName"));
+		else
+			return catalogDao.findAll(Sort.by(Sort.Direction.DESC, "itemName"));
+	}
+	
+	@Override
+	public Collection<Item> filterbybrand(String brand){
+		Collection<Item> items = new ArrayList<Item>();
+		for (Item i: catalogDao.findAll()) {
+			if (i.getBrand().equals(brand)) {
+				items.add(i);
+			}
+		}
+		return items;
+	}
+	
+	@Override
+	public Collection<Item> filterbycate(String cate){
+		Collection<Item> items = new ArrayList<Item>();
+		for (Item i: catalogDao.findAll()) {
+			if (i.containsCategory(cate)) {
+				items.add(i);
+			}
+		}
+		return items;
+	}
+	
+	@Override
+	public Collection<Item> filterbycolor(String color){
+		Collection<Item> items = new ArrayList<Item>();
+		for (Item i: catalogDao.findAll()) {
+			if (i.containsColor(color)) {
+				items.add(i);
+			}
+		}
+		return items;
+	}
+
 
 }
