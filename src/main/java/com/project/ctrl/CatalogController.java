@@ -14,9 +14,7 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("catalog")
 public class CatalogController {
 	
-	@Autowired
-	private CatalogDao catalogDao;
-	CatalogServiceInterface catalogService;
+	@Autowired CatalogServiceInterface catalogService;
 	
 //	@ResponseBody
 //    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -27,6 +25,7 @@ public class CatalogController {
 	
 	@RequestMapping("addItem")
 	String addItem(HttpServletRequest request, HttpSession session) {
+		String brand = request.getParameter("brand");
 		String name = request.getParameter("itemName");
 		String shape = request.getParameter("shape");
 		String size = request.getParameter("size");
@@ -38,7 +37,7 @@ public class CatalogController {
 		Double fw = Double.parseDouble(request.getParameter("framWidth"));
 		
 		try {
-			catalogService.addItem(name, shape, size, price, mat, weight, lw, lh, fw, null, null);
+			catalogService.addItem(brand, name, shape, size, price, mat, weight, lw, lh, fw, null, null);
 		} catch (Exception e) {
 			return "Unable to add item: " + e.getMessage();
 		}
@@ -61,5 +60,40 @@ public class CatalogController {
 //		return catalogService.sortCatalogByName().toString();
 		return catalogService.sortCatalog(request.getParameter("sort")).toString();
 	}
-
+	
+	@RequestMapping("sortbyprice")
+	String sortCatalogByPrice(HttpServletRequest request, HttpSession session) {
+		if (request.getParameter("sort") != null && request.getParameter("sort").equals("ascending")) {
+			return catalogService.sortPrice(request.getParameter("sort")).toString();
+	    }else if (request.getParameter("sort") != null && request.getParameter("sort").equals("descending")) {
+	    	return catalogService.sortPrice(request.getParameter("sort")).toString();
+	    }
+		return "please choose ascending or descending";
+	}
+	
+	@RequestMapping("sortbyitemname")
+	String sortCatalogByItemName(HttpServletRequest request, HttpSession session) {
+		if (request.getParameter("sort") != null && request.getParameter("sort").equals("ascending")) {
+			return catalogService.sortItemName(request.getParameter("sort")).toString();
+	    }else if (request.getParameter("sort") != null && request.getParameter("sort").equals("descending")) {
+	    	return catalogService.sortItemName(request.getParameter("sort")).toString();
+	    }
+		return "please choose ascending or descending";
+	}
+	
+	@RequestMapping("filterbybrand")
+	String filterCatalogByBrand(HttpServletRequest request, HttpSession session) {
+		return catalogService.filterbybrand(request.getParameter("brand")).toString();
+	}
+	
+	@RequestMapping("filterbycate")
+	String filterCatalogByCatagory(HttpServletRequest request, HttpSession session) {
+		return catalogService.filterbycate(request.getParameter("cate")).toString();
+	}
+	
+	@RequestMapping("filterbycolor")
+	String filterCatalogByColor(HttpServletRequest request, HttpSession session) {
+		return catalogService.filterbycolor(request.getParameter("color")).toString();
+	}
+	
 }
