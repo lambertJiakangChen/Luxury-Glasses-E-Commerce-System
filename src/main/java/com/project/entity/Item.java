@@ -32,12 +32,13 @@ public class Item {
 	
 	
 	
-	public Item(Long id, String itemName, String shape, String size, Double price, 
+	public Item(Long id, String itemName, String brand, String shape, String size, Double price, 
 			String material, Double weight, Double lensWidth, Double lensHeight, Double frameWidth, HashSet<String> category, 
 			HashSet<String> colors) {
 		super();
 		this.id = id;
 		this.itemName = itemName;
+		this.brand = brand;
 		this.shape = shape;
 		this.size = size;
 		this.price = price;
@@ -245,12 +246,12 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item [id=" + getId() + ", brand=" + getBrand() +", itemName=" + getItemName() + ", shape=" + getShape() 
+		return "Item\n[id=" + getId() + ", brand=" + getBrand() +", itemName=" + getItemName() + ", shape=" + getShape() 
 				+ ", size=" + getSize() + ", price=" + getPrice() 
 				+ ", weight=" + getWeight() + ", material=" + getMaterial() + ", demiension=" 
 				+ getLensWidth() + "-" + getLensHeight() + "-" 
 				+ getFrameWidth() + ", category=" + getCategory()
-				+ ", colors=" + getColors() + "]";
+				+ ", colors=" + getColors() + "]\n";
 	}
 
 

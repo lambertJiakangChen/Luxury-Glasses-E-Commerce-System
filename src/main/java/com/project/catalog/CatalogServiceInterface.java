@@ -8,7 +8,7 @@ import com.project.entity.Item;
 
 public interface CatalogServiceInterface {
 	
-	void addItem(String itemName, String shape, String size, Double price, 
+	void addItem(String itemName, String brand, String shape, String size, Double price, 
 			String material, Double weight, Double lensWidth, Double lensHeight, 
 			Double frameWidth, HashSet<String> category, HashSet<String> colors);
 
