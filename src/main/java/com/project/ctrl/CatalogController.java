@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.catalog.CatalogServiceInterface;
+import com.project.catalog.CatalogService;
 import com.project.dao.CatalogDao;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("catalog")
 public class CatalogController {
 	
-	@Autowired CatalogServiceInterface catalogService;
+	@Autowired CatalogService catalogService;
 	
 //	@ResponseBody
 //    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -61,7 +61,7 @@ public class CatalogController {
 		return catalogService.sortCatalog(request.getParameter("sort")).toString();
 	}
 	
-	@RequestMapping("sortbyprice")
+	@RequestMapping("sortByPrice")
 	String sortCatalogByPrice(HttpServletRequest request, HttpSession session) {
 		if (request.getParameter("sort") != null && request.getParameter("sort").equals("ascending")) {
 			return catalogService.sortPrice(request.getParameter("sort")).toString();
@@ -71,7 +71,7 @@ public class CatalogController {
 		return "please choose ascending or descending";
 	}
 	
-	@RequestMapping("sortbyitemname")
+	@RequestMapping("sortByItemName")
 	String sortCatalogByItemName(HttpServletRequest request, HttpSession session) {
 		if (request.getParameter("sort") != null && request.getParameter("sort").equals("ascending")) {
 			return catalogService.sortItemName(request.getParameter("sort")).toString();
@@ -81,17 +81,17 @@ public class CatalogController {
 		return "please choose ascending or descending";
 	}
 	
-	@RequestMapping("filterbybrand")
+	@RequestMapping("filterByBrand")
 	String filterCatalogByBrand(HttpServletRequest request, HttpSession session) {
 		return catalogService.filterbybrand(request.getParameter("brand")).toString();
 	}
 	
-	@RequestMapping("filterbycate")
+	@RequestMapping("filterByCategory")
 	String filterCatalogByCatagory(HttpServletRequest request, HttpSession session) {
 		return catalogService.filterbycate(request.getParameter("cate")).toString();
 	}
 	
-	@RequestMapping("filterbycolor")
+	@RequestMapping("filterByColor")
 	String filterCatalogByColor(HttpServletRequest request, HttpSession session) {
 		return catalogService.filterbycolor(request.getParameter("color")).toString();
 	}

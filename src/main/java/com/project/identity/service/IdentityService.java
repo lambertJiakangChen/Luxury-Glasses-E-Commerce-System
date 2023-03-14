@@ -6,11 +6,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.project.entity.Account;
+import com.project.entity.types.AccountType;
 
 @Service
 public interface IdentityService {
 	
-	void registerAccount(String username, String fName, String lName, String email, String password, String type) throws Exception;
+	void registerAccount(String username, String fName, String lName, String email, String password, AccountType type) throws Exception;
 	
 	boolean isRegisteredAccount(String username, String password);
 

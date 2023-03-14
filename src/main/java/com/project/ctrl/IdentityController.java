@@ -5,13 +5,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.entity.Account;
+import com.project.entity.types.AccountType;
 import com.project.identity.service.IdentityService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-public class Controller {	
+public class IdentityController {	
 	
 	@Autowired IdentityService identityService;
 	
@@ -24,7 +25,7 @@ public class Controller {
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
 		String email = request.getParameter("email");
-		String type = request.getParameter("type");
+		AccountType type = AccountType.valueOf(request.getParameter("type"));
 		
 		try {
 			identityService.registerAccount(username, fname, lname, email, password, type);

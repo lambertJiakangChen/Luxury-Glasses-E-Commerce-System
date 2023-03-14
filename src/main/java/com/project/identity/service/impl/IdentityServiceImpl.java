@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.dao.AccountDao;
 import com.project.entity.Account;
+import com.project.entity.types.AccountType;
 import com.project.identity.service.IdentityService;
 
 @Service
@@ -19,13 +20,15 @@ public class IdentityServiceImpl implements IdentityService{
 	AccountDao accountDao;
 	
 	@Override
-	public void registerAccount(String username, String fName, String lName, String email, String password, String type) throws Exception {
-		
-		//register regular account
-		
+	public void registerAccount(String username, String fName, String lName, String email, String password, AccountType type) throws Exception {
+				
 		// username already exists >> choose another username
 		if (usernameExists(username)) {
 			throw new Exception("Username Already Exists.");
+		}
+
+		if ( !type.name().equals(AccountType.ADMIN.name()) && !type.name().equals(AccountType.REGULAR.name()) ) {
+			throw new Exception("Invalid Account Type");	
 		}
 		
 		// add account to DB

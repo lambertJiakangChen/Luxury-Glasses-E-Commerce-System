@@ -1,5 +1,7 @@
 package com.project.entity;
 
+import com.project.entity.types.AccountType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -14,12 +16,12 @@ public class Account {
 	private String lName;
 	private String email;
 	private String password;
-	private String accountType;
+	private AccountType accountType;
 	private String addressId;
 	
 	
 	public Account(Long id, String username, String fName, String lName, String email, String password,
-			String accountType, String addressId) {
+			AccountType accountType, String addressId) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -97,12 +99,12 @@ public class Account {
 	}
 
 
-	public String getAccountType() {
+	public AccountType getAccountType() {
 		return accountType;
 	}
 
 
-	public void setAccountType(String accountType) {
+	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
 	}
 
