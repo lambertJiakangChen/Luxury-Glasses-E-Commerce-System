@@ -5,8 +5,10 @@ import com.project.entity.types.AccountType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "Account")
 public class Account {
 	
 	@Id @GeneratedValue
@@ -17,11 +19,11 @@ public class Account {
 	private String email;
 	private String password;
 	private AccountType accountType;
-	private String addressId;
+	private Long addressId;
 	
 	
 	public Account(Long id, String username, String fName, String lName, String email, String password,
-			AccountType accountType, String addressId) {
+			AccountType accountType, Long addressId) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -109,12 +111,12 @@ public class Account {
 	}
 
 
-	public String getAddressId() {
+	public Long getAddressId() {
 		return addressId;
 	}
 
 
-	public void setAddressId(String addressId) {
+	public void setAddressId(Long addressId) {
 		this.addressId = addressId;
 	}
 

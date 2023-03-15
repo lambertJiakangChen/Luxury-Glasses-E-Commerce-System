@@ -65,26 +65,7 @@ public class IdentityServiceImpl implements IdentityService{
 	public Collection<Account> findAllAccounts() {
 		return accountDao.findAll();
 	}
-
-//	@Override
-//	public void editAccountDetails(String property, String oldValue, String newValue) {
-//		
-//		switch(property) {
-//		case "username":
-//			updateUsername(newValue);
-//		case "firstName":
-//			updateFirstName(newValue);
-//		case "lastName":
-//			updateLastName(newValue);
-//		case "address":
-//			updateAddress(newValue);
-//		case "email":
-//			updateEmail(newValue);
-//		case "password":
-//			updatePassword(oldValue, newValue);
-//		}
-//		
-//	}
+	
 	
 	@Override 
 	public void editUsername(Long accId, String oldValue, String newValue) {
