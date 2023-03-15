@@ -58,9 +58,9 @@ public class LoadDatabase {
 	    	catalogDao.save(new Item((long) 3, "Cicely", "Oakley", "Geometric", "wide", 15.00, "TR90", 20.0, 56.18, 45.96, 139.0, category2, color2));
 	        catalogDao.save(new Item((long) 4, "Yomary", "Carrera", "Cat eye", "wide", 15.00, "TR90", 20.0, 56.18, 45.96, 139.0, category, color2));
 		    
-            catalogDao.findAll().forEach(item -> {
-              log.info("Preloaded " + item);});
-	    };
+                catalogDao.findAll().forEach(item -> {
+                    log.info("Preloaded " + item);});
+	      };
 	  }
 
 }
