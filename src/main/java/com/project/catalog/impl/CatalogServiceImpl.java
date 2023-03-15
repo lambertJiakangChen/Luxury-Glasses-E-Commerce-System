@@ -162,6 +162,7 @@ public class CatalogServiceImpl implements CatalogService {
 		return Items;
 	}
 	
+	@Override
 	public Collection<Item> recommandation(Collection<Item> Items){
 		Collection<Item> recomandItems = new ArrayList<Item>();
 		for (Item i : Items) {
