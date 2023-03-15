@@ -31,5 +31,7 @@ public interface CatalogService {
 	Collection<Item> filterbycate(String cate);
 	
 	Collection<Item> filterbycolor(String color);
+	
+	String viewDetails(String itemName, String cate, String color) throws Exception;
 
 }
