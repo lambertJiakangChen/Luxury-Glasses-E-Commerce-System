@@ -116,9 +116,9 @@ public class CatalogServiceImpl implements CatalogService {
 	
 	@Override
 	public String viewDetails(String itemName, String cate, String color) throws Exception {
-		Item item = searchItemByName(itemName).iterator().next();
-		String viewoutlook = "The shape is " + item.getShape() + " with dimensions " + item.getLensWidth() + "-" 
-		+ item.getLensHeight() + "-" + item.getFrameWidth() + " make by " + item.getMaterial();
+	    Item item = searchItemByName(itemName).iterator().next();
+	    String viewoutlook = "The shape is " + item.getShape() + " with dimensions " + item.getLensWidth() + "-" 
+	    + item.getLensHeight() + "-" + item.getFrameWidth() + " make by " + item.getMaterial();
 	    if(!item.containsColor(color)) {
 	    	throw new Exception("no such color");
 	    }else {
