@@ -24,6 +24,12 @@ public class CatalogServiceImpl implements CatalogService {
 
 	@Autowired 
 	private CatalogDao catalogDao;
+	
+	@Autowired
+	private OrderDao orderDao;
+	
+	@Autowired
+	private OrderItemDao orderItemDao;
 
 	@Override
 	public void addItem(String itemName, String brand, String shape, String size, Double price, 
