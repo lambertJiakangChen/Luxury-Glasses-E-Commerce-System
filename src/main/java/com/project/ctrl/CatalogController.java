@@ -96,4 +96,18 @@ public class CatalogController {
 		return catalogService.filterbycolor(request.getParameter("color")).toString();
 	}
 	
+	@RequestMapping("ViewDetails")
+	String viewDetails(HttpServletRequest request, HttpSession session) {
+		String itemName = request.getParameter("item");
+		String category = request.getParameter("cate");
+		String color = request.getParameter("color");
+		String result;
+		try {
+			result = catalogService.viewDetails(itemName, category, color).toString();
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+		return result;
+	}
+	
 }
