@@ -113,6 +113,24 @@ public class CatalogServiceImpl implements CatalogService {
 		}
 		return items;
 	}
+	
+	@Override
+	public String viewDetails(String itemName, String cate, String color) throws Exception {
+		Item item = searchItemByName(itemName).iterator().next();
+		String viewoutlook = "The shape is " + item.getShape() + " with dimensions " + item.getLensWidth() + "-" 
+		+ item.getLensHeight() + "-" + item.getFrameWidth() + " make by " + item.getMaterial();
+	    if(!item.containsColor(color)) {
+	    	throw new Exception("no such color");
+	    }else {
+	    	viewoutlook = viewoutlook + ". It is a " + color;
+	    }
+	    if(!item.containsCategory(cate)) {
+	    	throw new Exception("no such catogory");
+	    }else {
+	    	viewoutlook = viewoutlook + " " + cate + " glasses.";
+	    }
+	    return viewoutlook;
+	}
 
 
 }
