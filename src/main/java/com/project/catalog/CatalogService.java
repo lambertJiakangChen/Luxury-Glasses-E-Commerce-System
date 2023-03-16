@@ -42,4 +42,5 @@ public interface CatalogService {
 	
 	Collection<Item> recommandationbycolor(Collection<Item> Items);
 
+
 }

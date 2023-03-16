@@ -102,7 +102,7 @@ public class CatalogController {
 		return catalogService.filterbycolor(request.getParameter("color")).toString();
 	}
 	
-	@RequestMapping("viewDetails")
+	@RequestMapping("ViewDetails")
 	String viewDetails(HttpServletRequest request, HttpSession session) {
 		String itemName = request.getParameter("item");
 		String category = request.getParameter("cate");
@@ -134,11 +134,7 @@ public class CatalogController {
 		}
 		if (request.getParameter("by").equals("color")) {
 			recommand = recommand + "You may also need " + catalogService.recommandationbycolor(Items).toString();
-		}
-			
+		}	
 		return recommand;
-//		return catalogService.acountItem(accId).toString();
 	}
-	
-	
 }
