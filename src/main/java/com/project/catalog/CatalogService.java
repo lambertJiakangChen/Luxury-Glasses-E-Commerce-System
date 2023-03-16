@@ -36,6 +36,10 @@ public interface CatalogService {
 	
 	Collection<Item> acountItem(Long accId);
 	
-	Collection<Item> recommandation(Collection<Item> Items);
+	Collection<Item> recommandationbysize(Collection<Item> Items);
+	
+	Collection<Item> recommandationbycate(Collection<Item> Items);
+	
+	Collection<Item> recommandationbycolor(Collection<Item> Items);
 
 }

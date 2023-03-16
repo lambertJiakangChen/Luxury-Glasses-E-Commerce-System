@@ -126,8 +126,16 @@ public class CatalogController {
 		}
 		recommand = "Customer with Id " + accId + " has " + catalogService.acountItem(accId).toString() + " in cart. ";
 		Collection<Item> Items =  catalogService.acountItem(accId);
-		recommand = recommand + "You may also need " + catalogService.recommandation(Items).toString();
-		
+		if (request.getParameter("by").equals("overallsize")) {
+			recommand = recommand + "You may also need " + catalogService.recommandationbysize(Items).toString();
+		}
+		if (request.getParameter("by").equals("category")) {
+			recommand = recommand + "You may also need " + catalogService.recommandationbycate(Items).toString();
+		}
+		if (request.getParameter("by").equals("color")) {
+			recommand = recommand + "You may also need " + catalogService.recommandationbycolor(Items).toString();
+		}
+			
 		return recommand;
 //		return catalogService.acountItem(accId).toString();
 	}
