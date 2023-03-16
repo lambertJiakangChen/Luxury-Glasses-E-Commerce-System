@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 
 import com.project.catalog.CatalogService;
 import com.project.dao.CatalogDao;
+import com.project.dao.OrderDao;
+import com.project.dao.OrderItemDao;
+import com.project.entity.Order;
+import com.project.entity.OrderItem;
 import com.project.entity.Account;
 import com.project.entity.Item;
 
@@ -20,6 +24,10 @@ public class CatalogServiceImpl implements CatalogService {
 
 	@Autowired 
 	private CatalogDao catalogDao;
+	@Autowired
+	private OrderDao orderDao;
+	@Autowired
+	private OrderItemDao orderItemDao;
 
 	@Override
 	public void addItem(String itemName, String brand, String shape, String size, Double price, 
@@ -113,6 +121,68 @@ public class CatalogServiceImpl implements CatalogService {
 		}
 		return items;
 	}
+	
+	@Override
+	public String viewDetails(String itemName, String cate, String color) throws Exception {
+		Item item = searchItemByName(itemName).iterator().next();
+		String viewoutlook = "The shape is " + item.getShape() + " with dimensions " + item.getLensWidth() + "-" 
+		+ item.getLensHeight() + "-" + item.getFrameWidth() + " make by " + item.getMaterial();
+	    if(!item.containsColor(color)) {
+	    	throw new Exception("no such color");
+	    }else {
+	    	viewoutlook = viewoutlook + ". It is a " + color;
+	    }
+	    if(!item.containsCategory(cate)) {
+	    	throw new Exception("no such catogory");
+	    }else {
+	    	viewoutlook = viewoutlook + " " + cate + " glasses.";
+	    }
+	    return viewoutlook;
+	}
+	
+	@Override
+	public Collection<Item> acountItem(Long accId) {
+		Collection<OrderItem> orderItems = new ArrayList<OrderItem>();
+		Collection<Item> Items = new ArrayList<Item>();
+		Order or = null;
+		for (Order i: orderDao.findAll()) {
+			if (i.getaccountId().equals(accId)) {
+				or = i;
+				break;
+			}
+		}
+		for (OrderItem i: orderItemDao.findAll() ) {
+			if (i.getOrderId().equals(or.getId())) {
+				orderItems.add(i);
+			}
+		}
+		for (OrderItem o : orderItems) {
+			for (Item i: catalogDao.findAll()) {
+				if (o.getItem().equals(i)){
+					Items.add(i);
+				}
+			}
+		}
+		return Items;
+	}
+	
+	public Collection<Item> recommandation(Collection<Item> Items){
+		Collection<Item> recomandItems = new ArrayList<Item>();
+		for (Item i : Items) {
+			for (Item exist_i: catalogDao.findAll()) {
+				if(i.getSize().equals(exist_i.getSize()) &&  i.getMaterial().equals(exist_i.getMaterial()) && (i.getLensHeight().equals(exist_i.getLensHeight()) &&
+						i.getLensWidth().equals(exist_i.getLensWidth()) && i.getFrameWidth().equals(exist_i.getFrameWidth()))) {
+					if(i.getId().equals(exist_i.getId())) {
+						 continue;
+					}else {
+						recomandItems.add(exist_i);
+					}
+				}
+			}
+		}
+		return recomandItems;
+	}
+	
 
 
 }

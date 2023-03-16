@@ -1,11 +1,17 @@
 package com.project.ctrl;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.catalog.CatalogService;
 import com.project.dao.CatalogDao;
+import com.project.entity.Account;
+import com.project.entity.Item;
+import com.project.entity.OrderItem;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -95,5 +101,36 @@ public class CatalogController {
 	String filterCatalogByColor(HttpServletRequest request, HttpSession session) {
 		return catalogService.filterbycolor(request.getParameter("color")).toString();
 	}
+	
+	@RequestMapping("viewDetails")
+	String viewDetails(HttpServletRequest request, HttpSession session) {
+		String itemName = request.getParameter("item");
+		String category = request.getParameter("cate");
+		String color = request.getParameter("color");
+		String result;
+		try {
+			result = catalogService.viewDetails(itemName, category, color).toString();
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+		return result;
+	}
+	
+	@RequestMapping("recommand")
+	String recommandation(HttpServletRequest request, HttpSession session) {
+		String recommand = "";
+		Account acc = (Account) session.getAttribute("ACCOUNT");
+		Long accId = null;
+		if (acc != null) {
+			accId = Long.valueOf(acc.getId());
+		}
+		recommand = "Customer with Id " + accId + " has " + catalogService.acountItem(accId).toString() + " in cart. ";
+		Collection<Item> Items =  catalogService.acountItem(accId);
+		recommand = recommand + "You may also need " + catalogService.recommandation(Items).toString();
+		
+		return recommand;
+//		return catalogService.acountItem(accId).toString();
+	}
+	
 	
 }
