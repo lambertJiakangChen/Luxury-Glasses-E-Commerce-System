@@ -24,7 +24,7 @@ public class CatalogServiceImpl implements CatalogService {
 
 	@Autowired 
 	private CatalogDao catalogDao;
-	
+
 	@Autowired
 	private OrderDao orderDao;
 	
@@ -169,7 +169,8 @@ public class CatalogServiceImpl implements CatalogService {
 	}
 	
 	@Override
-	public Collection<Item> recommandation(Collection<Item> Items){
+	public Collection<Item> recommandationbysize(Collection<Item> Items){
+
 		Collection<Item> recomandItems = new ArrayList<Item>();
 		for (Item i : Items) {
 			for (Item exist_i: catalogDao.findAll()) {
@@ -183,6 +184,40 @@ public class CatalogServiceImpl implements CatalogService {
 				}
 			}
 		}
+		return recomandItems;
+	}
+	
+	@Override
+	public Collection<Item> recommandationbycate(Collection<Item> Items){
+		Collection<Item> recomandItems = new ArrayList<Item>();
+		for (Item i : Items) {
+			for (Item exist_i: catalogDao.findAll()) {
+				if(i.getCategory().stream().allMatch(element -> exist_i.getCategory().contains(element))){
+					if(i.getId().equals(exist_i.getId())) {
+						 continue;
+					}else {
+						recomandItems.add(exist_i);
+					}
+				}
+			}
+	    }
+		return recomandItems;
+	}
+	
+	@Override
+	public Collection<Item> recommandationbycolor(Collection<Item> Items){
+		Collection<Item> recomandItems = new ArrayList<Item>();
+		for (Item i : Items) {
+			for (Item exist_i: catalogDao.findAll()) {
+				if(i.getColors().stream().allMatch(element -> exist_i.getColors().contains(element))){
+					if(i.getId().equals(exist_i.getId())) {
+						 continue;
+					}else {
+						recomandItems.add(exist_i);
+					}
+				}
+			}
+	    }
 		return recomandItems;
 	}
 
