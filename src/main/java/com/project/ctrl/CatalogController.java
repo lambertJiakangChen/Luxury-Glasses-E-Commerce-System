@@ -2,6 +2,7 @@ package com.project.ctrl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,9 +42,28 @@ public class CatalogController {
 		Double lw = Double.parseDouble(request.getParameter("lensWidth"));
 		Double lh = Double.parseDouble(request.getParameter("lensHeight"));
 		Double fw = Double.parseDouble(request.getParameter("framWidth"));
+		HashSet<String> category=new HashSet<String>();
+		HashSet<String> color=new HashSet<String>();
+		category.add(request.getParameter("cat1"));
+		color.add(request.getParameter("color1"));
+		if (request.getParameter("cat2") != null) {
+			category.add(request.getParameter("cat2"));
+		}
+		if (request.getParameter("cat3") != null) {
+			category.add(request.getParameter("cat3"));
+		}
+		if (request.getParameter("color2") != null) {
+			category.add(request.getParameter("color2"));
+		}
+		if (request.getParameter("color3") != null) {
+			category.add(request.getParameter("color3"));
+		}
+		if (request.getParameter("color4") != null) {
+			category.add(request.getParameter("color4"));
+		}
 		
 		try {
-			catalogService.addItem(brand, name, shape, size, price, mat, weight, lw, lh, fw, null, null);
+			catalogService.addItem(brand, name, shape, size, price, mat, weight, lw, lh, fw, category, color);
 		} catch (Exception e) {
 			return "Unable to add item: " + e.getMessage();
 		}
