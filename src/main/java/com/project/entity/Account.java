@@ -1,5 +1,8 @@
 package com.project.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.project.entity.types.AccountType;
 
 import jakarta.persistence.Entity;
@@ -20,6 +23,7 @@ public class Account {
 	private String password;
 	private AccountType accountType;
 	private Long addressId;
+	private List<Address> address = new ArrayList<>(); 
 	
 	
 	public Account(Long id, String username, String fName, String lName, String email, String password,

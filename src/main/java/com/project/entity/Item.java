@@ -92,6 +92,10 @@ public class Item {
 		this.itemName = itemName;
 	}
 	
+	
+	/*
+	 * Get and Set item brand of eyewear
+	*/
 	public String getBrand() {
 		return this.brand;
 	}
@@ -226,7 +230,7 @@ public class Item {
 	 * Get, Add and Remove the color available of the eyewear
 	 * 
 	*/
-	public Set<String> getColors() {
+	public Set<String> getColor() {
 		return this.colors;
 	}
 
@@ -251,8 +255,26 @@ public class Item {
 				+ ", weight=" + getWeight() + ", material=" + getMaterial() + ", demiension=" 
 				+ getLensWidth() + "-" + getLensHeight() + "-" 
 				+ getFrameWidth() + ", category=" + getCategory()
-				+ ", colors=" + getColors() + "]\n";
+				+ ", colors=" + getColor() + "]\n";
 	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj ==  this)
+			return true;
+		if (!(obj instanceof Item))
+			return false;
+		Item i = (Item) obj;
+		return ((i.getId() == this.getId()) && (i.getItemName().equals(this.getItemName()))
+				&& (i.getColor().equals(this.getColor())));
+	}
+	
+	
 
 
 }
