@@ -53,13 +53,13 @@ public class CatalogController {
 			category.add(request.getParameter("cat3"));
 		}
 		if (request.getParameter("color2") != null) {
-			category.add(request.getParameter("color2"));
+			color.add(request.getParameter("color2"));
 		}
 		if (request.getParameter("color3") != null) {
-			category.add(request.getParameter("color3"));
+			color.add(request.getParameter("color3"));
 		}
 		if (request.getParameter("color4") != null) {
-			category.add(request.getParameter("color4"));
+			color.add(request.getParameter("color4"));
 		}
 		
 		try {
