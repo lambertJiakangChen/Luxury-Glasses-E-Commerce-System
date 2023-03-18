@@ -11,7 +11,7 @@ import com.project.dao.AccountDao;
 import com.project.dao.CatalogDao;
 import com.project.dao.OrderDao;
 import com.project.entity.Account;
-import com.project.entity.Address;
+import com.project.address.Address;
 import com.project.entity.Order;
 import com.project.entity.OrderItem;
 import com.project.shoppingcart.ShoppingCart;

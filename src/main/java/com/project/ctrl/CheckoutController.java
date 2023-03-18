@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.checkout.Checkout;
 import com.project.dao.OrderDao;
 import com.project.entity.Account;
-import com.project.entity.Address;
+import com.project.address.Address;
 import com.project.entity.Order;
 import com.project.entity.types.OrderStatus;
 import com.project.identity.service.IdentityService;

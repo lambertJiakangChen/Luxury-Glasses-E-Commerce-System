@@ -13,7 +13,7 @@ import com.project.dao.LoadDatabase;
 import com.project.dao.OrderDao;
 import com.project.dao.OrderItemDao;
 import com.project.dao.SequenceDao;
-import com.project.entity.Address;
+import com.project.address.Address;
 import com.project.entity.Item;
 import com.project.entity.Order;
 import com.project.entity.OrderItem;

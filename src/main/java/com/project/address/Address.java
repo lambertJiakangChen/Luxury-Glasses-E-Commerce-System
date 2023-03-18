@@ -1,4 +1,4 @@
-package com.project.entity;
+package com.project.address;
 
 import java.util.Objects;
 
@@ -191,9 +191,5 @@ public class Address {
 				&& Objects.equals(line2, other.line2) && Objects.equals(postal, other.postal)
 				&& Objects.equals(province, other.province);
 	}
-	
-	
-	
-	
 
 }
