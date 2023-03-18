@@ -30,8 +30,6 @@ public class Checkout {
 	
 	private List<OrderItem> items = new ArrayList<>();
 	private Order order;
-	private double total;
-	
 	private Address shippingAddress;
 
 
@@ -41,7 +39,6 @@ public class Checkout {
 		getAccID();
 		this.orderID = cart.getOrderId();
 		this.order = orderDao.getById(orderID);
-		this.total = cart.getTotal();
 			
 	}
 
