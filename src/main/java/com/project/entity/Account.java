@@ -27,8 +27,8 @@ public class Account {
 	private String password;
 	private AccountType accountType;
 //	private Long addressId;
-	@ManyToOne
-	private Address address;
+	
+	@ManyToOne private Address address;
 	
 	
 	public Account(Long id, String username, String fName, String lName, String email, String password,
