@@ -172,7 +172,7 @@ public class Address {
 	
 	@Override
 	public String toString() {
-		return "[Shipping Address: " + name.toUpperCase() + "\n" + line2 + " " + line1 + ",\n"
+		return "[Address: " + name.toUpperCase() + "\n" + line2 + " " + line1 + ",\n"
 				+ city + ", " + province + " " + postal.toUpperCase() + " " + country + "\n" 
 				+ phone;
 	}

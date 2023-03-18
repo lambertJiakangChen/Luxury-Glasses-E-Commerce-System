@@ -15,10 +15,10 @@ public class Order {
 	private Long id;
 	private OrderStatus status;
 	private Long accountId;
-	private Long addressId;
+	private Address addressId;
 	
 	
-	public Order(Long id, Long accountId, OrderStatus status, Long addressId) {
+	public Order(Long id, Long accountId, OrderStatus status, Address addressId) {
 		super();
 		this.id = id;
 		this.status = status;
@@ -54,18 +54,18 @@ public class Order {
 		this.status = status;
 	}
 
-	public Long getAddressId() {
+	public Address getAddressId() {
 		return addressId;
 	}
 
-	public void setAddressId(Long addressId) {
+	public void setAddressId(Address addressId) {
 		this.addressId = addressId;
 	}
 
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", accountId=" + accountId + ", status=" + status + ", addressId="
-				+ addressId + "]";
+				+ addressId.toString() + "]";
 	}
 
 }

@@ -23,11 +23,11 @@ public class Account {
 	private String password;
 	private AccountType accountType;
 	private Long addressId;
-	private List<Address> address = new ArrayList<>(); 
+	private Address address;
 	
 	
 	public Account(Long id, String username, String fName, String lName, String email, String password,
-			AccountType accountType, Long addressId) {
+			AccountType accountType, Address address) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -36,7 +36,7 @@ public class Account {
 		this.email = email;
 		this.password = password;
 		this.accountType = accountType;
-		this.addressId = addressId;
+		this.address = address;
 	}
 
 
@@ -115,20 +115,20 @@ public class Account {
 	}
 
 
-	public Long getAddressId() {
-		return addressId;
+	public Address getAddress() {
+		return address;
 	}
 
 
-	public void setAddressId(Long addressId) {
-		this.addressId = addressId;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 
 	@Override
 	public String toString() {
 		return "Account [id=" + id + ", username=" + username + ", fName=" + fName + ", lName=" + lName + ", email="
-				+ email + ", password=" + password + ", accountType=" + accountType + ", addressId=" + addressId + "]";
+				+ email + ", password=" + password + ", accountType=" + accountType + ", " + address.toString() + "]";
 	}
 
 }

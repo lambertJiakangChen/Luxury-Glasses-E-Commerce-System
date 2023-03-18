@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.entity.Account;
+import com.project.entity.Address;
 import com.project.shoppingcart.ShoppingCart;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,18 +18,18 @@ public class ShoppingCartController {
 	
 	@Autowired ShoppingCart shoppingCartService;
 	
+	
 	@RequestMapping("addItem")
 	String addToCart(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
 		Long accId = null;
-		Long addressId = null;
+		Address address = null;
 		if (acc != null) {
 			accId = Long.valueOf(acc.getId());
-			addressId = Long.valueOf(acc.getAddressId());
+			address = acc.getAddress();
 		}
 		String itemName = request.getParameter("item");
-		shoppingCartService.addItem(itemName, accId, addressId);
-		
+		shoppingCartService.addItem(itemName, accId, address);
 		return "Added to Cart";
 	}
 	

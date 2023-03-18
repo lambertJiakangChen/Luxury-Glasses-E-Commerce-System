@@ -13,6 +13,7 @@ import com.project.dao.LoadDatabase;
 import com.project.dao.OrderDao;
 import com.project.dao.OrderItemDao;
 import com.project.dao.SequenceDao;
+import com.project.entity.Address;
 import com.project.entity.Item;
 import com.project.entity.Order;
 import com.project.entity.OrderItem;
@@ -94,14 +95,14 @@ public class ShoppingCart {
 	 * @param addressId - the address associated with the account/purchase order if logged in. null if not logged in
 	 * 						OR account has not set an address. provided by controller, httpsession
 	 */
-	public void addItem(String itemName, Long accountId, Long addressId) {
+	public void addItem(String itemName, Long accountId, Address address) {
 		Item item = catalogService.searchItemByName(itemName).iterator().next();
 		OrderItem orderItem;
 		
 		if (items.isEmpty() || items.size() == 0) {
 			// if there are no items in the cart -> create an order in the PurchaseOrder table and new OrderItem
 			orderId = sequence.findNextSequenceByService("ORDER");
-			log.info("Loading New Order: " + orderDao.save(new Order(orderId, accountId, OrderStatus.NOT_ORDERED, addressId)));
+			log.info("Loading New Order: " + orderDao.save(new Order(orderId, accountId, OrderStatus.NOT_ORDERED, address)));
 		}
 		else {
 			// else if order exists in PurchaseOrder table -> update Order Item

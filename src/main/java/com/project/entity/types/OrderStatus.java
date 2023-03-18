@@ -5,8 +5,9 @@ public enum OrderStatus {
 	PROCESSED,
 	ORDERED,
 	NOT_ORDERED,
-	DENIED;
-	
+	DENIED,
+	CONFIRMED;
+
 	// TODO - remove/add more ?
 
 }

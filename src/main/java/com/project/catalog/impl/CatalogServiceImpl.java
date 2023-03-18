@@ -209,7 +209,7 @@ public class CatalogServiceImpl implements CatalogService {
 		Collection<Item> recomandItems = new ArrayList<Item>();
 		for (Item i : Items) {
 			for (Item exist_i: catalogDao.findAll()) {
-				if(i.getColors().stream().allMatch(element -> exist_i.getColors().contains(element))){
+				if(i.getColor().stream().allMatch(element -> exist_i.getColor().contains(element))){
 					if(i.getId().equals(exist_i.getId())) {
 						 continue;
 					}else {
