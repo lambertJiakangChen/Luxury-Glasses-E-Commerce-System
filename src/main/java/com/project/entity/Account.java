@@ -22,7 +22,7 @@ public class Account {
 	private String email;
 	private String password;
 	private AccountType accountType;
-	private Long addressId;
+//	private Long addressId;
 	private Address address;
 	
 	

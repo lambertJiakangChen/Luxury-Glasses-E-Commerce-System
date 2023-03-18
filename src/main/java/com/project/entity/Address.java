@@ -2,11 +2,8 @@ package com.project.entity;
 
 import java.util.Objects;
 
-import jakarta.persistence.Entity;
 
-@Entity
 public class Address {
-	
 	
 	private String country;
 	private String name;
@@ -20,6 +17,7 @@ public class Address {
 	
 	public Address(String country, String name, String phone, String line1, String line2,
 			String city, String province, String postal, boolean makeDefault) {
+		super();
 		this.country = country;
 		this.name = name;
 		this.phone = phone;
