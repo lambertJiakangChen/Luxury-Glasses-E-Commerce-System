@@ -2,7 +2,18 @@ package com.project.entity;
 
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Address")
 public class Address {
+	
+	@Id @GeneratedValue
+	private long addId;
 	
 	private String country;
 	private String name;
@@ -14,9 +25,10 @@ public class Address {
 	private String postal;
 	private boolean is_default = false;
 	
-	public Address(String country, String name, String phone, String line1, String line2,
+	public Address(long addId, String country, String name, String phone, String line1, String line2,
 			String city, String province, String postal, boolean makeDefault) {
 		super();
+		this.addId = addId;
 		this.country = country;
 		this.name = name;
 		this.phone = phone;

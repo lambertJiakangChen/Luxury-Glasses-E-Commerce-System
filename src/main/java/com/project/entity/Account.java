@@ -9,6 +9,9 @@ import com.project.entity.types.AccountType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +27,7 @@ public class Account {
 	private String password;
 	private AccountType accountType;
 //	private Long addressId;
+	@ManyToOne
 	private Address address;
 	
 	

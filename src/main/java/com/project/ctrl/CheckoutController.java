@@ -6,11 +6,13 @@ package com.project.ctrl;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.checkout.Checkout;
+import com.project.dao.AddressDao;
 import com.project.dao.OrderDao;
 import com.project.entity.Account;
 import com.project.entity.Address;
@@ -34,6 +36,7 @@ public class CheckoutController {
 //	@Autowired Address shippingAddress;
 	@Autowired private ServletContext servletContext;
 	@Autowired OrderDao orderDao;
+	@Autowired AddressDao addressDao;
 
 
 	@PostMapping("proceed to checkout")
@@ -63,8 +66,8 @@ public class CheckoutController {
 		boolean makeDefault = false;
 		if (request.getParameter("default").equals("true"))
 			makeDefault = true;
-		
-		Address shippingAddress = new Address(country, name, phone, line1, line2, city, province, postal,
+		long id = addressDao.count() + 1;
+		Address shippingAddress = new Address(id, country, name, phone, line1, line2, city, province, postal,
 				makeDefault);
 		checkout.setShippingAddress(shippingAddress);
 		System.out.print("Shipping Address successfully set: /n" + shippingAddress.toString());
