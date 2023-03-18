@@ -25,12 +25,11 @@ public class Address {
 	private String postal;
 	private boolean is_default = false;
 	
-	public Address(long addId, String country, String name, String phone, String line1, String line2,
+	public Address(long addId, String country, String phone, String line1, String line2,
 			String city, String province, String postal, boolean makeDefault) {
 		super();
 		this.addId = addId;
 		this.country = country;
-		this.name = name;
 		this.phone = phone;
 		this.line1 = line1;
 		this.line2 = line2;

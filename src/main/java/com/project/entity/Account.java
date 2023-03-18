@@ -1,17 +1,11 @@
 package com.project.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.project.entity.Address;
 import com.project.entity.types.AccountType;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity

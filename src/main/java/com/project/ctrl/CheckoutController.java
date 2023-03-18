@@ -67,7 +67,7 @@ public class CheckoutController {
 		if (request.getParameter("default").equals("true"))
 			makeDefault = true;
 		long id = addressDao.count() + 1;
-		Address shippingAddress = new Address(id, country, name, phone, line1, line2, city, province, postal,
+		Address shippingAddress = new Address(id, country, phone, line1, line2, city, province, postal,
 				makeDefault);
 		checkout.setShippingAddress(shippingAddress);
 		System.out.print("Shipping Address successfully set: /n" + shippingAddress.toString());
