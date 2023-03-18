@@ -27,6 +27,10 @@ public class Address {
 		this.postal = postal;
 		setDefault(makeDefault);
 	}
+	
+	public Address() {
+		
+	}
 
 	/**
 	 * @return the country
