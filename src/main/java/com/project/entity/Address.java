@@ -2,7 +2,6 @@ package com.project.entity;
 
 import java.util.Objects;
 
-
 public class Address {
 	
 	private String country;
