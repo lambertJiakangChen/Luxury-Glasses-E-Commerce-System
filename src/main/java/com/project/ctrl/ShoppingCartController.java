@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.entity.Account;
-import com.project.address.Address;
+import com.project.entity.Address;
 import com.project.shoppingcart.ShoppingCart;
 
 import jakarta.servlet.http.HttpServletRequest;

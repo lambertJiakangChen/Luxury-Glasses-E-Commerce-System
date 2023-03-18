@@ -3,7 +3,7 @@ package com.project.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.project.address.Address;
+import com.project.entity.Address;
 import com.project.entity.types.AccountType;
 
 import jakarta.persistence.Entity;

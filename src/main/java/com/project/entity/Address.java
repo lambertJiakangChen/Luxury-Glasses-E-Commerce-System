@@ -1,4 +1,4 @@
-package com.project.address;
+package com.project.entity;
 
 import java.util.Objects;
 

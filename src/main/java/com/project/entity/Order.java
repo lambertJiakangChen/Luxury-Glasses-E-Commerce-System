@@ -1,6 +1,6 @@
 package com.project.entity;
 
-import com.project.address.Address;
+import com.project.entity.Address;
 import com.project.entity.types.OrderStatus;
 
 import jakarta.persistence.Entity;
