@@ -45,39 +45,6 @@ public class Checkout {
 			
 	}
 
-
-	/**
-	 * @return the catalogDao
-	 */
-	public CatalogDao getCatalogDao() {
-		return catalogDao;
-	}
-
-
-//	/**
-//	 * @param catalogDao the catalogDao to set
-//	 */
-//	public void setCatalogDao(CatalogDao catalogDao) {
-//		this.catalogDao = catalogDao;
-//	}
-
-
-	/**
-	 * @return the orderDao
-	 */
-	public OrderDao getOrderDao() {
-		return orderDao;
-	}
-
-
-//	/**
-//	 * @param orderDao the orderDao to set
-//	 */
-//	public void setOrderDao(OrderDao orderDao) {
-//		this.orderDao = orderDao;
-//	}
-
-
 	/**
 	 * @return the accID
 	 */
