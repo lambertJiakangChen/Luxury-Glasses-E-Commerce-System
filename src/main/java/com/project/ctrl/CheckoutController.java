@@ -33,12 +33,10 @@ public class CheckoutController {
 	@Autowired Checkout checkout;
 	@Autowired IdentityService identityService;
 	@Autowired ShoppingCart cart;
-//	@Autowired Address shippingAddress;
-	@Autowired private ServletContext servletContext;
 	@Autowired OrderDao orderDao;
 	@Autowired AddressDao addressDao;
 
-	// TODO: change to  to link and redirect
+	// TODO: change to link and redirect with @PostMapping
 
 	@RequestMapping("/proceed")
 	String proceedToCheckout(HttpServletRequest request, HttpSession session,
@@ -142,6 +140,7 @@ public class CheckoutController {
 		if (confirmed) {
 			Order newOrder = new Order(cart.getOrderId(), (long) 1234324, OrderStatus.ORDERED, checkout.getShippingAddress());
 			checkout.confirmedCheckout(newOrder);
+			session.removeAttribute("CART");
 		}
 		
 		return "confirmed order: " + confirm; 

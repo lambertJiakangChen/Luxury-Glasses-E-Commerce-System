@@ -1,34 +1,38 @@
 package com.project.checkout;
 
-import java.util.Random;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.dao.AccountDao;
 import com.project.dao.CatalogDao;
+import com.project.dao.LoadDatabase;
 import com.project.dao.OrderDao;
 import com.project.entity.Account;
 import com.project.entity.Address;
 import com.project.entity.Order;
+import com.project.entity.types.OrderStatus;
 import com.project.shoppingcart.ShoppingCart;
 
 @Service
 public class Checkout {
 
-	@Autowired private CatalogDao catalogDao;
-	@Autowired private OrderDao orderDao;
-	@Autowired private AccountDao accountDao;
+	@Autowired CatalogDao catalogDao;
+	@Autowired OrderDao orderDao;
+	@Autowired AccountDao accountDao;
 
+	private Order order;
+	private Address shippingAddress;
 	private Account account;
 	private ShoppingCart cart;
 	
 	private long orderID;
 	
 //	private List<OrderItem> items = new ArrayList<>();
-	private Order order;
-	private Address shippingAddress;
 
+	private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
+	
 	public Checkout() {
 		
 	}
@@ -140,6 +144,7 @@ public class Checkout {
 
 
 	public void confirmedCheckout(Order newOrder) {
+		newOrder.setStatus(OrderStatus.ORDERED);
 		orderDao.save(newOrder);
 		
 	}
