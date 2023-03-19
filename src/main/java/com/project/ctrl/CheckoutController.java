@@ -38,7 +38,7 @@ public class CheckoutController {
 	@Autowired OrderDao orderDao;
 	@Autowired AddressDao addressDao;
 
-	// TODO: change to @PostMapping to link and redirect
+	// TODO: change to  to link and redirect
 
 	@RequestMapping("/proceed")
 	String proceedToCheckout(HttpServletRequest request, HttpSession session,
