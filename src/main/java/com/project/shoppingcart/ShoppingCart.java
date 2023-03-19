@@ -14,10 +14,13 @@ import com.project.dao.LoadDatabase;
 import com.project.dao.OrderDao;
 import com.project.dao.OrderItemDao;
 import com.project.dao.SequenceDao;
+import com.project.dao.EventDao;
 import com.project.entity.Address;
 import com.project.entity.Item;
 import com.project.entity.Order;
 import com.project.entity.OrderItem;
+import com.project.entity.VisitEvent;
+import com.project.entity.types.EventStatus;
 import com.project.entity.types.OrderStatus;
 import com.project.sequence.SequenceService;
 
@@ -35,10 +38,14 @@ public class ShoppingCart {
 	OrderItemDao orderItemDao;
 	
 	@Autowired
+	EventDao eventDao;
+	
+	@Autowired
 	SequenceService sequence;
 	
 	@Autowired 
 	CatalogService catalogService;
+	
 	
 	private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
@@ -106,6 +113,7 @@ public class ShoppingCart {
 			orderId = sequence.findNextSequenceByService("ORDER");
 
 			log.info("Loading New Order: " + orderDao.save(new Order(orderId, accountId, OrderStatus.NOT_ORDERED, address, Calendar.getInstance())));
+			log.info("Preloading " + eventDao.save(new VisitEvent((long) eventDao.count()+1, EventStatus.CART, accountId, Calendar.getInstance())));
 		}
 		else {
 			// else if order exists in PurchaseOrder table -> update Order Item

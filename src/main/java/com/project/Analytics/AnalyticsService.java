@@ -12,10 +12,12 @@ import org.springframework.stereotype.Service;
 
 import com.project.catalog.CatalogService;
 import com.project.dao.CatalogDao;
+import com.project.dao.EventDao;
 import com.project.dao.OrderDao;
 import com.project.dao.OrderItemDao;
 import com.project.entity.Order;
 import com.project.entity.OrderItem;
+import com.project.entity.VisitEvent;
 import com.project.entity.types.OrderStatus;
 import com.project.entity.Account;
 import com.project.entity.Item;
@@ -31,6 +33,9 @@ public class AnalyticsService {
 	
 	@Autowired
 	private OrderItemDao orderItemDao;
+	
+	@Autowired
+	EventDao eventDao;
 	
 	public Collection<Item> monthlyorders (int month){
 		Collection<Order> order = new ArrayList<Order>();
@@ -56,6 +61,14 @@ public class AnalyticsService {
 			}
 		}
 		return Items;
+	}
+	
+	public Collection<VisitEvent> webUsage(){
+		Collection<VisitEvent> event = new ArrayList<VisitEvent>();
+		for (VisitEvent i: eventDao.findAll()) {
+				event.add(i);
+		}
+		return event;
 	}
 
 }

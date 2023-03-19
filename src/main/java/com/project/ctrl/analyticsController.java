@@ -59,10 +59,10 @@ public class analyticsController {
 		return "pick a month";
 	}
 	
-//	@RequestMapping("webusage")
-//	String websiteUsage (HttpServletRequest request, HttpSession session) {
-//		
-//	}
+	@RequestMapping("webusage")
+	String websiteUsage (HttpServletRequest request, HttpSession session) {
+		return analyticsService.webUsage().toString();
+	}
 	
 
 }
