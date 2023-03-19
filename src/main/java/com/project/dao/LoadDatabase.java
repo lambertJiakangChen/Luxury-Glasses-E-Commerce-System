@@ -1,6 +1,9 @@
 package com.project.dao;
 
+import java.util.Calendar;
 import java.util.HashSet;
+
+import javax.swing.event.HyperlinkEvent.EventType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,13 +16,15 @@ import com.project.entity.Account;
 import com.project.entity.Address;
 import com.project.entity.Item;
 import com.project.entity.Sequence;
+import com.project.entity.VisitEvent;
 import com.project.entity.types.AccountType;
+import com.project.entity.types.EventStatus;
 
 @Configuration
 public class LoadDatabase {
-
+	
 	private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
-
+	
 	@Bean
 	CommandLineRunner initDatabase(AccountDao accountDao, CatalogDao catalogDao, SequenceDao sequenceDao, AddressDao addressDao) {
 		HashSet<String> color=new HashSet<String>();
@@ -49,15 +54,14 @@ public class LoadDatabase {
 		category1.add("rimless");
 		category2.add("semi-rimless");
 		category2.add("rimless");
-
-
+		
 		return args -> {
 			log.info("Preloading " + sequenceDao.save(new Sequence("ORDER_ITEM", (long) 1)));
 			log.info("Preloading " + sequenceDao.save(new Sequence("ORDER", (long) 1)));
 			
 			log.info("Preloading " + addressDao.save(new Address((long) addressDao.count()+1, "Canada", "4161234567", "4700 keele street", null, "North York", "ON", "M3J1P3", true)));
-
-			log.info("Preloading " + accountDao.save(new Account((long) 1, "justinB31", "justin", "bieber", "justin1@gmail.com", "Qwerty12", AccountType.REGULAR, null)));
+					
+			log.info("Preloading " + accountDao.save(new Account((long) 1, "justinB31", "justin", "bieber", "justin1@gmail.com", "Qwerty12", AccountType.REGULAR, addressDao.getById((long) 1))));
 			log.info("Preloading " + accountDao.save(new Account((long) 2, "adminAcc", "Adam", "Smith", "adam12@gmail.com", "Qwerty12", AccountType.ADMIN, addressDao.getById((long) 1))));
 
 

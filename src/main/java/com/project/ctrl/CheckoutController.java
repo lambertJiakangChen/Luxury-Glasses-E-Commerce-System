@@ -4,6 +4,7 @@
 package com.project.ctrl;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -138,7 +139,7 @@ public class CheckoutController {
 		
 		if (confirmed) {
 			Order newOrder = new Order(cart.getOrderId(), (long) 1234324, OrderStatus.ORDERED, 
-					checkoutService.getShippingAddress());
+					checkoutService.getShippingAddress(), Calendar.getInstance());
 			checkoutService.confirmedCheckout(newOrder);
 			session.removeAttribute("CART");
 		}

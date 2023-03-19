@@ -2,6 +2,7 @@ package com.project.ctrl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,14 @@ import jakarta.servlet.http.HttpSession;
 public class CatalogController {
 	
 	@Autowired CatalogService catalogService;
+	
+//	@ResponseBody
+//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+//    public List<Item> viewCatalog() {
+//        Spliterator<Item> items = catalogDao.findAll().spliterator();
+//        return StreamSupport.stream(items, false).collect(Collectors.toList());
+//    }
+	
 
 	@RequestMapping("/addItem")
 	String addItem(HttpServletRequest request, HttpSession session) {
@@ -34,9 +43,29 @@ public class CatalogController {
 		Double lw = Double.parseDouble(request.getParameter("lensWidth"));
 		Double lh = Double.parseDouble(request.getParameter("lensHeight"));
 		Double fw = Double.parseDouble(request.getParameter("framWidth"));
+		HashSet<String> category=new HashSet<String>();
+		HashSet<String> color=new HashSet<String>();
+		category.add(request.getParameter("cat1"));
+		color.add(request.getParameter("color1"));
+		if (request.getParameter("cat2") != null) {
+			category.add(request.getParameter("cat2"));
+		}
+		if (request.getParameter("cat3") != null) {
+			category.add(request.getParameter("cat3"));
+		}
+		if (request.getParameter("color2") != null) {
+			color.add(request.getParameter("color2"));
+		}
+		if (request.getParameter("color3") != null) {
+			color.add(request.getParameter("color3"));
+		}
+		if (request.getParameter("color4") != null) {
+			color.add(request.getParameter("color4"));
+		}
 		
 		try {
-			catalogService.addItem(brand, name, shape, size, price, mat, weight, lw, lh, fw, null, null);
+			catalogService.addItem(brand, name, shape, size, price, mat, weight, lw, lh, fw, category, color);
+		
 		} catch (Exception e) {
 			return "Unable to add item: " + e.getMessage();
 		}
@@ -44,10 +73,12 @@ public class CatalogController {
 		return "Successfully Added.";	
 	}
 	
+
 	@RequestMapping("/viewCatalog")
 	String viewCatalog(HttpServletRequest request, HttpSession session) {
 		return catalogService.viewCatalog().toString();
 	}
+
 
 	@RequestMapping("/searchByName")
 	String searchItemByName(HttpServletRequest request, HttpSession session) {
@@ -70,6 +101,7 @@ public class CatalogController {
 		return "please choose ascending or descending";
 	}
 	
+
 	@RequestMapping("/sortByItemName")
 	String sortCatalogByItemName(HttpServletRequest request, HttpSession session) {
 		if (request.getParameter("sort") != null && request.getParameter("sort").equals("ascending")) {
@@ -80,6 +112,7 @@ public class CatalogController {
 		return "please choose ascending or descending";
 	}
 	
+
 	@RequestMapping("/filterByBrand")
 	String filterCatalogByBrand(HttpServletRequest request, HttpSession session) {
 		return catalogService.filterbybrand(request.getParameter("brand")).toString();
@@ -90,11 +123,13 @@ public class CatalogController {
 		return catalogService.filterbycate(request.getParameter("cate")).toString();
 	}
 	
+
 	@RequestMapping("/filterByColor")
 	String filterCatalogByColor(HttpServletRequest request, HttpSession session) {
 		return catalogService.filterbycolor(request.getParameter("color")).toString();
 	}
 	
+
 	@RequestMapping("/ViewDetails")
 	String viewDetails(HttpServletRequest request, HttpSession session) {
 		String itemName = request.getParameter("item");

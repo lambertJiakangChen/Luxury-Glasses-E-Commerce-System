@@ -18,6 +18,7 @@ public class ShoppingCartController {
 	
 	@Autowired ShoppingCart shoppingCartService;
 	
+
 	@RequestMapping("create")
 	void createCart(HttpServletRequest request, HttpSession session) {
 		HttpSession newSession = request.getSession();
@@ -25,11 +26,13 @@ public class ShoppingCartController {
 		newSession.setAttribute("CART", cart);
 	}
 	
+
 	@RequestMapping("addItem")
 	String addToCart(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
-		Long accId = null;
+		Long accId = null;	
 		Address address = null;
+		
 		if (acc != null) {
 			accId = Long.valueOf(acc.getId());
 			address = acc.getAddress();
@@ -37,6 +40,7 @@ public class ShoppingCartController {
 		String itemName = request.getParameter("item");
 		shoppingCartService.addItem(itemName, accId, address);
 		session.setAttribute("CART", shoppingCartService);
+
 		return "Added to Cart";
 	}
 	

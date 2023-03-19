@@ -92,7 +92,6 @@ public class Item {
 		this.itemName = itemName;
 	}
 	
-	
 	/*
 	 * Get and Set item brand of eyewear
 	*/
@@ -230,6 +229,7 @@ public class Item {
 	 * Get, Add and Remove the color available of the eyewear
 	 * 
 	*/
+
 	public Set<String> getColor() {
 		return this.colors;
 	}
@@ -275,6 +275,4 @@ public class Item {
 	}
 	
 	
-
-
 }

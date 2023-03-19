@@ -1,11 +1,14 @@
 package com.project.entity;
 
+import java.util.Calendar;
 import com.project.entity.Address;
 import com.project.entity.types.OrderStatus;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+
+
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -17,15 +20,17 @@ public class Order {
 	private Long id;
 	private OrderStatus status;
 	private Long accountId;
+	private Calendar calendar;
 	@ManyToOne
 	private Address address;
 	
 	
-	public Order(Long id, Long accountId, OrderStatus status, Address address) {
+	public Order(Long id, Long accountId, OrderStatus status, Address address, Calendar calendar) {
 		super();
 		this.id = id;
 		this.status = status;
 		this.accountId = accountId;
+		this.calendar = calendar;
 		this.address = address;
 	}
 
@@ -57,6 +62,11 @@ public class Order {
 		this.status = status;
 	}
 
+	
+	public int getmonth() {
+		return this.calendar.get(Calendar.MONTH);
+	}
+
 	public Address getAddressId() {
 		return address;
 	}
@@ -67,8 +77,9 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", accountId=" + accountId + ", status=" + status + ", addressId="
-				+ address.toString() + "]";
+		return "Order [id=" + id + ", accountId=" + accountId + ", status=" + status + 
+				", addressId=" + address.toString() + ", data=" + calendar.getTime() + "]";
+
 	}
 
 }

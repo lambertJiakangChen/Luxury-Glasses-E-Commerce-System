@@ -1,6 +1,7 @@
 package com.project.shoppingcart;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -13,10 +14,13 @@ import com.project.dao.LoadDatabase;
 import com.project.dao.OrderDao;
 import com.project.dao.OrderItemDao;
 import com.project.dao.SequenceDao;
+import com.project.dao.EventDao;
 import com.project.entity.Address;
 import com.project.entity.Item;
 import com.project.entity.Order;
 import com.project.entity.OrderItem;
+import com.project.entity.VisitEvent;
+import com.project.entity.types.EventStatus;
 import com.project.entity.types.OrderStatus;
 import com.project.sequence.SequenceService;
 
@@ -34,10 +38,14 @@ public class ShoppingCart {
 	OrderItemDao orderItemDao;
 	
 	@Autowired
+	EventDao eventDao;
+	
+	@Autowired
 	SequenceService sequence;
 	
 	@Autowired 
 	CatalogService catalogService;
+	
 	
 	private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
@@ -95,6 +103,7 @@ public class ShoppingCart {
 	 * @param addressId - the address associated with the account/purchase order if logged in. null if not logged in
 	 * 						OR account has not set an address. provided by controller, httpsession
 	 */
+
 	public void addItem(String itemName, Long accountId, Address address) {
 		Item item = catalogService.searchItemByName(itemName).iterator().next();
 		OrderItem orderItem;
@@ -102,7 +111,9 @@ public class ShoppingCart {
 		if (items.isEmpty() || items.size() == 0) {
 			// if there are no items in the cart -> create an order in the PurchaseOrder table and new OrderItem
 			orderId = sequence.findNextSequenceByService("ORDER");
-			log.info("Loading New Order: " + orderDao.save(new Order(orderId, accountId, OrderStatus.NOT_ORDERED, address)));
+
+			log.info("Loading New Order: " + orderDao.save(new Order(orderId, accountId, OrderStatus.NOT_ORDERED, address, Calendar.getInstance())));
+			log.info("Preloading " + eventDao.save(new VisitEvent((long) eventDao.count()+1, EventStatus.CART, accountId, Calendar.getInstance())));
 		}
 		else {
 			// else if order exists in PurchaseOrder table -> update Order Item

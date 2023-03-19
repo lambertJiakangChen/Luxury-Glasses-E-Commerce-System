@@ -20,7 +20,6 @@ public class Account {
 	private String email;
 	private String password;
 	private AccountType accountType;
-//	private Long addressId;
 	
 	@ManyToOne private Address address;
 	
@@ -137,6 +136,7 @@ public class Account {
 		if (address != null) add = address.toString();
 		return "Account [id=" + id + ", username=" + username + ", fName=" + fName + ", lName=" + lName + ", email="
 				+ email + ", password=" + password + ", accountType=" + accountType + ", " + add + "]";
+
 	}
 
 }

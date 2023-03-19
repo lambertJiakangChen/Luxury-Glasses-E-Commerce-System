@@ -1,5 +1,7 @@
 package com.project.checkout;
 
+import java.util.Calendar;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +9,14 @@ import org.springframework.stereotype.Service;
 
 import com.project.dao.AccountDao;
 import com.project.dao.CatalogDao;
+import com.project.dao.EventDao;
 import com.project.dao.LoadDatabase;
 import com.project.dao.OrderDao;
 import com.project.entity.Account;
 import com.project.entity.Address;
 import com.project.entity.Order;
+import com.project.entity.VisitEvent;
+import com.project.entity.types.EventStatus;
 import com.project.entity.types.OrderStatus;
 import com.project.shoppingcart.ShoppingCart;
 
@@ -21,6 +26,8 @@ public class CheckoutService {
 	@Autowired CatalogDao catalogDao;
 	@Autowired OrderDao orderDao;
 	@Autowired AccountDao accountDao;
+	@Autowired
+	EventDao eventDao;
 
 	private Order order;
 	private Address shippingAddress;
@@ -152,6 +159,7 @@ public class CheckoutService {
 
 
 	public void confirmedCheckout(Order newOrder) {
+		log.info("Preloading " + eventDao.save(new VisitEvent((long) eventDao.count()+1, EventStatus.PURCHASE, (long) 1, Calendar.getInstance())));
 		newOrder.setStatus(OrderStatus.ORDERED);
 		orderDao.save(newOrder);
 		

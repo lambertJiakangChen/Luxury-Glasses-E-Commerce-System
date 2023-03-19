@@ -64,18 +64,21 @@ public class IdentityController {
 		return "Logout Success";
 	}
 	
+
 	@RequestMapping("/getAccountDetails")
 	Account getAccountDetails(HttpServletRequest request, HttpSession session) {
 		
 		return (Account) session.getAttribute("ACCOUNT");
 	}
 	
+
 	@RequestMapping("/getAllAccounts")
 	String getAllAccounts(HttpServletRequest request, HttpSession session) {
 		
 		return identityService.findAllAccounts().toString();
 	}
 	
+
 	@RequestMapping("/updateUsername")
 	String updateUsername(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
@@ -85,6 +88,7 @@ public class IdentityController {
 		return "Success";
 	}
 	
+
 	@RequestMapping("/updatePassword")
 	String updatePassword(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
@@ -101,6 +105,7 @@ public class IdentityController {
 		
 	}
 	
+
 	@RequestMapping("/updateFirstName")
 	String updateFirstName(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
@@ -119,6 +124,7 @@ public class IdentityController {
 		return "Success";
 	}
 	
+
 	@RequestMapping("/updateEmail")
 	String updateEmail(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
