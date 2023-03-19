@@ -6,11 +6,10 @@ package com.project.ctrl;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.checkout.Checkout;
+import com.project.checkout.CheckoutService;
 import com.project.dao.AddressDao;
 import com.project.dao.OrderDao;
 import com.project.entity.Account;
@@ -19,9 +18,7 @@ import com.project.entity.Order;
 import com.project.entity.types.OrderStatus;
 import com.project.identity.service.IdentityService;
 import com.project.shoppingcart.ShoppingCart;
-import com.project.ctrl.IdentityController;
 
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -30,11 +27,12 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("checkout")
 public class CheckoutController {
 	
-	@Autowired Checkout checkout;
+	@Autowired CheckoutService checkoutService;
 	@Autowired IdentityService identityService;
 	@Autowired ShoppingCart cart;
 	@Autowired OrderDao orderDao;
 	@Autowired AddressDao addressDao;
+	
 
 	// TODO: change to link and redirect with @PostMapping
 
@@ -43,7 +41,7 @@ public class CheckoutController {
 			HttpServletResponse response) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("CART");
-		this.checkout = new Checkout(acc, cart);
+		checkoutService.setCheckout(acc, cart);
 		//proceed as guest or already login
 		
 //		return "checkout/shipping";
@@ -64,10 +62,10 @@ public class CheckoutController {
 				e.printStackTrace();
 			}
 		}
-		this.checkout = new Checkout(acc, cart);
+		checkoutService.setCheckout(acc, cart);
 		
 		
-		return "Continue as new user";
+		return "Continue as returning user";
 	}
 	
 	@RequestMapping("/proceedresgister")
@@ -84,7 +82,7 @@ public class CheckoutController {
 				e.printStackTrace();
 			}
 		}
-		this.checkout = new Checkout(acc, cart);
+		checkoutService.setCheckout(acc, cart);
 		
 		
 		return "Continue as new user";
@@ -108,8 +106,9 @@ public class CheckoutController {
 		long id = addressDao.count() + 1;
 		Address shippingAddress = new Address(id, country, phone, line1, line2, city, province, postal,
 				makeDefault);
-		checkout.setShippingAddress(shippingAddress);
+		checkoutService.setShippingAddress(shippingAddress);
 		System.out.print("Shipping Address successfully set: /n" + shippingAddress.toString());
+		
 //		return "/checkout/payment";
 		return "Successfully added shipping address";
 
@@ -122,7 +121,7 @@ public class CheckoutController {
 		String expYear = request.getParameter("year");
 		String cvv = request.getParameter("cvv");
 		
-		// Assume card is correct
+		// Assume card is correct for now
 		// TODO: process payment
 		
 //		return "/checkout/reviewOrder";
@@ -138,8 +137,9 @@ public class CheckoutController {
 			confirmed = true;
 		
 		if (confirmed) {
-			Order newOrder = new Order(cart.getOrderId(), (long) 1234324, OrderStatus.ORDERED, checkout.getShippingAddress());
-			checkout.confirmedCheckout(newOrder);
+			Order newOrder = new Order(cart.getOrderId(), (long) 1234324, OrderStatus.ORDERED, 
+					checkoutService.getShippingAddress());
+			checkoutService.confirmedCheckout(newOrder);
 			session.removeAttribute("CART");
 		}
 		

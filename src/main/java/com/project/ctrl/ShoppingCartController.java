@@ -18,6 +18,12 @@ public class ShoppingCartController {
 	
 	@Autowired ShoppingCart shoppingCartService;
 	
+	@RequestMapping("create")
+	void createCart(HttpServletRequest request, HttpSession session) {
+		HttpSession newSession = request.getSession();
+		ShoppingCart cart = this.shoppingCartService.getCart();
+		newSession.setAttribute("CART", cart);
+	}
 	
 	@RequestMapping("addItem")
 	String addToCart(HttpServletRequest request, HttpSession session) {
@@ -30,6 +36,7 @@ public class ShoppingCartController {
 		}
 		String itemName = request.getParameter("item");
 		shoppingCartService.addItem(itemName, accId, address);
+		session.setAttribute("CART", shoppingCartService);
 		return "Added to Cart";
 	}
 	
@@ -37,6 +44,7 @@ public class ShoppingCartController {
 	String removeFromCart(HttpServletRequest request, HttpSession session) {
 		String itemName = request.getParameter("item");
 		shoppingCartService.removeItem(itemName);
+		session.setAttribute("CART", shoppingCartService);
 		
 		return "Removed from Cart";
 	}
@@ -46,6 +54,7 @@ public class ShoppingCartController {
 		String itemName = request.getParameter("item");
 		int quantity = Integer.valueOf(request.getParameter("quantity"));
 		shoppingCartService.editItem(itemName, quantity);
+		session.setAttribute("CART", shoppingCartService);
 		
 		return "Item Updated";	
 	}

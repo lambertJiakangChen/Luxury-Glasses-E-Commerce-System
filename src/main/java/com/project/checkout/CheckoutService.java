@@ -16,7 +16,7 @@ import com.project.entity.types.OrderStatus;
 import com.project.shoppingcart.ShoppingCart;
 
 @Service
-public class Checkout {
+public class CheckoutService {
 
 	@Autowired CatalogDao catalogDao;
 	@Autowired OrderDao orderDao;
@@ -33,17 +33,25 @@ public class Checkout {
 
 	private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 	
-	public Checkout() {
+	public CheckoutService() {
 		
 	}
 
-	public Checkout(Account acc, ShoppingCart cart) {
+	public CheckoutService(Account acc, ShoppingCart cart) {
 		this.account = acc;
 		this.cart = cart;
 		getAccID();
 		this.orderID = cart.getOrderId();
 		this.order = orderDao.getById(orderID);
 			
+	}
+	
+	public void setCheckout(Account acc, ShoppingCart cart) {
+		this.account = acc;
+		this.cart = cart;
+		getAccID();
+		this.orderID = cart.getOrderId();
+		this.order = orderDao.getById(orderID);
 	}
 
 	/**
