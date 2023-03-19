@@ -1,6 +1,7 @@
 package com.project.shoppingcart;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -101,7 +102,7 @@ public class ShoppingCart {
 		if (items.isEmpty() || items.size() == 0) {
 			// if there are no items in the cart -> create an order in the PurchaseOrder table and new OrderItem
 			orderId = sequence.findNextSequenceByService("ORDER");
-			log.info("Loading New Order: " + orderDao.save(new Order(orderId, accountId, OrderStatus.NOT_ORDERED, addressId)));
+			log.info("Loading New Order: " + orderDao.save(new Order(orderId, accountId, OrderStatus.ORDERED, addressId, Calendar.getInstance())));
 		}
 		else {
 			// else if order exists in PurchaseOrder table -> update Order Item

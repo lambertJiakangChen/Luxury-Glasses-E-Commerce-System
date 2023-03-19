@@ -1,5 +1,7 @@
 package com.project.entity;
 
+import java.util.Calendar;
+
 import com.project.entity.types.OrderStatus;
 
 import jakarta.persistence.Entity;
@@ -16,14 +18,16 @@ public class Order {
 	private OrderStatus status;
 	private Long accountId;
 	private Long addressId;
+	private Calendar calendar;
 	
 	
-	public Order(Long id, Long accountId, OrderStatus status, Long addressId) {
+	public Order(Long id, Long accountId, OrderStatus status, Long addressId, Calendar calendar) {
 		super();
 		this.id = id;
 		this.status = status;
 		this.accountId = accountId;
 		this.addressId = addressId;
+		this.calendar = calendar;
 	}
 
 	public Order() {
@@ -61,11 +65,15 @@ public class Order {
 	public void setAddressId(Long addressId) {
 		this.addressId = addressId;
 	}
+	
+	public int getmonth() {
+		return this.calendar.get(Calendar.MONTH);
+	}
 
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", accountId=" + accountId + ", status=" + status + ", addressId="
-				+ addressId + "]";
+				+ addressId + ", data=" + calendar.getTime() + "]";
 	}
 
 }
