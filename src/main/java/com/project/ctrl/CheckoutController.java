@@ -3,10 +3,9 @@
  */
 package com.project.ctrl;
 
-import java.util.Random;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +19,7 @@ import com.project.entity.Order;
 import com.project.entity.types.OrderStatus;
 import com.project.identity.service.IdentityService;
 import com.project.shoppingcart.ShoppingCart;
+import com.project.ctrl.IdentityController;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,20 +38,61 @@ public class CheckoutController {
 	@Autowired OrderDao orderDao;
 	@Autowired AddressDao addressDao;
 
+	// TODO: change to @PostMapping to link and redirect
 
-	@PostMapping("proceed to checkout")
+	@RequestMapping("/proceed")
 	String proceedToCheckout(HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("CART");
 		this.checkout = new Checkout(acc, cart);
-		//proceed as guest
+		//proceed as guest or already login
 		
-		return "checkout/shipping";
-
+//		return "checkout/shipping";
+		return "Continue as guest or already logged in";
+	}
+	
+	@RequestMapping("/proceedlogin")
+	String proceedToLoginCheckout(HttpServletRequest request, HttpSession session,
+			HttpServletResponse response) {
+		Account acc = (Account) session.getAttribute("ACCOUNT");
+		ShoppingCart cart = (ShoppingCart) session.getAttribute("CART");
+		if (acc == null) {
+			try {
+				response.sendRedirect("/login");
+				// TODO: FE enter login details
+			} catch (IOException e) {
+				System.out.println("Unsuccessful login: " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		this.checkout = new Checkout(acc, cart);
+		
+		
+		return "Continue as new user";
+	}
+	
+	@RequestMapping("/proceedresgister")
+	String proceedToRegisterCheckout(HttpServletRequest request, HttpSession session,
+			HttpServletResponse response) {
+		Account acc = (Account) session.getAttribute("ACCOUNT");
+		ShoppingCart cart = (ShoppingCart) session.getAttribute("CART");
+		if (acc == null) {
+			try {
+				response.sendRedirect("/register");
+				// TODO: FE enter registration details
+			} catch (IOException e) {
+				System.out.println("Unsuccessful registration: " + e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		this.checkout = new Checkout(acc, cart);
+		
+		
+		return "Continue as new user";
 	}
 
-	@PostMapping("shipping")
+	@RequestMapping("/shipping")
 	String addAddress(HttpServletRequest request, HttpSession session) {
 		String country = request.getParameter("country");
 		String name = request.getParameter("name");
@@ -71,11 +112,12 @@ public class CheckoutController {
 				makeDefault);
 		checkout.setShippingAddress(shippingAddress);
 		System.out.print("Shipping Address successfully set: /n" + shippingAddress.toString());
-		return "/checkout/payment";
+//		return "/checkout/payment";
+		return "Successfully added shipping address";
 
 	}
 
-	@PostMapping("payment")
+	@RequestMapping("/payment")
 	String modifyPayment(HttpServletRequest request, HttpSession session) {
 		String cardNum = request.getParameter("card_number");
 		String expMonth = request.getParameter("month");
@@ -85,11 +127,12 @@ public class CheckoutController {
 		// Assume card is correct
 		// TODO: process payment
 		
-		return "/checkout/reviewOrder";
+//		return "/checkout/reviewOrder";
+		return "Successfully entered payment method";
 
 	}
 
-	@PostMapping("reviewOrder")
+	@RequestMapping("/reviewOrder")
 	String confirmCheckout(HttpServletRequest request, HttpSession session) {
 		String confirm = request.getParameter("confirm");
 		boolean confirmed = false;

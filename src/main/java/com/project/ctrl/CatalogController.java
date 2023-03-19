@@ -21,14 +21,7 @@ import jakarta.servlet.http.HttpSession;
 public class CatalogController {
 	
 	@Autowired CatalogService catalogService;
-	
-//	@ResponseBody
-//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//    public List<Item> viewCatalog() {
-//        Spliterator<Item> items = catalogDao.findAll().spliterator();
-//        return StreamSupport.stream(items, false).collect(Collectors.toList());
-//    }
-	
+
 	@RequestMapping("addItem")
 	String addItem(HttpServletRequest request, HttpSession session) {
 		String brand = request.getParameter("brand");

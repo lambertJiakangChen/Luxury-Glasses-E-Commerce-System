@@ -4,8 +4,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.project.entity.Item;
 
+@Service
 public interface CatalogService {
 	
 	void addItem(String itemName, String brand, String shape, String size, Double price, 

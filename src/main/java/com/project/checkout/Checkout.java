@@ -1,7 +1,5 @@
 package com.project.checkout;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import com.project.dao.OrderDao;
 import com.project.entity.Account;
 import com.project.entity.Address;
 import com.project.entity.Order;
-import com.project.entity.OrderItem;
 import com.project.shoppingcart.ShoppingCart;
 
 @Service
@@ -28,10 +25,13 @@ public class Checkout {
 	
 	private long orderID;
 	
-	private List<OrderItem> items = new ArrayList<>();
+//	private List<OrderItem> items = new ArrayList<>();
 	private Order order;
 	private Address shippingAddress;
 
+	public Checkout() {
+		
+	}
 
 	public Checkout(Account acc, ShoppingCart cart) {
 		this.account = acc;
@@ -46,13 +46,14 @@ public class Checkout {
 	 * @return the accID
 	 */
 	public long getAccID() {
-		if (account.equals(null)) {
-			long guestID = new Random().nextLong();
-			
-			while(!accountDao.existsById(guestID)) {
-				guestID = new Random().nextLong();
-			}
-			setAccID(guestID);
+		if (account == null) {
+			this.account = new Account(accountDao.count()+1);
+//			long guestID = new Random().nextLong();
+//			
+//			while(!accountDao.existsById(guestID)) {
+//				guestID = new Random().nextLong();
+//			}
+//			setAccID(guestID);
 		}
 		
 		return this.account.getId();
@@ -83,20 +84,20 @@ public class Checkout {
 	}
 
 
-	/**
-	 * @return the items
-	 */
-	public List<OrderItem> getItems() {
-		return items;
-	}
-
-
-	/**
-	 * @param items the items to set
-	 */
-	public void setItems(List<OrderItem> items) {
-		this.items = items;
-	}
+//	/**
+//	 * @return the items
+//	 */
+//	public List<OrderItem> getItems() {
+//		return items;
+//	}
+//
+//
+//	/**
+//	 * @param items the items to set
+//	 */
+//	public void setItems(List<OrderItem> items) {
+//		this.items = items;
+//	}
 
 
 	/**

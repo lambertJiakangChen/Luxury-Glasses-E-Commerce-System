@@ -6,6 +6,7 @@ import com.project.entity.types.OrderStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,15 +17,16 @@ public class Order {
 	private Long id;
 	private OrderStatus status;
 	private Long accountId;
-	private Address addressId;
+	@ManyToOne
+	private Address address;
 	
 	
-	public Order(Long id, Long accountId, OrderStatus status, Address addressId) {
+	public Order(Long id, Long accountId, OrderStatus status, Address address) {
 		super();
 		this.id = id;
 		this.status = status;
 		this.accountId = accountId;
-		this.addressId = addressId;
+		this.address = address;
 	}
 
 	public Order() {
@@ -56,17 +58,17 @@ public class Order {
 	}
 
 	public Address getAddressId() {
-		return addressId;
+		return address;
 	}
 
-	public void setAddressId(Address addressId) {
-		this.addressId = addressId;
+	public void setAddressId(Address address) {
+		this.address = address;
 	}
 
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", accountId=" + accountId + ", status=" + status + ", addressId="
-				+ addressId.toString() + "]";
+				+ address.toString() + "]";
 	}
 
 }

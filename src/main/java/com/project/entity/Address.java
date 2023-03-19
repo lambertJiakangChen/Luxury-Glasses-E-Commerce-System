@@ -16,7 +16,6 @@ public class Address {
 	private long addId;
 	
 	private String country;
-	private String name;
 	private String phone;
 	private String line1;
 	private String line2;
@@ -57,20 +56,7 @@ public class Address {
 		this.country = country;
 	}
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	
 	/**
 	 * @return the phone
 	 */
@@ -171,7 +157,6 @@ public class Address {
 	
 	public void modify(Address add) {
 		setCountry(add.country);
-		setName(add.name);
 		setPhone(add.phone);
 		setLine1(add.line1);
 		setLine2(add.line2);
@@ -184,7 +169,7 @@ public class Address {
 	
 	@Override
 	public String toString() {
-		return "[Address: " + name.toUpperCase() + "\n" + line2 + " " + line1 + ",\n"
+		return "[Address: " + "\n" + line2 + " " + line1 + ",\n"
 				+ city + ", " + province + " " + postal.toUpperCase() + " " + country + "\n" 
 				+ phone;
 	}

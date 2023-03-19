@@ -42,6 +42,13 @@ public class Account {
 	public Account() {
 		
 	}
+	
+	public Account(Long id) {
+		super();
+		this.id = id;
+		this.username = "guest" + id.toString();
+//		Account(id, "", "", "", "", "", AccountType.REGULAR, null);
+	}
 
 
 	public Long getId() {
@@ -126,8 +133,10 @@ public class Account {
 
 	@Override
 	public String toString() {
+		String add = "";
+		if (address != null) add = address.toString();
 		return "Account [id=" + id + ", username=" + username + ", fName=" + fName + ", lName=" + lName + ", email="
-				+ email + ", password=" + password + ", accountType=" + accountType + ", " + address.toString() + "]";
+				+ email + ", password=" + password + ", accountType=" + accountType + ", " + add + "]";
 	}
 
 }
