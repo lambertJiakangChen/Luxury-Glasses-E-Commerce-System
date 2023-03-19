@@ -3,10 +3,12 @@ package com.project.catalog;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.List;
 
 import com.project.entity.Item;
 import org.springframework.stereotype.Service;
 import com.project.entity.Item;
+import com.project.entity.Review;
 
 @Service
 public interface CatalogService {
@@ -44,6 +46,12 @@ public interface CatalogService {
 	Collection<Item> recommandationbycate(Collection<Item> Items);
 	
 	Collection<Item> recommandationbycolor(Collection<Item> Items);
+	
+	List<Review> listAll();
+	
+	void saveReview(Review review);
+	
+	void updateRating(String item);
 
 
 }
