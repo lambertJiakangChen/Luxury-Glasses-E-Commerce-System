@@ -5,6 +5,7 @@ import com.project.entity.types.AccountType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,11 +20,12 @@ public class Account {
 	private String email;
 	private String password;
 	private AccountType accountType;
-	private Long addressId;
+	
+	@ManyToOne private Address address;
 	
 	
 	public Account(Long id, String username, String fName, String lName, String email, String password,
-			AccountType accountType, Long addressId) {
+			AccountType accountType, Address address) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -32,12 +34,19 @@ public class Account {
 		this.email = email;
 		this.password = password;
 		this.accountType = accountType;
-		this.addressId = addressId;
+		this.address = address;
 	}
 
 
 	public Account() {
 		
+	}
+	
+	public Account(Long id) {
+		super();
+		this.id = id;
+		this.username = "guest" + id.toString();
+//		Account(id, "", "", "", "", "", AccountType.REGULAR, null);
 	}
 
 
@@ -111,20 +120,23 @@ public class Account {
 	}
 
 
-	public Long getAddressId() {
-		return addressId;
+	public Address getAddress() {
+		return address;
 	}
 
 
-	public void setAddressId(Long addressId) {
-		this.addressId = addressId;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 
 	@Override
 	public String toString() {
+		String add = "";
+		if (address != null) add = address.toString();
 		return "Account [id=" + id + ", username=" + username + ", fName=" + fName + ", lName=" + lName + ", email="
-				+ email + ", password=" + password + ", accountType=" + accountType + ", addressId=" + addressId + "]";
+				+ email + ", password=" + password + ", accountType=" + accountType + ", " + add + "]";
+
 	}
 
 }

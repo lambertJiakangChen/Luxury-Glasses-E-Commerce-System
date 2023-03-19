@@ -18,7 +18,7 @@ public class IdentityController {
 	
 	// Identity Management APIs ---------------------------------------------------------------------
 	
-	@RequestMapping("register")
+	@RequestMapping("/register")
 	String resister(HttpServletRequest request, HttpSession session) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -36,7 +36,7 @@ public class IdentityController {
 		return "Successfully Registered.";		
 	}
 	
-	@RequestMapping("login")
+	@RequestMapping("/login")
 	String login(HttpServletRequest request, HttpSession session) { 
 		
 		String username = request.getParameter("username");
@@ -57,26 +57,29 @@ public class IdentityController {
 	    
 	}
 	
-	@RequestMapping("logout")
+	@RequestMapping("/logout")
 	String logout(HttpServletRequest request, HttpSession session) {
 		session.invalidate();
 		
 		return "Logout Success";
 	}
 	
-	@RequestMapping("getAccountDetails")
+
+	@RequestMapping("/getAccountDetails")
 	Account getAccountDetails(HttpServletRequest request, HttpSession session) {
 		
 		return (Account) session.getAttribute("ACCOUNT");
 	}
 	
-	@RequestMapping("getAllAccounts")
+
+	@RequestMapping("/getAllAccounts")
 	String getAllAccounts(HttpServletRequest request, HttpSession session) {
 		
 		return identityService.findAllAccounts().toString();
 	}
 	
-	@RequestMapping("updateUsername")
+
+	@RequestMapping("/updateUsername")
 	String updateUsername(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
 		identityService.editUsername(acc.getId(), acc.getUsername(), request.getParameter("username"));
@@ -85,7 +88,8 @@ public class IdentityController {
 		return "Success";
 	}
 	
-	@RequestMapping("updatePassword")
+
+	@RequestMapping("/updatePassword")
 	String updatePassword(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
 		
@@ -101,7 +105,8 @@ public class IdentityController {
 		
 	}
 	
-	@RequestMapping("updateFirstName")
+
+	@RequestMapping("/updateFirstName")
 	String updateFirstName(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
 		identityService.editUsername(acc.getId(), acc.getfName(), request.getParameter("fname"));
@@ -110,7 +115,7 @@ public class IdentityController {
 		return "Success";
 	}
 	
-	@RequestMapping("updateLastName")
+	@RequestMapping("/updateLastName")
 	String updateLastName(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
 		identityService.editUsername(acc.getId(), acc.getlName(), request.getParameter("lname"));
@@ -119,7 +124,8 @@ public class IdentityController {
 		return "Success";
 	}
 	
-	@RequestMapping("updateEmail")
+
+	@RequestMapping("/updateEmail")
 	String updateEmail(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
 		identityService.editUsername(acc.getId(), acc.getEmail(), request.getParameter("email"));

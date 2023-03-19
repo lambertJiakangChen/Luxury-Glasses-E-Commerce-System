@@ -30,7 +30,8 @@ public class CatalogController {
 //        return StreamSupport.stream(items, false).collect(Collectors.toList());
 //    }
 	
-	@RequestMapping("addItem")
+
+	@RequestMapping("/addItem")
 	String addItem(HttpServletRequest request, HttpSession session) {
 		String brand = request.getParameter("brand");
 		String name = request.getParameter("itemName");
@@ -64,6 +65,7 @@ public class CatalogController {
 		
 		try {
 			catalogService.addItem(brand, name, shape, size, price, mat, weight, lw, lh, fw, category, color);
+		
 		} catch (Exception e) {
 			return "Unable to add item: " + e.getMessage();
 		}
@@ -71,17 +73,19 @@ public class CatalogController {
 		return "Successfully Added.";	
 	}
 	
-	@RequestMapping("viewCatalog")
+
+	@RequestMapping("/viewCatalog")
 	String viewCatalog(HttpServletRequest request, HttpSession session) {
 		return catalogService.viewCatalog().toString();
 	}
 
-	@RequestMapping("searchByName")
+
+	@RequestMapping("/searchByName")
 	String searchItemByName(HttpServletRequest request, HttpSession session) {
 		return catalogService.searchItemByName(request.getParameter("search")).toString();
 	}
 
-	@RequestMapping("sort")
+	@RequestMapping("/sort")
 	String sortCatalogByName(HttpServletRequest request, HttpSession session) {
 //		return catalogService.sortCatalogByName().toString();
 		return catalogService.sortCatalog(request.getParameter("sort")).toString();
@@ -97,7 +101,8 @@ public class CatalogController {
 		return "please choose ascending or descending";
 	}
 	
-	@RequestMapping("sortByItemName")
+
+	@RequestMapping("/sortByItemName")
 	String sortCatalogByItemName(HttpServletRequest request, HttpSession session) {
 		if (request.getParameter("sort") != null && request.getParameter("sort").equals("ascending")) {
 			return catalogService.sortItemName(request.getParameter("sort")).toString();
@@ -107,22 +112,25 @@ public class CatalogController {
 		return "please choose ascending or descending";
 	}
 	
-	@RequestMapping("filterByBrand")
+
+	@RequestMapping("/filterByBrand")
 	String filterCatalogByBrand(HttpServletRequest request, HttpSession session) {
 		return catalogService.filterbybrand(request.getParameter("brand")).toString();
 	}
 	
-	@RequestMapping("filterByCategory")
+	@RequestMapping("/filterByCategory")
 	String filterCatalogByCatagory(HttpServletRequest request, HttpSession session) {
 		return catalogService.filterbycate(request.getParameter("cate")).toString();
 	}
 	
-	@RequestMapping("filterByColor")
+
+	@RequestMapping("/filterByColor")
 	String filterCatalogByColor(HttpServletRequest request, HttpSession session) {
 		return catalogService.filterbycolor(request.getParameter("color")).toString();
 	}
 	
-	@RequestMapping("ViewDetails")
+
+	@RequestMapping("/ViewDetails")
 	String viewDetails(HttpServletRequest request, HttpSession session) {
 		String itemName = request.getParameter("item");
 		String category = request.getParameter("cate");
@@ -136,7 +144,7 @@ public class CatalogController {
 		return result;
 	}
 	
-	@RequestMapping("recommand")
+	@RequestMapping("/recommand")
 	String recommandation(HttpServletRequest request, HttpSession session) {
 		String recommand = "";
 		Account acc = (Account) session.getAttribute("ACCOUNT");

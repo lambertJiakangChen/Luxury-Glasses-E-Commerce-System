@@ -1,12 +1,15 @@
 package com.project.entity;
 
 import java.util.Calendar;
-
+import com.project.entity.Address;
 import com.project.entity.types.OrderStatus;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+
+
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,17 +20,18 @@ public class Order {
 	private Long id;
 	private OrderStatus status;
 	private Long accountId;
-	private Long addressId;
 	private Calendar calendar;
+	@ManyToOne
+	private Address address;
 	
 	
-	public Order(Long id, Long accountId, OrderStatus status, Long addressId, Calendar calendar) {
+	public Order(Long id, Long accountId, OrderStatus status, Address address, Calendar calendar) {
 		super();
 		this.id = id;
 		this.status = status;
 		this.accountId = accountId;
-		this.addressId = addressId;
 		this.calendar = calendar;
+		this.address = address;
 	}
 
 	public Order() {
@@ -58,22 +62,24 @@ public class Order {
 		this.status = status;
 	}
 
-	public Long getAddressId() {
-		return addressId;
-	}
-
-	public void setAddressId(Long addressId) {
-		this.addressId = addressId;
-	}
 	
 	public int getmonth() {
 		return this.calendar.get(Calendar.MONTH);
 	}
 
+	public Address getAddressId() {
+		return address;
+	}
+
+	public void setAddressId(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", accountId=" + accountId + ", status=" + status + ", addressId="
-				+ addressId + ", data=" + calendar.getTime() + "]";
+		return "Order [id=" + id + ", accountId=" + accountId + ", status=" + status + 
+				", addressId=" + address.toString() + ", data=" + calendar.getTime() + "]";
+
 	}
 
 }
