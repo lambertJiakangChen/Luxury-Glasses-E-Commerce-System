@@ -13,6 +13,8 @@ import com.project.dao.CatalogDao;
 import com.project.entity.Account;
 import com.project.entity.Item;
 import com.project.entity.OrderItem;
+import com.project.entity.Review;
+import com.project.dao.ReviewDao;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -164,5 +166,24 @@ public class CatalogController {
 			recommand = recommand + "You may also need " + catalogService.recommandationbycolor(Items).toString();
 		}	
 		return recommand;
+	}
+	
+	@RequestMapping("/addReview")
+	public @ResponseBody String addReview(Review review) {
+		String errorMsg = "";
+		if (review.getUserEmail() == null || review.getUserEmail().equals("")
+				|| review.getUserEmail().indexOf("@") < 0) {
+			errorMsg += "Valid email is required!";
+		}
+		if (review.getUserName() == null || review.getUserName().equals("")) {
+			errorMsg += "User name is required! ";
+		}
+		if (errorMsg.equals("")) {
+			catalogService.saveReview(review);
+			catalogService.updateRating(review.getItem().getItemName());
+			return "SUCCESS";
+		} else {
+			return errorMsg;
+		}
 	}
 }
