@@ -82,7 +82,7 @@ public class IdentityController {
 	@RequestMapping("/updateUsername")
 	String updateUsername(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
-		identityService.editUsername(acc.getId(), acc.getUsername(), request.getParameter("username"));
+		acc = identityService.editUsername(acc.getUsername(), acc.getPassword(), acc.getUsername(), request.getParameter("username"));
 		session.setAttribute("ACCOUNT", acc);
 		
 		return "Success";
@@ -94,7 +94,7 @@ public class IdentityController {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
 		
 		try {
-			identityService.editPassword(acc.getId(),request.getParameter("oldPass"), request.getParameter("newPass"));
+			acc = identityService.editPassword(acc.getUsername(), acc.getPassword(),request.getParameter("oldPass"), request.getParameter("newPass"));
 		} catch (Exception e) {
 			return "Could not update password. " + e.getMessage();
 		}
@@ -109,7 +109,7 @@ public class IdentityController {
 	@RequestMapping("/updateFirstName")
 	String updateFirstName(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
-		identityService.editUsername(acc.getId(), acc.getfName(), request.getParameter("fname"));
+		acc = identityService.editFirstName(acc.getUsername(), acc.getPassword(), acc.getfName(), request.getParameter("fname"));
 		session.setAttribute("ACCOUNT", acc);
 		
 		return "Success";
@@ -118,7 +118,7 @@ public class IdentityController {
 	@RequestMapping("/updateLastName")
 	String updateLastName(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
-		identityService.editUsername(acc.getId(), acc.getlName(), request.getParameter("lname"));
+		acc = identityService.editLastName(acc.getUsername(), acc.getPassword(), acc.getlName(), request.getParameter("lname"));
 		session.setAttribute("ACCOUNT", acc);
 		
 		return "Success";
@@ -128,7 +128,7 @@ public class IdentityController {
 	@RequestMapping("/updateEmail")
 	String updateEmail(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
-		identityService.editUsername(acc.getId(), acc.getEmail(), request.getParameter("email"));
+		acc = identityService.editEmail(acc.getUsername(), acc.getPassword(), acc.getEmail(), request.getParameter("email"));
 		session.setAttribute("ACCOUNT", acc);
 		
 		return "Success";

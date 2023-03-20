@@ -32,7 +32,7 @@ public class Item {
 	private Set<String> category = new HashSet<String>();
 	private Set<String> colors = new HashSet<String>();
 	
-	@OneToMany(mappedBy = "ITEM", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany
 	private List<Review> reviews;
 	
 //	private int stock; 

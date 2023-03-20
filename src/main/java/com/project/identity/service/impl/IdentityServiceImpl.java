@@ -80,18 +80,20 @@ public class IdentityServiceImpl implements IdentityService{
 	
 	
 	@Override 
-	public void editUsername(Long accId, String oldValue, String newValue) {
-		Account acc = accountDao.getById(accId);
+	public Account editUsername(String username, String password, String oldValue, String newValue) {
+		Account acc = findAccountbyUserAndPass(username, password);
 		acc.setUsername(newValue);
 		
 		accountDao.saveAndFlush(acc);
 		
 		System.out.println("Username updated");
+		
+		return acc;
 	}
 
 	@Override
-	public void editPassword(Long accId, String oldValue, String newValue) throws Exception {
-		Account acc = accountDao.getById(accId);
+	public Account editPassword(String username, String password, String oldValue, String newValue) throws Exception {
+		Account acc = findAccountbyUserAndPass(username, password);
 		if(!acc.getPassword().equals(oldValue)) {
 			throw new Exception("Current Password is incorrect.");
 		}
@@ -99,39 +101,44 @@ public class IdentityServiceImpl implements IdentityService{
 		
 		accountDao.saveAndFlush(acc);
 		System.out.println("Password updated");
+		
+		return acc;
 	}
 
 	@Override
-	public void editFirstName(Long accId, String oldValue, String newValue) {
-		Account acc = accountDao.getById(accId);
+	public Account editFirstName(String username, String password, String oldValue, String newValue) {
+		Account acc = findAccountbyUserAndPass(username, password);
 		acc.setfName(newValue);
 		
 		accountDao.saveAndFlush(acc);
 		
 		System.out.println("First Name updated");
 		
+		return acc;
 	}
 
 	@Override
-	public void editLastName(Long accId, String oldValue, String newValue) {
-		Account acc = accountDao.getById(accId);
+	public Account editLastName(String username, String password, String oldValue, String newValue) {
+		Account acc = findAccountbyUserAndPass(username, password);
 		acc.setlName(newValue);
 		
 		accountDao.saveAndFlush(acc);
 		
 		System.out.println("Last Name updated");
-		
+	
+		return acc;
 	}
 
 	@Override
-	public void editEmail(Long accId, String oldValue, String newValue) {
-		Account acc = accountDao.getById(accId);
+	public Account editEmail(String username, String password, String oldValue, String newValue) {
+		Account acc = findAccountbyUserAndPass(username, password);
 		acc.setEmail(newValue);
 		
 		accountDao.saveAndFlush(acc);
 		
 		System.out.println("Email updated");
 		
+		return acc;
 	}
 	
 	protected boolean usernameExists(String username) {

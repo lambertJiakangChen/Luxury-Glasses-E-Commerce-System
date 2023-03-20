@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.OptionalDouble;
 import java.util.List;
 
-import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -66,6 +66,10 @@ public class CatalogServiceImpl implements CatalogService {
 	public Optional<Item> searchItem(Item item) {
 		return catalogDao.findById(item.getId());
 	}
+	
+//	public Item findItemById(String itemId) {
+//		
+//	}
 
 	@Override
 	public Collection<Item> searchItemByName(String itemName) {

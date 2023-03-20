@@ -147,8 +147,8 @@ public class CatalogController {
 		return result;
 	}
 	
-	@RequestMapping("/recommand")
-	String recommandation(HttpServletRequest request, HttpSession session) {
+	@RequestMapping("/recommendItems")
+	String recommendation(HttpServletRequest request, HttpSession session) {
 		String recommand = "";
 		Account acc = (Account) session.getAttribute("ACCOUNT");
 		Long accId = null;
@@ -168,6 +168,13 @@ public class CatalogController {
 		}	
 		return recommand;
 	}
+	
+//	@RequestMapping("/addReview") 
+//	String addReview(HttpServletRequest request, HttpSession session) {
+//		
+//		return "";
+//		
+//	}
 	
 	@RequestMapping("/addReview")
 	public @ResponseBody String addReview(Review review) {

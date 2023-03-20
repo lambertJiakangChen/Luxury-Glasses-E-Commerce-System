@@ -19,14 +19,14 @@ public interface IdentityService {
 	
 	Collection<Account> findAllAccounts();
 	
-	void editUsername(Long accId, String oldValue, String newValue);
+	Account editUsername(String username, String password, String oldValue, String newValue);
 	
-	void editPassword(Long accId, String oldValue, String newValue) throws Exception;
+	Account editPassword(String username, String password, String oldValue, String newValue) throws Exception;
 	
-	void editFirstName(Long accId, String oldValue, String newValue);
+	Account editFirstName(String username, String password, String oldValue, String newValue);
 	
-	void editLastName(Long accId, String oldValue, String newValue);
+	Account editLastName(String username, String password, String oldValue, String newValue);
 
-	void editEmail(Long accId, String oldValue, String newValue);
+	Account editEmail(String username, String password, String oldValue, String newValue);
 
 }

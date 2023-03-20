@@ -5,6 +5,7 @@ package com.project.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,7 +15,10 @@ public class Review {
 	@Id @GeneratedValue
            
     private int rating;
+	
+	@ManyToOne
     private Item item;
+	
     private Long id;
     private String comments;
 	
