@@ -1,6 +1,7 @@
 package com.project.catalog.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -21,8 +22,12 @@ import com.project.entity.OrderItem;
 import com.project.entity.Account;
 import com.project.entity.Item;
 import com.project.entity.Review;
+import com.project.entity.VisitEvent;
+import com.project.entity.types.EventStatus;
+import com.project.sequence.SequenceService;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.websocket.Session;
@@ -44,6 +49,9 @@ public class CatalogServiceImpl implements CatalogService {
 	
 	@PersistenceContext
 	protected EntityManager entityManager;
+	
+	@Autowired
+	SequenceService sequence;
 
 	@Override
 	public void addItem(String itemName, String brand, String shape, String size, Double price, 
@@ -53,7 +61,7 @@ public class CatalogServiceImpl implements CatalogService {
 		if (!itemExists(itemName)) {
 			Item item = new Item( (catalogDao.count()+1), itemName, brand, shape, size, price,  material, weight, lensWidth, 
 					lensHeight, frameWidth, category, colors);
-			catalogDao.save(item);
+			catalogDao.saveAndFlush(item);
 		}
 	}
 
@@ -67,9 +75,19 @@ public class CatalogServiceImpl implements CatalogService {
 		return catalogDao.findById(item.getId());
 	}
 	
-//	public Item findItemById(String itemId) {
-//		
-//	}
+	@Override
+	public Item findItemById(Long itemId) {
+		System.out.println("Finding Item by id");
+		
+		
+		for (Item item: catalogDao.findAll()) {
+			if (item.getId() == itemId) {
+				return item;
+			}
+		}
+		
+		return null;
+	}
 
 	@Override
 	public Collection<Item> searchItemByName(String itemName) {
@@ -240,14 +258,30 @@ public class CatalogServiceImpl implements CatalogService {
 	}
 	
 	@Override
-	public void saveReview(Review review) {
-		reviewDao.save(review);
+	public void addReview(Item item, int rating, String comments, String email) {
+		
+		Long reviewId = sequence.findNextSequenceByService("REVIEW");
+		sequence.updateNextSequence("REVIEW");
+		
+		Review review = new Review(reviewId, email, comments, rating, item);
+		
+		reviewDao.saveAndFlush(review);
 		
 	}
 	
 	@Override
-	public List<Review> listAll() {
-		return reviewDao.findAll();
+	public List<Review> listAllReviewsByItem(Item item) {
+		
+		List<Review> result = new ArrayList<>();
+		
+		for (Review review: reviewDao.findAll()) {
+			Long itemId = review.getItem().getId();
+			if (itemId == item.getId()) {
+				result.add(review);
+			}
+			
+		}
+		return result;
 	}
 
 

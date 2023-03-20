@@ -114,6 +114,8 @@ public class ShoppingCart {
 
 			log.info("Loading New Order: " + orderDao.save(new Order(orderId, accountId, OrderStatus.NOT_ORDERED, address, Calendar.getInstance())));
 			log.info("Preloading " + eventDao.save(new VisitEvent((long) eventDao.count()+1, EventStatus.CART, accountId, Calendar.getInstance())));
+			sequence.updateNextSequence("ORDER");
+		
 		}
 		else {
 			// else if order exists in PurchaseOrder table -> update Order Item

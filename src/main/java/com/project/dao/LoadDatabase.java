@@ -58,6 +58,7 @@ public class LoadDatabase {
 		return args -> {
 			log.info("Preloading " + sequenceDao.save(new Sequence("ORDER_ITEM", (long) 1)));
 			log.info("Preloading " + sequenceDao.save(new Sequence("ORDER", (long) 1)));
+			log.info("Preloading " + sequenceDao.save(new Sequence("REVIEW", (long) 1)));
 			
 			log.info("Preloading " + addressDao.save(new Address((long) addressDao.count()+1, "Canada", "4161234567", "4700 keele street", null, "North York", "ON", "M3J1P3", true)));
 					

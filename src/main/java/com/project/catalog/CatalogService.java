@@ -22,6 +22,8 @@ public interface CatalogService {
 	Optional<Item> searchItem(Item item);
 
 	Collection<Item> searchItemByName(String itemName);
+	
+	Item findItemById(Long itemId);
 
 	boolean itemExists(String itemName);
 
@@ -47,11 +49,11 @@ public interface CatalogService {
 	
 	Collection<Item> recommandationbycolor(Collection<Item> Items);
 	
-	List<Review> listAll();
-	
-	void saveReview(Review review);
+	List<Review> listAllReviewsByItem(Item item);
 	
 	void updateRating(String item);
+	
+	void addReview(Item item, int rating, String comments, String email);
 
 
 }

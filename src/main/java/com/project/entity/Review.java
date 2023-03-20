@@ -12,26 +12,20 @@ import jakarta.persistence.Table;
 @Table(name = "REVIEW")
 public class Review {
 
-	@Id @GeneratedValue
-           
+	@Id @GeneratedValue  
+	private Long id;
     private int rating;
+    private String comments;
 	
 	@ManyToOne
     private Item item;
-	
-    private Long id;
-    private String comments;
-	
-	
-	private String userName;
 	private String userEmail; 
 	
 
  
-	public Review(Long id, String userName, String userEmail, String comments, int rating, Item item){
+	public Review(Long id, String userEmail, String comments, int rating, Item item){
 		super();
 		this.id = id;
-		this.userName = userName;
 		this.userEmail = userEmail;
 		this.comments = comments;
 		this.rating = rating;
@@ -66,15 +60,6 @@ public class Review {
 		this.item = item;
 	}
 
-
-	public String getUserName() {
-		return userName;
-	}
-
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 	
 
 	public String getUserEmail() {
@@ -110,7 +95,7 @@ public class Review {
 
 	@Override
 	public String toString() {
-		return "Review\n[id=" + getId() + ", Item=" + getItem() + ", UserName=" + getUserName() 
+		return "Review\n[id=" + getId() + ", Item=" + getItem() 
 				+ ", UserEmail=" + getUserEmail() + ", Rating=" + getRating() 
 				+ ", Comments=" + getComments() + "]\n";
 	}

@@ -1,6 +1,7 @@
 package com.project.ctrl;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -17,6 +18,7 @@ import com.project.entity.OrderItem;
 import com.project.entity.Review;
 import com.project.dao.ReviewDao;
 
+import jakarta.persistence.ManyToOne;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -169,29 +171,47 @@ public class CatalogController {
 		return recommand;
 	}
 	
-//	@RequestMapping("/addReview") 
-//	String addReview(HttpServletRequest request, HttpSession session) {
-//		
-//		return "";
-//		
-//	}
+	@RequestMapping("/addReview") 
+	String addReview(HttpServletRequest request, HttpSession session) {
+		Long itemId = Long.valueOf(request.getParameter("item"));
+		int rating = Integer.valueOf(request.getParameter("rating"));
+	    String comment = request.getParameter("comments");
+		String userEmail = request.getParameter("email"); 
+		
+	    Item item = catalogService.findItemById(itemId);
+	    
+	    if (item == null) {
+	    	return "Cound not add Review: Item ID not found.";
+	    }
+	    
+	    catalogService.addReview(item, rating, comment, userEmail);
+		
+		
+		return "Revew added";
+		
+	}
 	
-	@RequestMapping("/addReview")
-	public @ResponseBody String addReview(Review review) {
-		String errorMsg = "";
-		if (review.getUserEmail() == null || review.getUserEmail().equals("")
-				|| review.getUserEmail().indexOf("@") < 0) {
-			errorMsg += "Valid email is required!";
-		}
-		if (review.getUserName() == null || review.getUserName().equals("")) {
-			errorMsg += "User name is required! ";
-		}
-		if (errorMsg.equals("")) {
-			catalogService.saveReview(review);
-			catalogService.updateRating(review.getItem().getItemName());
-			return "SUCCESS";
-		} else {
-			return errorMsg;
-		}
+	@RequestMapping("/getReviewsByItem") 
+	String getReviewsByItem(HttpServletRequest request, HttpSession session) {
+		Long itemId = Long.valueOf(request.getParameter("item"));		
+	    Item item = catalogService.findItemById(itemId);
+	    
+	    if (item == null) {
+	    	return "Cound not get Reviews: Item ID not found.";
+	    }
+	    
+	    List<Review> reviews = catalogService.listAllReviewsByItem(item);
+	    
+	    String result = "{";
+	    
+	    for (Review r: reviews) {
+	    	result += r.toString() + ", ";
+	    }
+	    
+	    result += "}";
+		
+		
+		return result;
+		
 	}
 }
