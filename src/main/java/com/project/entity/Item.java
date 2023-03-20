@@ -9,6 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Table(name = "ITEM")
@@ -23,10 +26,14 @@ public class Item {
 	private Double price; // in $
 	private String material;
 	private Double weight; //in g
+	private int rating;
 	
 	private List<Double> dimension = new ArrayList<Double>(); // 3-measurements (lens width-lens height-frame width)
 	private Set<String> category = new HashSet<String>();
 	private Set<String> colors = new HashSet<String>();
+	
+	@OneToMany(mappedBy = "ITEM", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Review> reviews;
 	
 //	private int stock; 
 	
@@ -50,6 +57,7 @@ public class Item {
 		addFrameWidth(frameWidth);
 		this.category = category;
 		this.colors = colors;
+		this.rating = 0;
 	}
 	
 	public Item(Long id, String itemName, String shape, Double price) {
@@ -245,6 +253,22 @@ public class Item {
 	
 	public boolean containsColor(String ncolor) {
 		return this.colors.contains(ncolor);
+	}
+	
+	public List<Review> getReviews() {
+	    return reviews;
+	}
+	 
+	public void setReviews(List<Review> reviews) {
+	    this.reviews = reviews;
+	}
+	 
+	public int getRating() {
+		return rating;
+	}
+	
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
 
