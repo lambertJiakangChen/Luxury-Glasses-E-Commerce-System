@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.List;
 
 import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,17 @@ import com.project.catalog.CatalogService;
 import com.project.dao.CatalogDao;
 import com.project.dao.OrderDao;
 import com.project.dao.OrderItemDao;
+import com.project.dao.ReviewDao;
 import com.project.entity.Order;
 import com.project.entity.OrderItem;
 import com.project.entity.Account;
 import com.project.entity.Item;
+import com.project.entity.Review;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+import jakarta.websocket.Session;
 
 @Service
 public class CatalogServiceImpl implements CatalogService {
@@ -30,6 +38,12 @@ public class CatalogServiceImpl implements CatalogService {
 	
 	@Autowired
 	private OrderItemDao orderItemDao;
+	
+	@Autowired
+	private ReviewDao reviewDao;
+	
+	@PersistenceContext
+	protected EntityManager entityManager;
 
 	@Override
 	public void addItem(String itemName, String brand, String shape, String size, Double price, 
@@ -219,6 +233,31 @@ public class CatalogServiceImpl implements CatalogService {
 			}
 	    }
 		return recomandItems;
+	}
+	
+	@Override
+	public void saveReview(Review review) {
+		reviewDao.save(review);
+		
+	}
+	
+	@Override
+	public List<Review> listAll() {
+		return reviewDao.findAll();
+	}
+
+
+	@Override
+	public void updateRating(String itemName) {
+		Session session = (Session) entityManager.getDelegate();
+		Item item = searchItemByName(itemName).iterator().next();
+
+		List<Review> reviews = catalogDao.findById(item.getId()).orElseThrow().getReviews();
+		OptionalDouble rating = reviews.stream().mapToInt(a -> a.getRating()).average();
+		String hql = "update Item set rating = :rating where item = :itemName";
+		Query query = ((EntityManager) session).createQuery(hql);
+		query.setParameter("rating", (Math.round(rating.getAsDouble())));
+		query.executeUpdate();
 	}
 
 
