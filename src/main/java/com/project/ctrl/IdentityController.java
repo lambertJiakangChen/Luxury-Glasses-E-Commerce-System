@@ -82,7 +82,12 @@ public class IdentityController {
 	@RequestMapping("/updateUsername")
 	String updateUsername(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
-		acc = identityService.editUsername(acc.getUsername(), acc.getPassword(), acc.getUsername(), request.getParameter("username"));
+		
+		try {
+			acc = identityService.editUsername(acc.getUsername(), acc.getPassword(), acc.getUsername(), request.getParameter("username"));
+		} catch (Exception e) {
+			return "Could not update username. " + e.getMessage();
+		}
 		session.setAttribute("ACCOUNT", acc);
 		
 		return "Success";

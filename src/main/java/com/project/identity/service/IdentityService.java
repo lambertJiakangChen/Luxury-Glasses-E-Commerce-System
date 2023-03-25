@@ -19,7 +19,7 @@ public interface IdentityService {
 	
 	Collection<Account> findAllAccounts();
 	
-	Account editUsername(String username, String password, String oldValue, String newValue);
+	Account editUsername(String username, String password, String oldValue, String newValue) throws Exception;
 	
 	Account editPassword(String username, String password, String oldValue, String newValue) throws Exception;
 	

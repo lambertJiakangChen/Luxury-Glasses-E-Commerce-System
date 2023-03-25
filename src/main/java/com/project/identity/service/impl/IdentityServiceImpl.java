@@ -80,7 +80,11 @@ public class IdentityServiceImpl implements IdentityService{
 	
 	
 	@Override 
-	public Account editUsername(String username, String password, String oldValue, String newValue) {
+	public Account editUsername(String username, String password, String oldValue, String newValue) throws Exception {
+		if (usernameExists(newValue)) {
+			throw new Exception("Username Already Exists.");
+		}
+		
 		Account acc = findAccountbyUserAndPass(username, password);
 		acc.setUsername(newValue);
 		
