@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Catalog Service</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h2>Catalog Service APIs</h2>
+
+	<form action="/catalog/getReviewsByItem" method="GET">
+		<div>
+			<p>/catalog/getReviewsByItem</p>
+			<label for="item">Item ID</label>
+			<input name="item" id="item"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/catalog/addReview" method="GET">
+		<div>
+			<p>/catalog/addReview</p>
+			<label for="item">Item ID</label>
+			<input name="item" id="item"> <br/>
+			<label for="rating">rating = {1, 2, 3, 4, 5}</label>
+			<input name="rating" id="rating"> <br/>
+			<label for="comments">comments</label>
+			<input name="comments" id="comments"> <br/>
+			<label for="email">email</label>
+			<input name="email" id="email"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+
+</body>
+</html>

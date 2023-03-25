@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Identity Management Service</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h2>Identity Management APIs</h2>
+	<!-- 	
+	<p>
+		<a href="/getAllAccounts">/getAllAccounts</a>
+	</p> 
+	-->
+
+	<form action="/getAllAccounts" method="GET">
+		<div>
+			<label>/getAllAccounts</label>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/register" method="GET">
+		<div>
+			<p>/register</p>			
+			<label for="username">username</label>
+			<input name="username" id="username"> <br/>
+			<label for="password">password</label>
+			<input name="password" id="password" type=password> <br/>
+			<label for="fname">first name</label>
+			<input name="fname" id="fname"> <br/>
+			<label for="lname">last name</label>
+			<input name="lname" id="lname"> <br/>
+			<label for="email">email</label>
+			<input name="email" id="email"> <br/>
+			<label for="type">account type = {ADMIN, REGULAR}</label>
+			<input name="type" id="type"> <br/>		
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/login" method="GET">
+		<div>
+			<p>/login</p>			
+			<label for="username">username</label>
+			<input name="username" id="username"> <br/>
+			<label for="password">password</label>
+			<input name="password" id="password" type=password> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/logout" method="GET">
+		<div>
+			<p>/logout</p>			
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/getAccountDetails" method="GET">
+		<div>
+			<p>/getAccountDetails</p>			
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/login" method="GET">
+		<div>
+			<p>/login</p>			
+			<label for="username">username</label>
+			<input name="username" id="username"> <br/>
+			<label for="password">password</label>
+			<input name="password" id="password" type=password> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/updateUsername" method="GET">
+		<div>
+			<p>/updateUsername</p>			
+			<label for="username">new username</label>
+			<input name="username" id="username"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/updatePassword" method="GET">
+		<div>
+			<p>/updatePassword</p>			
+			<label for="oldPass">old password</label>
+			<input name="oldPass" id="oldPass"> <br/>
+			<label for="newPass">new password</label>
+			<input name="newPass" id="newPass"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/updateFirstName" method="GET">
+		<div>
+			<p>/updateFirstName</p>			
+			<label for="fname">first name</label>
+			<input name="fname" id="fname"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/updateLastName" method="GET">
+		<div>
+			<p>/updateLastName</p>			
+			<label for="lname">last name</label>
+			<input name="lname" id="lname"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/updateEmail" method="GET">
+		<div>
+			<p>/updateEmail</p>			
+			<label for="email">email</label>
+			<input name="email" id="email"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+</body>
+</html>

@@ -77,8 +77,12 @@ public class Order {
 
 	@Override
 	public String toString() {
+		String address = "";
+		if(this.address  != null) {
+			address += address.toString();
+		}
 		return "Order [id=" + id + ", accountId=" + accountId + ", status=" + status + 
-				", addressId=" + address.toString() + ", data=" + calendar.getTime() + "]";
+				", addressId=" + address + ", data=" + calendar.getTime() + "]";
 
 	}
 

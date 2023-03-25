@@ -187,7 +187,7 @@ public class CatalogController {
 	    catalogService.addReview(item, rating, comment, userEmail);
 		
 		
-		return "Revew added";
+		return "Review added";
 		
 	}
 	
