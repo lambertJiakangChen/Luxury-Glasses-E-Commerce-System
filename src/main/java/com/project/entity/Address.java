@@ -16,24 +16,25 @@ public class Address {
 	@Id @GeneratedValue
 	private long addId;
 	
-	@NotBlank
+	@NotBlank(message = "Please enter country")
 	private String country;
 	@NotNull
+	@NotBlank(message = "Please enter your phone number")
 	@Size(min = 10, max = 10, message = "Phone number must be 10 characters long")
-	private long phone;
-	@NotBlank
+	private String phone;
+	@NotBlank(message = "Please enter line 1 address")
 	private String line1;
 	private String line2;
-	@NotBlank
+	@NotBlank(message = "Please enter city")
 	private String city;
-	@NotBlank
+	@NotBlank(message = "Please enter province/state")
 	private String province;
-	@NotBlank
+	@NotBlank(message = "Please enter postal code")
 	@Size(min = 6, max = 6, message = "Postal code must be 6 characters long no space")
 	private String postal;
 	private boolean is_default = false;
 	
-	public Address(long addId, String country, long phone, String line1, String line2,
+	public Address(long addId, String country, String phone, String line1, String line2,
 			String city, String province, String postal, boolean makeDefault) {
 		super();
 		this.addId = addId;
@@ -69,14 +70,14 @@ public class Address {
 	/**
 	 * @return the phone
 	 */
-	public long getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
 	/**
 	 * @param phone the phone to set
 	 */
-	public void setPhone(long phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

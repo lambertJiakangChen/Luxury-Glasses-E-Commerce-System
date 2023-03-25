@@ -7,24 +7,30 @@ import java.util.Calendar;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
 
 @Entity
 public class Payment {
 	
+	@Id
+	private long id;
 	@NotNull
+	@NotBlank(message = "Please enter card number")
 	@Size(min = 16, max = 16, message = "Card number must be 16 characters long") 
-	private long cardNum;
-	@NotBlank
+	private String cardNum;
+	@NotBlank(message = "Please enter the expiry date on your card in MM/YY")
 	@Pattern(regexp = "/")
 	private Date exp; // in "MM/YY"
-	@NotBlank
+	@NotBlank(message = "Please enter your cvv code")
+	@Size(min = 3, max = 3, message = "cvv code must be 3 characters long") 
 	private String cvv;
 	
 	
-	public Payment(long cardNum, String mmyy, String cvv) throws ParseException {
+	public Payment(String cardNum, String mmyy, String cvv) throws ParseException {
 		super();
 		this.cardNum = cardNum;
+		this.id = Long.parseLong(cardNum);
 		SimpleDateFormat input = new SimpleDateFormat("MM/YY");
 		this.exp = input.parse(mmyy);
 		this.cvv = cvv;
@@ -46,13 +52,13 @@ public class Payment {
 	/**
 	 * @return the cardNum
 	 */
-	public long getCardNum() {
+	public String getCardNum() {
 		return cardNum;
 	}
 	/**
 	 * @param cardNum the cardNum to set
 	 */
-	public void setCardNum(long cardNum) {
+	public void setCardNum(String cardNum) {
 		this.cardNum = cardNum;
 	}
 

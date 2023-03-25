@@ -95,7 +95,8 @@ public class CheckoutController {
 	String addAddress(HttpServletRequest request, HttpSession session) {
 		String country = request.getParameter("country");
 		String name = request.getParameter("name");
-		long phone = Long.parseLong(request.getParameter("phone"));
+//		long phone = Long.parseLong(request.getParameter("phone"));
+		String phone = request.getParameter("phone");
 		String line1 = request.getParameter("line1");
 		String line2 = request.getParameter("line2");
 		String city = request.getParameter("city");
@@ -119,7 +120,8 @@ public class CheckoutController {
 
 	@RequestMapping("/payment")
 	String modifyPayment(HttpServletRequest request, HttpSession session) {
-		long cardNum = Long.parseLong(request.getParameter("card_number"));
+//		long cardNum = Long.parseLong(request.getParameter("card_number"));
+		String cardNum = request.getParameter("card_number");
 		String exp = request.getParameter("exp"); // in "MM/YY" format
 		String cvv = request.getParameter("cvv");
 		

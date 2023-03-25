@@ -60,7 +60,7 @@ public class LoadDatabase {
 			log.info("Preloading " + sequenceDao.save(new Sequence("ORDER", (long) 1)));
 			log.info("Preloading " + sequenceDao.save(new Sequence("REVIEW", (long) 1)));
 			
-			log.info("Preloading " + addressDao.save(new Address((long) addressDao.count()+1, "Canada", Long.parseLong("4161234567"), "4700 keele street", null, "North York", "ON", "M3J1P3", true)));
+			log.info("Preloading " + addressDao.save(new Address((long) addressDao.count()+1, "Canada", "4161234567", "4700 keele street", null, "North York", "ON", "M3J1P3", true)));
 					
 			log.info("Preloading " + accountDao.save(new Account((long) 1, "justinB31", "justin", "bieber", "justin1@gmail.com", "Qwerty12", AccountType.REGULAR, addressDao.getById((long) 1))));
 			log.info("Preloading " + accountDao.save(new Account((long) 2, "adminAcc", "Adam", "Smith", "adam12@gmail.com", "Qwerty12", AccountType.ADMIN, addressDao.getById((long) 1))));
