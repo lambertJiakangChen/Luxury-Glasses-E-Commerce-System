@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "Address")
@@ -15,16 +16,24 @@ public class Address {
 	@Id @GeneratedValue
 	private long addId;
 	
+	@NotBlank
 	private String country;
-	private String phone;
+	@NotNull
+	@Size(min = 10, max = 10, message = "Phone number must be 10 characters long")
+	private long phone;
+	@NotBlank
 	private String line1;
 	private String line2;
+	@NotBlank
 	private String city;
+	@NotBlank
 	private String province;
+	@NotBlank
+	@Size(min = 6, max = 6, message = "Postal code must be 6 characters long no space")
 	private String postal;
 	private boolean is_default = false;
 	
-	public Address(long addId, String country, String phone, String line1, String line2,
+	public Address(long addId, String country, long phone, String line1, String line2,
 			String city, String province, String postal, boolean makeDefault) {
 		super();
 		this.addId = addId;
@@ -60,14 +69,14 @@ public class Address {
 	/**
 	 * @return the phone
 	 */
-	public String getPhone() {
+	public long getPhone() {
 		return phone;
 	}
 
 	/**
 	 * @param phone the phone to set
 	 */
-	public void setPhone(String phone) {
+	public void setPhone(long phone) {
 		this.phone = phone;
 	}
 

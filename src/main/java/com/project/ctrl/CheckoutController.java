@@ -4,6 +4,7 @@
 package com.project.ctrl;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import com.project.dao.OrderDao;
 import com.project.entity.Account;
 import com.project.entity.Address;
 import com.project.entity.Order;
+import com.project.entity.Payment;
 import com.project.entity.types.OrderStatus;
 import com.project.identity.service.IdentityService;
 import com.project.shoppingcart.ShoppingCart;
@@ -35,7 +37,7 @@ public class CheckoutController {
 	@Autowired AddressDao addressDao;
 	
 
-	// TODO: change to link and redirect with @PostMapping
+	// TODO: change to link and redirect
 
 	@RequestMapping("/proceed")
 	String proceedToCheckout(HttpServletRequest request, HttpSession session,
@@ -93,7 +95,7 @@ public class CheckoutController {
 	String addAddress(HttpServletRequest request, HttpSession session) {
 		String country = request.getParameter("country");
 		String name = request.getParameter("name");
-		String phone = request.getParameter("phone");
+		long phone = Long.parseLong(request.getParameter("phone"));
 		String line1 = request.getParameter("line1");
 		String line2 = request.getParameter("line2");
 		String city = request.getParameter("city");
@@ -117,13 +119,16 @@ public class CheckoutController {
 
 	@RequestMapping("/payment")
 	String modifyPayment(HttpServletRequest request, HttpSession session) {
-		String cardNum = request.getParameter("card_number");
-		String expMonth = request.getParameter("month");
-		String expYear = request.getParameter("year");
+		long cardNum = Long.parseLong(request.getParameter("card_number"));
+		String exp = request.getParameter("exp"); // in "MM/YY" format
 		String cvv = request.getParameter("cvv");
 		
+		try {
+			Payment card = new Payment(cardNum, exp, cvv);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		// Assume card is correct for now
-		// TODO: process payment
 		
 //		return "/checkout/reviewOrder";
 		return "Successfully entered payment method";

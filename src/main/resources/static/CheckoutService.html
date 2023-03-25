@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Checkout Service</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h2>Checkout Service APIs</h2>
+
+	<form action="/checkout/proceed" method="GET">
+		<div>
+			<p>/checkout/proceed</p>
+			<!-- <label for="item">Item ID</label>
+			<input name="item" id="item"> <br/> -->
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/checkout/proceedlogin" method="GET">
+		<div>
+			<p>/checkout/proceedlogin</p>
+			
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/checkout/proceedregister" method="GET">
+		<div>
+			<p>/checkout/proceedregister</p>
+			<!-- <label for="item">Item ID</label>
+			<input name="item" id="item"> <br/> -->
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/checkout/shipping" method="GET">
+		<div>
+			<p>/checkout/shipping/</p>
+			<label for="country">Country</label>
+			<input name="country" id="country"> <br/>
+			<label for="name">Full Name</label>
+			<input name="name" id="name"> <br/>
+			<label for="phone">Phone Number</label>
+			<input name="phone" id="phone"> <br/>
+			<label for="line1">line 1</label>
+			<input name="line1" id="line1"> <br/>
+			<label for="line2">line 2</label>
+			<input name="line2" id="line2"> <br/>
+			<label for="city">City</label>
+			<input name="city" id="city"> <br/>
+			<label for="province">Province</label>
+			<input name="province" id="province"> <br/>
+			<label for="postal">Postal</label>
+			<input name="postal" id="postal"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/checkout/payment" method="GET">
+		<div>
+			<p>/checkout/payment</p>
+			<label for="card_number">Card Number</label>
+			<input name="card_number" id="card_number"> <br/>
+			<label for="month">Exp Month</label>
+			<input name="month" id="month"> <br/>
+			<label for="year">Exp Year</label>
+			<input name="year" id="year"> <br/>
+			<label for="cvv">cvv</label>
+			<input name="cvv" id="cvv"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/checkout/reviewOrder" method="GET">
+		<div>
+			<p>/checkout/reviewOrder</p>
+			<p>Please confirm order</p>
+			<button>Confirm</button>
+		</div>
+	</form>
+	<hr/>
+
+</body>
+</html>

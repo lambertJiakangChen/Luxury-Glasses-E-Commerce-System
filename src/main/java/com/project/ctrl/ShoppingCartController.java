@@ -20,10 +20,11 @@ public class ShoppingCartController {
 	
 
 	@RequestMapping("create")
-	void createCart(HttpServletRequest request, HttpSession session) {
+	String createCart(HttpServletRequest request, HttpSession session) {
 		HttpSession newSession = request.getSession();
-		ShoppingCart cart = this.shoppingCartService.getCart();
+		ShoppingCart cart = shoppingCartService.getInstance();
 		newSession.setAttribute("CART", cart);
+		return "cart created";
 	}
 	
 
