@@ -6,7 +6,142 @@
 </head>
 <body>
 	<h2>Catalog Service APIs</h2>
-
+	
+	<form action="/catalog/viewCatalog" method="GET">
+		<div>
+			<label>/catalog/viewCatalog</label> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+    <hr/>
+    <form action="/catalog/addItem" method="GET">
+		<div>
+			<p>/catalog/addItem</p>			
+			<label for="brand">brand</label>
+			<input name="brand" id="brand"> <br/>
+			<label for="itemName">itemName</label>
+			<input name="itemName" id="itemName"> <br/>
+			<label for="shape">shape</label>
+			<input name="shape" id="shape"> <br/>
+			<label for="size">size</label>
+			<input name="size" id="size"> <br/>
+			<label for="price">price</label>
+			<input name="price" id="price"> <br/>
+			<label for="material">material</label>
+			<input name="material" id="material"> <br/>
+			<label for="weight">weight</label>
+			<input name="weight" id="weight"> <br/>
+			<label for="lensWidth">lensWidth</label>
+			<input name="lensWidth" id="lensWidth"> <br/>	
+			<label for="lensHeight">lensHeight</label>
+			<input name="lensHeight" id="lensHeight"> <br/>
+			<label for="framWidth">framWidth</label>
+			<input name="framWidth" id="framWidth"> <br/>
+			<p>Enter category 1-3 if apply</p>
+			<label for="cat1">category1</label>
+			<input name="cat1" id="cat1"> <br/>
+			<label for="cat2">category2</label>
+			<input name="cat2" id="cat2"> <br/>
+			<label for="cat3">category3</label>
+			<input name="cat3" id="cat3"> <br/>
+			<p>Enter color 1-4 if apply</p>
+			<label for="color1">color1</label>
+			<input name="color1" id="color1"> <br/>
+			<label for="color2">color2</label>
+			<input name="color2" id="color2"> <br/>
+			<label for="color3">color3</label>
+			<input name="color3" id="color3"> <br/>
+			<label for="color4">color4</label>
+			<input name="color4" id="color4"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/catalog/searchByName" method="GET">
+		<div>
+			<p>/catalog/searchByName</p>			
+			<label for="search">itemname</label>
+			<input name="search" id="search"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/catalog/sortByPrice" method="GET">
+		<div>
+			<p>/catalog/sortByPrice</p>			
+			<input type="checkbox" id="sort" name="sort" value="ascending">
+            <label for="sort">ascending</label><br>
+            <input type="checkbox" id="sort" name="sort" value="descending">
+            <label for="sort">descending</label><br>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/catalog/sortByItemName" method="GET">
+		<div>
+			<p>/catalog/sortByItemName</p>			
+			<input type="checkbox" id="sort" name="sort" value="ascending">
+            <label for="sort">ascending</label><br>
+            <input type="checkbox" id="sort" name="sort" value="descending">
+            <label for="sort">descending</label><br>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/catalog/filterByBrand" method="GET">
+		<div>
+			<p>/catalog/filterByBrand</p>			
+			<label for="brand">Brand name</label>
+			<input name="brand" id="brand"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/catalog/filterByCategory" method="GET">
+		<div>
+			<p>/catalog/filterByCategory</p>			
+			<label for="cate">Category</label>
+			<input name="cate" id="cate"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/catalog/filterByColor" method="GET">
+		<div>
+			<p>/catalog/filterByColor</p>			
+			<label for="color">color</label>
+			<input name="color" id="color"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/catalog/ViewDetails" method="GET">
+		<div>
+			<p>/catalog/ViewDetails</p>			
+			<label for="item">item</label>
+			<input name="item" id="item"> <br/>
+			<label for="cate">category</label>
+			<input name="cate" id="cate"> <br/>
+			<label for="color">color</label>
+			<input name="color" id="color"> <br/>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
+	<form action="/catalog/recommendItems" method="GET">
+		<div>
+			<p>/catalog/recommendItems</p>	
+			<p>You need to log in and have items in shopping cart</p>		
+			<input type="checkbox" id="by" name="by" value="overallsize">
+            <label for="by">overallsize</label><br>
+            <input type="checkbox" id="by" name="by" value="category">
+            <label for="by">category</label><br>
+            <input type="checkbox" id="by" name="by" value="color">
+            <label for="by">color</label><br>
+			<button>Call API</button>
+		</div>
+	</form>
+	<hr/>
 	<form action="/catalog/getReviewsByItem" method="GET">
 		<div>
 			<p>/catalog/getReviewsByItem</p>

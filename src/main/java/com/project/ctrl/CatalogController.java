@@ -96,7 +96,7 @@ public class CatalogController {
 		return catalogService.sortCatalog(request.getParameter("sort")).toString();
 	}
 	
-	@RequestMapping("sortByPrice")
+	@RequestMapping("/sortByPrice")
 	String sortCatalogByPrice(HttpServletRequest request, HttpSession session) {
 		if (request.getParameter("sort") != null && request.getParameter("sort").equals("ascending")) {
 			return catalogService.sortPrice(request.getParameter("sort")).toString();

@@ -18,7 +18,7 @@ public class analyticsController {
 	
 	@Autowired AnalyticsService analyticsService;
 	
-	@RequestMapping("monthlysolditems")
+	@RequestMapping("/monthlysolditems")
 	String itemsSoldMonthly (HttpServletRequest request, HttpSession session) {
 		if (request.getParameter("month").equals("Jan")) {
 			return "Items sold in January" + analyticsService.monthlyorders(0).toString();
@@ -59,7 +59,7 @@ public class analyticsController {
 		return "pick a month";
 	}
 	
-	@RequestMapping("webusage")
+	@RequestMapping("/webusage")
 	String websiteUsage (HttpServletRequest request, HttpSession session) {
 		return analyticsService.webUsage().toString();
 	}
