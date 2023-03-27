@@ -43,6 +43,18 @@ public class IdentityServiceImpl implements IdentityService{
 			throw new Exception("Invalid Account Type");	
 		}
 		
+		if (!UserisValid(username)) {
+			throw new Exception("Username can only contain letters, numbers and underscores.");
+		}
+		
+		if (!PWisValid(password)) {
+			throw new Exception("Password must be greater than 5 and can only contain letters and numbers.");
+		}
+		
+		if (!emailisValid(email)) {
+			throw new Exception("Invalid Email Address");
+		}
+		
 		// add account to DB
 		long id = accountDao.count() + 1;
 		accountDao.save(new Account(id, username, fName, lName, email, password, type, null));
@@ -85,6 +97,10 @@ public class IdentityServiceImpl implements IdentityService{
 			throw new Exception("Username Already Exists.");
 		}
 		
+		if (!UserisValid(newValue)) {
+			throw new Exception("Username can only contain letters, numbers and underscores.");
+		}
+		
 		Account acc = findAccountbyUserAndPass(username, password);
 		acc.setUsername(newValue);
 		
@@ -100,6 +116,9 @@ public class IdentityServiceImpl implements IdentityService{
 		Account acc = findAccountbyUserAndPass(username, password);
 		if(!acc.getPassword().equals(oldValue)) {
 			throw new Exception("Current Password is incorrect.");
+		}
+		if (!PWisValid(password)) {
+			throw new Exception("Password must be greater than 5 and can only contain letters and numbers.");
 		}
 		acc.setPassword(newValue);
 		
@@ -134,7 +153,12 @@ public class IdentityServiceImpl implements IdentityService{
 	}
 
 	@Override
-	public Account editEmail(String username, String password, String oldValue, String newValue) {
+	public Account editEmail(String username, String password, String oldValue, String newValue) throws Exception {
+		
+		if (!emailisValid(newValue)) {
+			throw new Exception("Invalid Email Address");
+		}
+		
 		Account acc = findAccountbyUserAndPass(username, password);
 		acc.setEmail(newValue);
 		
@@ -157,6 +181,35 @@ public class IdentityServiceImpl implements IdentityService{
 		return false;
 		
 	}
-
 	
+	public static boolean UserisValid(String username) {
+        if (!Character.isAlphabetic(username.charAt(0))
+                || username.length() < 1
+                || username.length() > 30)
+            return false;
+        for (char c : username.toCharArray()) {
+            if (!Character.isLetterOrDigit(c) && c != '_')
+                return false;
+        }
+        return true;
+    }
+		
+	public static boolean emailisValid(String email) {
+		String ePattern ="^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+	}
+	
+	public static boolean PWisValid(String password) {
+        if (!Character.isLetterOrDigit(password.charAt(0))
+                || password.length() < 6)
+            return false;
+        for (char c : password.toCharArray()) {
+            if (!Character.isLetterOrDigit(c))
+                return false;
+        }
+        return true;
+    }
+		
 }
