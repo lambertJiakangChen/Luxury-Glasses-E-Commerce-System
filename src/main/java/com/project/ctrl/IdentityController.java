@@ -133,7 +133,11 @@ public class IdentityController {
 	@RequestMapping("/updateEmail")
 	String updateEmail(HttpServletRequest request, HttpSession session) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
-		acc = identityService.editEmail(acc.getUsername(), acc.getPassword(), acc.getEmail(), request.getParameter("email"));
+		try {
+		    acc = identityService.editEmail(acc.getUsername(), acc.getPassword(), acc.getEmail(), request.getParameter("email"));
+		} catch (Exception e) {
+			return "Could not update email. " + e.getMessage();
+		}
 		session.setAttribute("ACCOUNT", acc);
 		
 		return "Success";
