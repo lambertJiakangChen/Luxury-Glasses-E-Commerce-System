@@ -27,6 +27,6 @@ public interface IdentityService {
 	
 	Account editLastName(String username, String password, String oldValue, String newValue);
 
-	Account editEmail(String username, String password, String oldValue, String newValue);
+	Account editEmail(String username, String password, String oldValue, String newValue) throws Exception;
 
 }
