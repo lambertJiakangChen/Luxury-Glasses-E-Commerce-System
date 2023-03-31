@@ -52,11 +52,11 @@ public class Address {
 			throw new Exception("Missing fields! Please re-enter shipping details");
 		}
 		
-		if (isPhoneValid()) {
+		if (!isPhoneValid()) {
 			throw new Exception("Phone number must be 10 digits long");
 		}
 			
-		if (isPostalValid()) {
+		if (!isPostalValid()) {
 			throw new Exception("Postal code must be 6 characters long no space");
 		}
 	}
