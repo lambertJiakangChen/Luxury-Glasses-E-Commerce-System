@@ -35,7 +35,7 @@ public class Address {
 	private boolean is_default = false;
 	
 	public Address(long addId, String country, String phone, String line1, String line2,
-			String city, String province, String postal, boolean makeDefault) {
+			String city, String province, String postal, boolean makeDefault) throws Exception {
 		super();
 		this.addId = addId;
 		this.country = country;
@@ -46,6 +46,19 @@ public class Address {
 		this.province = province;
 		this.postal = postal;
 		setDefault(makeDefault);
+		
+		if (this.addId == 0L || this.country == null || this.phone == null || this.line1 == null 
+				|| this.city == null || this.province == null || this.postal == null) {
+			throw new Exception("Missing fields! Please re-enter shipping details");
+		}
+		
+		if (isPhoneValid()) {
+			throw new Exception("Phone number must be 10 digits long");
+		}
+			
+		if (isPostalValid()) {
+			throw new Exception("Postal code must be 6 characters long no space");
+		}
 	}
 	
 	public Address() {
@@ -200,6 +213,14 @@ public class Address {
 				&& is_default == other.is_default && Objects.equals(line1, other.line1)
 				&& Objects.equals(line2, other.line2) && Objects.equals(postal, other.postal)
 				&& Objects.equals(province, other.province);
+	}
+	
+	boolean isPhoneValid() {
+		return phone.length() == 10;
+	}
+	
+	boolean isPostalValid() {
+		return postal.length() == 6;
 	}
 
 }
