@@ -142,10 +142,5 @@ public class IdentityController {
 		
 		return "Success";
 	}
-	
-	
-	
-	// TODO - add address to account. edit account address. ??
-	
 
 }

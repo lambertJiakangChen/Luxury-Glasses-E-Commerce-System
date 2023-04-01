@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,7 @@ import com.project.entity.Account;
 import com.project.entity.Address;
 import com.project.entity.Order;
 import com.project.entity.Payment;
+import com.project.entity.types.AccountType;
 import com.project.entity.types.OrderStatus;
 import com.project.identity.service.IdentityService;
 import com.project.shoppingcart.ShoppingCart;
@@ -25,6 +27,7 @@ import com.project.shoppingcart.ShoppingCart;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("checkout")
@@ -37,58 +40,61 @@ public class CheckoutController {
 	@Autowired AddressDao addressDao;
 	
 
-	// TODO: change to link and redirect
-
 	@RequestMapping("/proceed")
 	String proceedToCheckout(HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) {
 		Account acc = (Account) session.getAttribute("ACCOUNT");
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("CART");
 		checkoutService.setCheckout(acc, cart);
-		//proceed as guest or already login
+		//proceed as guest or user is already login
 		
-//		return "checkout/shipping";
-		return "Continue as guest or already logged in";
+		return "User can continue as guest. "
+				+ "\n User may proceed to Shipping details";
 	}
 	
 	@RequestMapping("/proceedlogin")
 	String proceedToLoginCheckout(HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) {
-		Account acc = (Account) session.getAttribute("ACCOUNT");
-		ShoppingCart cart = (ShoppingCart) session.getAttribute("CART");
-		if (acc == null) {
-			try {
-				response.sendRedirect("/login");
-				// TODO: FE enter login details
-			} catch (IOException e) {
-				System.out.println("Unsuccessful login: " + e.getMessage());
-				e.printStackTrace();
-			}
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+//		session.invalidate();
+		
+		// not registered >> return error
+		if (!identityService.isRegisteredAccount(username, password)) {
+			return "User not found. Username or password is incorrect";
 		}
+		// registered >> add account to session
+		HttpSession newSession = request.getSession();
+		Account acc =  this.identityService.findAccountbyUserAndPass(username, password);
+		newSession.setAttribute("ACCOUNT", acc);
+		ShoppingCart cart = (ShoppingCart) newSession.getAttribute("CART");
 		checkoutService.setCheckout(acc, cart);
 		
-		
-		return "Continue as returning user";
+		return "Login Success. \n Session account: " + newSession.getAttribute("ACCOUNT").toString() 
+				+ "\n User may proceed to Shipping details";
 	}
 	
-	@RequestMapping("/proceedresgister")
+	@RequestMapping("/proceedregister")
 	String proceedToRegisterCheckout(HttpServletRequest request, HttpSession session,
 			HttpServletResponse response) {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String fname = request.getParameter("fname");
+		String lname = request.getParameter("lname");
+		String email = request.getParameter("email");
+		AccountType type = AccountType.valueOf(request.getParameter("type"));
+		
+		try {
+			identityService.registerAccount(username, fname, lname, email, password, type);
+		} catch (Exception e) {
+			return "Unable to register account: " + e.getMessage();
+		}
 		Account acc = (Account) session.getAttribute("ACCOUNT");
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("CART");
-		if (acc == null) {
-			try {
-				response.sendRedirect("/register");
-				// TODO: FE enter registration details
-			} catch (IOException e) {
-				System.out.println("Unsuccessful registration: " + e.getMessage());
-				e.printStackTrace();
-			}
-		}
 		checkoutService.setCheckout(acc, cart);
 		
-		
-		return "Continue as new user";
+		return "Successfully Registered." + "\n User may proceed to Shipping details";
 	}
 
 	@RequestMapping("/shipping")
@@ -108,32 +114,39 @@ public class CheckoutController {
 		if (request.getParameter("default").equals("true"))
 			makeDefault = true;
 		long id = addressDao.count() + 1;
-		Address shippingAddress = new Address(id, country, phone, line1, line2, city, province, postal,
-				makeDefault);
+		Address shippingAddress;
+		try {
+			shippingAddress = new Address(id, country, phone, line1, line2, city, province, postal,
+					makeDefault);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return e.getMessage();
+		}
 		checkoutService.setShippingAddress(shippingAddress);
-		System.out.print("Shipping Address successfully set: /n" + shippingAddress.toString());
 		
-//		return "/checkout/payment";
-		return "Successfully added shipping address";
+		return "Shipping Address successfully set: /n" + shippingAddress.toString() 
+				+ "\n User may proceed to Payment details";
 
 	}
 
 	@RequestMapping("/payment")
 	String modifyPayment(HttpServletRequest request, HttpSession session) {
 //		long cardNum = Long.parseLong(request.getParameter("card_number"));
-		String cardNum = request.getParameter("card_number");
-		String exp = request.getParameter("exp"); // in "MM/YY" format
-		String cvv = request.getParameter("cvv");
+		String name = request.getParameter("name");
+		@Valid String card_number = request.getParameter("card");
+		@Valid String exp = request.getParameter("exp"); // in "MM/YY" format
+		@Valid String cvv = request.getParameter("cvv");
 		
 		try {
-			Payment card = new Payment(cardNum, exp, cvv);
-		} catch (ParseException e) {
+			Payment card = new Payment(card_number, exp, cvv);
+		} catch (Exception e) {
 			e.printStackTrace();
+			return e.getMessage();
 		}
-		// Assume card is correct for now
+		// Assume card is correct for now 
 		
-//		return "/checkout/reviewOrder";
-		return "Successfully entered payment method";
+		return "Card payment method successfully set"
+				+ "\n User may proceed to Review order";
 
 	}
 
@@ -151,7 +164,7 @@ public class CheckoutController {
 			session.removeAttribute("CART");
 		}
 		
-		return "confirmed order: " + confirm; 
+		return "Order Confirmed: " + confirm + "\n Order ID: " + cart.getOrderId().toString(); 
 
 	}
 
