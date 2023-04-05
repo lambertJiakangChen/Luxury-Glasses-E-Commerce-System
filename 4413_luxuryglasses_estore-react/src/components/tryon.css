@@ -1,0 +1,51 @@
+.tryon-container {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.tryon-container1 {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+}
+.tryon-container2 {
+  flex: 0 0 auto;
+  width: 45%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.tryon-form {
+  width: 369px;
+  height: 100px;
+  display: flex;
+}
+.tryon-textinput {
+  color: var(--dl-color-gray-black);
+  height: 55px;
+  align-self: center;
+  background-color: var(--dl-color-pallet-green);
+}
+.tryon-container3 {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.tryon-image {
+  width: auto;
+  height: auto;
+  object-fit: cover;
+}
