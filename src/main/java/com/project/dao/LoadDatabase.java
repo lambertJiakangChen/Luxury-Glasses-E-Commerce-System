@@ -20,7 +20,7 @@ import com.project.entity.Sequence;
 import com.project.entity.VisitEvent;
 import com.project.entity.types.AccountType;
 import com.project.entity.types.EventStatus;
-import com.project.tryon.ImageStorageService;
+//import com.project.tryon.ImageStorageService;
 
 import jakarta.annotation.Resource;
 
@@ -29,8 +29,8 @@ public class LoadDatabase {
 
 	private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
-	@Resource
-	ImageStorageService storageService;
+//	@Resource
+//	ImageStorageService storageService;
 
 	@Bean
 	CommandLineRunner initDatabase(AccountDao accountDao, CatalogDao catalogDao, SequenceDao sequenceDao, AddressDao addressDao) {
@@ -112,6 +112,9 @@ public class LoadDatabase {
 			catalogDao.findAll().forEach(item -> {
 				log.info("Preloaded " + item);});
 			
+//			storageService.init();
+//			log.info("Storage Service initialized");
+//			OpenCV.loadShared();
 		};
 	}
 
