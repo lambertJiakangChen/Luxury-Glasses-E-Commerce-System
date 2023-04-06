@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+
 
 import './style.css'
 import EditFirstName from './views/edit-first-name'
@@ -27,28 +28,30 @@ import ViewCart from './views/view-cart'
 const App = () => {
   return (
     <Router>
-      <div>
-        <Route component={EditFirstName} exact path="/edit-first-name" />
-        <Route component={Monthlysale} exact path="/monthlysale" />
-        <Route component={Webusage} exact path="/webusage" />
-        <Route component={CheckoutPayment} exact path="/checkout-payment" />
-        <Route component={EditEmail} exact path="/edit-email" />
-        <Route component={CheckoutRegister} exact path="/checkout-register" />
-        <Route component={CheckoutLogin} exact path="/checkout-login" />
-        <Route component={Login} exact path="/login" />
-        <Route component={Home} exact path="/" />
-        <Route component={Productsitem3} exact path="/productsitem3" />
-        <Route component={CheckoutShipping} exact path="/checkout-shipping" />
-        <Route component={EditPassword} exact path="/edit-password" />
-        <Route component={Products} exact path="/products" />
-        <Route component={EditLastName} exact path="/edit-last-name" />
-        <Route component={CheckoutReview} exact path="/checkout-review" />
-        <Route component={Productsitem2} exact path="/productsitem2" />
-        <Route component={EditUser} exact path="/edit-user" />
-        <Route component={Productsitem1} exact path="/productsitem1" />
-        <Route component={Account} exact path="/account" />
-        <Route component={ViewCart} exact path="/view-cart" />
-      </div>
+      {/* <div> */}
+        <Routes>
+          <Route path="/edit-first-name" element={<EditFirstName />} />
+          <Route path="/monthlysale" element={<Monthlysale />} />
+          <Route path="/webusage" element={<Webusage />} />
+          <Route path="/checkout-payment" element={<CheckoutPayment />} />
+          <Route path="/edit-email" element={<EditEmail />} />
+          <Route path="/checkout-register" element={<CheckoutRegister />} />
+          <Route path="/checkout-login" element={<CheckoutLogin />} />
+          <Route path="/loginPage" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/productsitem3" element={<Productsitem3 />} />
+          <Route path="/checkout-shipping" element={<CheckoutShipping />} />
+          <Route path="/edit-password" element={<EditPassword />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/edit-last-name" element={<EditLastName />} />
+          <Route path="/checkout-review" element={<CheckoutReview />} />
+          <Route path="/productsitem2" element={<Productsitem2 />} />
+          <Route path="/edit-use" element={<EditUser />} />
+          <Route path="/productsitem1" element={<Productsitem1 />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/view-cart" element={<ViewCart />} />
+        </Routes>
+      {/* </div> */}
     </Router>
   )
 }

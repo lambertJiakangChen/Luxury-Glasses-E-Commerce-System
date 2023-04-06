@@ -1,6 +1,7 @@
 package com.project.identity.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public interface IdentityService {
 
 	Account findAccountbyUserAndPass(String username, String passoword);
 	
-	Collection<Account> findAllAccounts();
+	List<Account> findAllAccounts();
 	
 	Account editUsername(String username, String password, String oldValue, String newValue) throws Exception;
 	

@@ -1,20 +1,75 @@
 import React, { useState } from 'react'
+import {useNavigate} from 'react-router-dom';
 
 import PropTypes from 'prop-types'
 
 import './login-register-account.css'
 
-const LoginRegisterAccount = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+function LoginRegisterAccount(props) {
+  // const [isLoggedIn, setIsLoggedIn] = useState(false)
+  // const [account, setAccount] = useState({})
+  const navigate = useNavigate();
+  var userDataObj;
+
+  const submitLoginHandler = async(e) => {
+    e.preventDefault();
+
+    let username = document.getElementById("username-input-login").value;
+    let password = document.getElementById("password-input-login").value;
+
+    var url="http://localhost:8080/login?username=" + username + "&password=" + password;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; // store reponse in variable and convert to JSON object
+      if (data.length == 0) {
+        alert ("User not found. Username or password is incorrect.");
+      } else {
+        userDataObj = JSON.parse(data);
+        navigate('/account');
+      }
+    }
+  }
+
+  const submitRegisterHandler = async(e) => {
+
+    e.preventDefault();
+
+    let fname = document.getElementById("fname-input-register").value;
+    let lname = document.getElementById("lname-input-register").value;
+
+  }
+
+  function validateRegister(username) {
+    var loginOK = true;
+    
+    // check username is between 1 and 30
+    if (username.length < 1 || username.legnth > 30) {
+      alert("Username must be between 1 and 30 chracters long.");
+      return false;
+    }
+
+    // check if username has letters, numbers and underscores only
+    var expr = /^[a-zA-Z0-9._]*$/;
+    if (!expr.test(username)) {
+      alert("Only Alphabets, Numbers, Dot and Underscore allowed in Username.");
+      return false;
+    }
+
+    // no need to validate password b/c is login.
+
+    return loginOK;
+  }
+
   return (
     <div className="login-register-account-container">
-      {!isLoggedIn && (
         <form
           id="login"
           action="/login"
           method="GET"
-          target="_self"
           className="login-register-account-form section-container"
+          onSubmit={submitLoginHandler}
         >
           <h2 className="login-register-account-text">{props.heading}</h2>
           <label
@@ -48,15 +103,16 @@ const LoginRegisterAccount = (props) => {
             className="login-register-account-textinput1 input"
           />
           <button
-            type="button"
-            onClick={() => setIsLoggedIn(true)}
+            // onClick={() => {
+            //   alert("form submitted");
+            // }}
             className="login-register-account-button button"
-          >
+            type="submit"
+            >
             {props.signin}
           </button>
         </form>
-      )}
-      {!isLoggedIn && (
+
         <form
           id="register"
           className="login-register-account-form1 section-container"
@@ -142,13 +198,13 @@ const LoginRegisterAccount = (props) => {
             className="login-register-account-textinput6 input"
           />
           <button
-            onClick={() => setIsLoggedIn(true)}
+            // onClick={submitLoginHandler()}
             className="login-register-account-button1 button"
+            type="submit"
           >
             {props.register}
           </button>
         </form>
-      )}
     </div>
   )
 }

@@ -7,9 +7,38 @@ import Navbar from '../components/navbar'
 import Footer from '../components/footer'
 import './account.css'
 
+var userDataObj;
+
+const displayAccountDetails = async(e) => {
+  e.preventDefault();
+
+  var url="http://localhost:8080/getAccountDetails";
+  var request = new XMLHttpRequest(); // create a connection
+  request.open('POST', url);
+  request.send(); // send the http request
+  request.onload = function() { // When the response comes invoke the following function
+    let data = request.responseText; // store reponse in variable and convert to JSON object
+    if (data.length == 0) {
+      alert ("Error. User details not found.");
+    } else {
+      userDataObj = JSON.parse(data);
+
+      document.getElementById("fname-replace").innerHTML = userDataObj.fName;
+      document.getElementById("lname-replace").innerHTML = userDataObj.lName;
+      document.getElementById("username-replace").innerHTML = userDataObj.username;
+      document.getElementById("email-replace").innerHTML = userDataObj.email;
+      document.getElementById("acc-type-replace").innerHTML = userDataObj.accountType;
+
+      if (userDataObj.accountType != "ADMIN") {
+        document.getElementById("register-admin-form").style.display = 'none';
+      }
+    }
+  }
+}
+
 const Account = (props) => {
   return (
-    <div className="account-container">
+    <div className="account-container" onLoad={displayAccountDetails}>
       <Helmet>
         <title>Account - 4413_LuxuryGlasses_EStore</title>
         <meta

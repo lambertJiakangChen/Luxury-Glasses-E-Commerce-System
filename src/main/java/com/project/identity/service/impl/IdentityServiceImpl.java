@@ -3,6 +3,7 @@ package com.project.identity.service.impl;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,7 +87,7 @@ public class IdentityServiceImpl implements IdentityService{
 	}
 
 	@Override
-	public Collection<Account> findAllAccounts() {
+	public List<Account> findAllAccounts() {
 		return accountDao.findAll();
 	}
 	
