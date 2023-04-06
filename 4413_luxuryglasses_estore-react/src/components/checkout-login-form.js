@@ -114,28 +114,31 @@ const CheckoutLoginForm = (props) => {
           placeholder={props.textinput_placeholder11}
           className="checkout-login-form-textinput1 input"
         />
-        <div className={styles['proceed-options']}>
-          <span className={styles['text09']}>
-            <span>Login</span>
+        <div className="checkout-login-form-proceed-options">
+          <span className="checkout-login-form-text09">
+            <span className="">Login</span>
           </span>
-          <Link to="/checkout-register" className={styles['text11']}>
+          <Link to="/checkout-register" className="checkout-login-form-text11">
             {props.text2}
           </Link>
-          <span className={styles['text12']}>{props.text3}</span>
-          <button
-            type="submit"
-            className={` ${styles['button']} ${projectStyles['button']} `}
+          <span className="checkout-login-form-text12">{props.text3}</span>
+          <Link
+            to="/checkout-shipping"
+            className="checkout-login-form-navlink button"
           >
             {props.Login_button}
-          </button>
+          </Link>
         </div>
-        <div className={styles['proceed-options1']}>
-          <span className={styles['text13']}>
-            <span>Cancel order</span>
+        <div className="checkout-login-form-proceed-options1">
+          <span className="checkout-login-form-text13">
+            <span className="">Login</span>
+          </span>
+          <span className="checkout-login-form-text15">
+            <span className="">Cancel order</span>
           </span>
           <Link
             to="/checkout-shipping"
-            className={` ${styles['navlink']} ${projectStyles['button']} `}
+            className="checkout-login-form-navlink1 button"
           >
             {props.button_payment}
           </Link>
