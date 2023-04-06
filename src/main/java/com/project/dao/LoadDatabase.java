@@ -2,6 +2,7 @@ package com.project.dao;
 
 import java.util.Calendar;
 import java.util.HashSet;
+import nu.pattern.OpenCV;
 
 import javax.swing.event.HyperlinkEvent.EventType;
 
@@ -19,12 +20,18 @@ import com.project.entity.Sequence;
 import com.project.entity.VisitEvent;
 import com.project.entity.types.AccountType;
 import com.project.entity.types.EventStatus;
+import com.project.tryon.ImageStorageService;
+
+import jakarta.annotation.Resource;
 
 @Configuration
 public class LoadDatabase {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
-	
+
+	@Resource
+	ImageStorageService storageService;
+
 	@Bean
 	CommandLineRunner initDatabase(AccountDao accountDao, CatalogDao catalogDao, SequenceDao sequenceDao, AddressDao addressDao) {
 		HashSet<String> color=new HashSet<String>();
@@ -82,15 +89,15 @@ public class LoadDatabase {
 		category5.add("Cat eye");
 		category5.add("TR90");
 		category.add("women");
-		
-		
+
+
 		return args -> {
 			log.info("Preloading " + sequenceDao.save(new Sequence("ORDER_ITEM", (long) 1)));
 			log.info("Preloading " + sequenceDao.save(new Sequence("ORDER", (long) 1)));
 			log.info("Preloading " + sequenceDao.save(new Sequence("REVIEW", (long) 1)));
-			
+
 			log.info("Preloading " + addressDao.save(new Address((long) addressDao.count()+1, "Canada", "4161234567", "4700 keele street", null, "North York", "ON", "M3J1P3", true)));
-					
+
 			log.info("Preloading " + accountDao.save(new Account((long) 1, "justinB31", "justin", "bieber", "justin1@gmail.com", "Qwerty12", AccountType.REGULAR, addressDao.getById((long) 1))));
 			log.info("Preloading " + accountDao.save(new Account((long) 2, "adminAcc", "Adam", "Smith", "adam12@gmail.com", "Qwerty12", AccountType.ADMIN, addressDao.getById((long) 1))));
 
@@ -105,7 +112,6 @@ public class LoadDatabase {
 			catalogDao.findAll().forEach(item -> {
 				log.info("Preloaded " + item);});
 			
-
 		};
 	}
 
