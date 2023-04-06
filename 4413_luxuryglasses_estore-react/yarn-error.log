@@ -1,8 +1,8 @@
 Arguments: 
-  /Users/amandama/Documents/GitHub/EECS4413-Project/4413_luxuryglasses_estore-react/node/node /Users/amandama/Documents/GitHub/EECS4413-Project/4413_luxuryglasses_estore-react/node/yarn/dist/bin/yarn.js
+  /Users/usr/Documents/GitHub/EECS4413-Project/4413_luxuryglasses_estore-react/node/node /Users/usr/Documents/GitHub/EECS4413-Project/4413_luxuryglasses_estore-react/node/yarn/dist/bin/yarn.js
 
 PATH: 
-  /Users/amandama/Documents/GitHub/EECS4413-Project/4413_luxuryglasses_estore-react/node:/Users/amandama/Documents/GitHub/EECS4413-Project/4413_luxuryglasses_estore-react/node/yarn/dist/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:
+  /Users/usr/Documents/GitHub/EECS4413-Project/4413_luxuryglasses_estore-react/node:/Users/usr/Documents/GitHub/EECS4413-Project/4413_luxuryglasses_estore-react/node/yarn/dist/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:
 
 Yarn version: 
   1.12.1
