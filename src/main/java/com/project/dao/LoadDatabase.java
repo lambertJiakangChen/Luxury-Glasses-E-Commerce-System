@@ -2,8 +2,6 @@ package com.project.dao;
 
 import java.util.Calendar;
 import java.util.HashSet;
-import nu.pattern.OpenCV;
-
 import javax.swing.event.HyperlinkEvent.EventType;
 
 import org.slf4j.Logger;
@@ -29,8 +27,7 @@ public class LoadDatabase {
 
 	private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
-//	@Resource
-//	ImageStorageService storageService;
+
 
 	@Bean
 	CommandLineRunner initDatabase(AccountDao accountDao, CatalogDao catalogDao, SequenceDao sequenceDao, AddressDao addressDao) {
@@ -112,9 +109,6 @@ public class LoadDatabase {
 			catalogDao.findAll().forEach(item -> {
 				log.info("Preloaded " + item);});
 			
-//			storageService.init();
-//			log.info("Storage Service initialized");
-//			OpenCV.loadShared();
 		};
 	}
 
