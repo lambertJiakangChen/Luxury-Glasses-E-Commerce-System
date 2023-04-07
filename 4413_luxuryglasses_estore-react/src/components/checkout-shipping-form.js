@@ -36,7 +36,7 @@ const CheckoutShippingForm = (props) => {
           <span className="checkout-shipping-form-text04">
             <span className="">Payment</span>
           </span>
-          <span className="checkout-shipping-form-text06">{props.review}</span>
+          <span className="checkout-shipping-form-text06">{props.text4}</span>
           <div className="checkout-shipping-form-group6">
             <img
               alt={props.Line5_alt}
@@ -95,14 +95,13 @@ const CheckoutShippingForm = (props) => {
           htmlFor="country-input-shipping"
           className="checkout-shipping-form-label"
         >
-          {props.country_label}
+          {props.text}
         </label>
         <input
           type="text"
           id="country-input-shipping"
-          name="country"
           required
-          placeholder={props.country_input}
+          placeholder={props.country}
           className="checkout-shipping-form-textinput input"
         />
         <label
@@ -110,132 +109,81 @@ const CheckoutShippingForm = (props) => {
           htmlFor="name-input-shipping"
           className="checkout-shipping-form-label1"
         >
-          {props.fullname_label}
+          {props.text6}
         </label>
         <input
           type="text"
           id="name-input-shipping"
-          name="fullname"
           required
-          placeholder={props.fullname_input}
+          placeholder={props.name}
           className="checkout-shipping-form-textinput1 input"
         />
         <label
           id="line1-label-checkout"
           htmlFor="line1-input-shipping"
-          className="checkout-shipping-form-label2"
+          className="checkout-shipping-form-text08"
         >
-          {props.line1_label}
+          {props.text5}
         </label>
         <input
           type="text"
           id="line1-input-shipping"
           name="line1"
           required
-          placeholder={props.line1_input}
+          placeholder={props.line1}
           className="checkout-shipping-form-textinput2 input"
         />
         <label
           id="line2-label-checkout"
           htmlFor="line2-input-shipping"
-          className="checkout-shipping-form-label3"
+          className="checkout-shipping-form-label2"
         >
-          {props.line2_label}
+          {props.text51}
         </label>
         <input
           type="text"
-          id="line2-input-checkout"
+          id="line2-input-shipping"
           name="line2"
-          placeholder={props.line2_input}
+          placeholder={props.line2}
           className="checkout-shipping-form-textinput3 input"
         />
         <label
-          id="city-label-checkout"
-          htmlFor="city-input-checkout"
-          className="checkout-shipping-form-label4"
+          id="postal-label-checkout"
+          htmlFor="postal-input-shipping"
+          className="checkout-shipping-form-label3"
         >
-          {props.city_label}
+          {props.text511}
         </label>
         <input
           type="text"
-          id="city-input-checkout"
-          name="city"
+          id="postal-input-shipping"
+          name="postal"
           required
-          placeholder={props.city_input}
+          placeholder={props.postal}
           className="checkout-shipping-form-textinput4 input"
         />
         <label
-          id="postal-label-checkout"
-          htmlFor="postal-input-checkout"
-          className="checkout-shipping-form-label5"
-        >
-          {props.postal_label}
-        </label>
-        <input
-          type="text"
-          id="postal-input-checkout"
-          name="postal"
-          required
-          placeholder={props.postal_input}
-          className="checkout-shipping-form-textinput5 input"
-        />
-        <label
           id="province-label-checkout"
-          htmlFor="province-input-checkout"
-          className="checkout-shipping-form-label6"
+          htmlFor="province-input-shipping"
+          className="checkout-shipping-form-label4"
         >
-          {props.province_label}
+          {props.text5111}
         </label>
         <input
           type="text"
-          id="province-input-checkout"
+          id="province-input-shipping"
           name="province"
           required
-          placeholder={props.province_input}
-          className="checkout-shipping-form-textinput6 input"
+          placeholder={props.province}
+          className="checkout-shipping-form-textinput5 input"
         />
-        <label
-          id="phone-label-checkout"
-          htmlFor="phone-input-checkout"
-          className="checkout-shipping-form-label7"
-        >
-          {props.phone_label}
-        </label>
-        <input
-          type="text"
-          id="phone-input-checkout"
-          name="phone"
-          required
-          placeholder={props.phone_input}
-          className="checkout-shipping-form-textinput7 input"
-        />
-        <label
-          id="default-label-checkout"
-          htmlFor="default-checkbox-checkout"
-          className="checkout-shipping-form-label8"
-        >
-          {props.default_label}
-        </label>
-        <input
-          type="checkbox"
-          checked
-          id="default-checkbox-checkout"
-          name="default"
-          value="true"
-          className="checkout-shipping-form-checkbox"
-        />
-       <div className="checkout-shipping-form-proceed-options">
-          <button
-            type="submit"
-            className="checkout-shipping-form-navlink button"
-          >
-            {props.button_shipping}
-          </button>
-        </div>
-        <div className="checkout-shipping-form-proceed-options1">
-          <Link to="/view-cart" className="checkout-shipping-form-text08">
-            <span>Cancel order</span>
-          </Link>
+        <div className="checkout-shipping-form-proceed-options">
+          <span className="checkout-shipping-form-text09">
+            <span className="">Login</span>
+          </span>
+          <span className="checkout-shipping-form-text11">
+            <span className="">Cancel order</span>
+          </span>
           <Link
             to="/checkout-payment"
             className="checkout-shipping-form-navlink button"
@@ -249,6 +197,7 @@ const CheckoutShippingForm = (props) => {
 }
 
 CheckoutShippingForm.defaultProps = {
+  text5: 'Line 1',
   Line5_src:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/f919b9de-c355-4cab-ac8d-5308db77b191?org_if_sml=1152',
   Line5_src1:
@@ -262,45 +211,39 @@ CheckoutShippingForm.defaultProps = {
   heading: 'Shipping Details',
   Line6_src1:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/c9c20ea4-ce47-4f31-930b-2b5ff88bff7d?org_if_sml=1152',
-  line1_input: '123 Keele Street',
-  fullname_label: 'Full Name',
+  line1: '123 Keele Street',
+  text6: 'Full Name',
   checkboxcirclefill3_src:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/2d9ddbb0-70c5-406a-bbc1-1939926e3985?org_if_sml=1454',
-  postal_label: 'Postal Code',
-  province_label: 'Province',
-  review: 'Review',
-  postal_input: 'Postal Code',
-  line2_input: '',
+  text511: 'Postal Code',
+  text5111: 'Province',
+  text4: 'Review',
+  postal: 'Postal Code',
+  line2: '',
   Line6_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/bac9efea-8f1c-4ce5-8229-33945e3e4c05?org_if_sml=1152',
-  button_shipping: 'Process Shipping',
+  button_payment: 'Payment details',
   checkboxcirclefill3_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/91bb983f-b403-438f-9a2c-f687461681a5?org_if_sml=1454',
   Line5_alt2: 'Line51356',
   Line6_alt2: 'Line61357',
-  fullname_input: 'Full Name',
+  name: 'Full Name',
   Line5_alt: 'Line51350',
-  province_input: 'Province',
+  province: 'Province',
   Line5_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/c352bc07-2b10-437e-aea8-277dd565012d?org_if_sml=1152',
   Line6_alt1: 'Line61351',
-  country_input: 'Country',
-  line2_label: 'Line 2',
+  country: 'Country',
+  text51: 'Line 2',
   Line5_alt1: 'Line51350',
   Line6_alt: 'Line61351',
-  button_payment: 'Payment details',
-  country_label: 'Country',
+  text: 'Country',
   checkboxcirclefill3_src1:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/2d9ddbb0-70c5-406a-bbc1-1939926e3985?org_if_sml=1454',
-  phone_label: 'Phone',
-  phone_input: '(416)-123-9999',
-  city_label: 'City',
-  city_input: 'City',
-  default_label: 'Make default',
-  line1_label: 'Line 1',
 }
 
 CheckoutShippingForm.propTypes = {
+  text5: PropTypes.string,
   Line5_src: PropTypes.string,
   Line5_src1: PropTypes.string,
   checkboxcirclefill3_alt1: PropTypes.string,
@@ -310,37 +253,30 @@ CheckoutShippingForm.propTypes = {
   checkboxcirclefill3_alt: PropTypes.string,
   heading: PropTypes.string,
   Line6_src1: PropTypes.string,
-  line1_input: PropTypes.string,
-  fullname_label: PropTypes.string,
+  line1: PropTypes.string,
+  text6: PropTypes.string,
   checkboxcirclefill3_src: PropTypes.string,
-  postal_label: PropTypes.string,
-  province_label: PropTypes.string,
-  review: PropTypes.string,
-  postal_input: PropTypes.string,
-  line2_input: PropTypes.string,
+  text511: PropTypes.string,
+  text5111: PropTypes.string,
+  text4: PropTypes.string,
+  postal: PropTypes.string,
+  line2: PropTypes.string,
   Line6_src2: PropTypes.string,
-  button_shipping: PropTypes.string,
+  button_payment: PropTypes.string,
   checkboxcirclefill3_src2: PropTypes.string,
   Line5_alt2: PropTypes.string,
   Line6_alt2: PropTypes.string,
-  fullname_input: PropTypes.string,
+  name: PropTypes.string,
   Line5_alt: PropTypes.string,
-  province_input: PropTypes.string,
+  province: PropTypes.string,
   Line5_src2: PropTypes.string,
   Line6_alt1: PropTypes.string,
-  country_input: PropTypes.string,
-  line2_label: PropTypes.string,
+  country: PropTypes.string,
+  text51: PropTypes.string,
   Line5_alt1: PropTypes.string,
   Line6_alt: PropTypes.string,
-  button_payment: PropTypes.string,
-  country_label: PropTypes.string,
+  text: PropTypes.string,
   checkboxcirclefill3_src1: PropTypes.string,
-  phone_label: PropTypes.string,
-  phone_input: PropTypes.string,
-  city_label: PropTypes.string,
-  city_input: PropTypes.string,
-  default_label: PropTypes.string,
-  line1_label: PropTypes.string,
 }
 
 export default CheckoutShippingForm

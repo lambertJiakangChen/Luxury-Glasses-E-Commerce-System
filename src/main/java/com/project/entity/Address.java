@@ -194,7 +194,7 @@ public class Address {
 	public String toString() {
 		return "[Address: " + "\n" + line2 + " " + line1 + ",\n"
 				+ city + ", " + province + " " + postal.toUpperCase() + " " + country + "\n" 
-				+ phone + "]";
+				+ phone;
 	}
 
 	@Override
