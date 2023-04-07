@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import {useNavigate} from 'react-router-dom';
+
 import { Helmet } from 'react-helmet'
 
 import Navbar from '../components/navbar'
@@ -9,6 +11,54 @@ import Footer from '../components/footer'
 import './products.css'
 
 const Products = (props) => {
+	
+  const navigate = useNavigate()
+  
+  const searchByName = async(e) => {	  
+	e.preventDefault();
+	
+	const target = document.querySelector('#Ajaxresult');
+
+    let itemname = document.getElementById("search_name").value;
+
+    var url="http://localhost:8080/catalog/searchByName?search=" + itemname;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; 
+      target.textContent = data;// store reponse in variable and convert to JSON object
+      if (data.length == 0) {
+        alert ("Item not found");
+      } else {
+        userDataObj = JSON.parse(data);
+        navigate('/products');
+      }
+    }
+  }
+  
+  const sortByPrice = async(e) => {	  
+	e.preventDefault();
+	const target = document.querySelector('#Ajaxresult');
+
+    let sortprice = document.getElementsById("sort").value;
+
+    var url="http://localhost:8080/catalog/sortByPrice?sort=" + sortprice;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; 
+      target.textContent = data;// store reponse in variable and convert to JSON object
+      if (data.length == 0) {
+        alert ("Item not found");
+      } else {
+        userDataObj = JSON.parse(data);
+        navigate('/products');
+      }
+    }
+  }
+  
   return (
     <div className="products-container">
       <Helmet>
@@ -23,10 +73,12 @@ const Products = (props) => {
         <form className="products-form">
           <input
             type="text"
+            id="search_name"
+            name="search"
             placeholder="Enter an item name"
             className="products-input input"
           />
-          <button type="submit" className="products-button button">
+          <button type="submit" className="products-button button" onClick = {searchByName}>
             SEARCH
           </button>
         </form>
@@ -37,8 +89,8 @@ const Products = (props) => {
               <div className="products-container04">
                 <input
                   type="checkbox"
-                  id="price-sort-asc"
-                  name="search"
+                  id="sort"
+                  name="sort"
                   value="ascending"
                   className="products-checkbox"
                 />
@@ -47,14 +99,14 @@ const Products = (props) => {
               <div className="products-container05">
                 <input
                   type="checkbox"
-                  id="price-sort-des"
+                  id="sort"
                   name="sort"
                   value="descending"
                   className="products-checkbox1"
                 />
                 <label>descending</label>
               </div>
-              <button type="submit" className="button">
+              <button type="submit" className="button" onClick = {sortByPrice}>
                 Go
               </button>
             </form>
@@ -82,8 +134,12 @@ const Products = (props) => {
                 />
                 <label>descending</label>
               </div>
+              <button type="submit" className="button">
+                Go
+              </button>
             </form>
           </div>
+          
           <div className="products-container09">
             <form className="products-form3">
               <div className="products-container10"></div>
@@ -131,6 +187,7 @@ const Products = (props) => {
             </form>
           </div>
         </div>
+        <div id="Ajaxresult"></div>
         <div className="products-container15">
           <div className="products-container16">
             <div className="products-items">
@@ -173,12 +230,6 @@ const Products = (props) => {
                 image_src="https://images.unsplash.com/photo-1590312261344-59437f04f9ac?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDEwOXx8d2F0Y2h8ZW58MHx8fHwxNjgwMzcyNTAy&amp;ixlib=rb-4.0.3&amp;w=1500"
                 rootClassName="item-card-root-class-name24"
                 className="products-component6"
-              ></ItemCard>
-              <ItemCard
-                name="item3"
-                image_src="https://images.unsplash.com/photo-1590312261344-59437f04f9ac?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDEwOXx8d2F0Y2h8ZW58MHx8fHwxNjgwMzcyNTAy&amp;ixlib=rb-4.0.3&amp;w=1500"
-                rootClassName="item-card-root-class-name25"
-                className="products-component7"
               ></ItemCard>
             </div>
           </div>

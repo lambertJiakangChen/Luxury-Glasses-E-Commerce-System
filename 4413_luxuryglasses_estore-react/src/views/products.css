@@ -24,6 +24,7 @@
   justify-content: center;
 }
 .products-input {
+  color: var(--dl-color-gray-black);
   width: 80%;
   height: 58px;
   align-self: flex-end;
@@ -32,7 +33,6 @@
   margin-right: var(--dl-space-space-unit);
   border-radius: 15px;
   background-color: transparent;
-  border-top-left-radius: var(--dl-radius-radius-radius8);
 }
 .products-button {
   width: 157px;
