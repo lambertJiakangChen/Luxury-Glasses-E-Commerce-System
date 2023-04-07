@@ -121,19 +121,18 @@ const CheckoutLoginForm = (props) => {
           <Link to="/checkout-register" className="checkout-login-form-text11">
             {props.text2}
           </Link>
-          <a
-            href="http://localhost:8080/checkout/proceed"
-            className="checkout-login-form-text12">{props.text3}
-          </a>
-          <button
-            type="submit"
+          <span className="checkout-login-form-text12">{props.text3}</span>
+          <Link
+            to="/checkout-shipping"
             className="checkout-login-form-navlink button"
           >
             {props.Login_button}
-          </button>
+          </Link>
         </div>
         <div className="checkout-login-form-proceed-options1">
-
+          <span className="checkout-login-form-text13">
+            <span className="">Login</span>
+          </span>
           <span className="checkout-login-form-text15">
             <span className="">Cancel order</span>
           </span>
@@ -184,6 +183,7 @@ CheckoutLoginForm.defaultProps = {
   checkboxcirclefill3_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/91bb983f-b403-438f-9a2c-f687461681a5?org_if_sml=1454',
   Line5_alt: 'Line51350',
+  button: '',
   checkboxcirclefill3_alt1: 'checkboxcirclefill31352',
   button_payment: 'Shipping details',
   checkboxcirclefill3_alt2: 'checkboxcirclefill31358',
@@ -216,11 +216,11 @@ CheckoutLoginForm.propTypes = {
   text4: PropTypes.string,
   checkboxcirclefill3_src2: PropTypes.string,
   Line5_alt: PropTypes.string,
+  button: PropTypes.string,
   checkboxcirclefill3_alt1: PropTypes.string,
   button_payment: PropTypes.string,
   checkboxcirclefill3_alt2: PropTypes.string,
   heading: PropTypes.string,
 }
-
 
 export default CheckoutLoginForm
