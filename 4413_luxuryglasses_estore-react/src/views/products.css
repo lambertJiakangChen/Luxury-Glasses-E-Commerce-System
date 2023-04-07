@@ -156,23 +156,6 @@
   align-items: flex-end;
   flex-direction: column;
 }
-.products-form3 {
-  width: 433px;
-  height: 100px;
-  display: flex;
-  margin-top: var(--dl-space-space-unit);
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.products-container10 {
-  flex: 0 0 auto;
-  width: 43px;
-  border: 2px dashed rgba(120, 120, 120, 0.4);
-  height: auto;
-  display: none;
-  align-items: flex-start;
-  flex-direction: column;
-}
 .products-container11 {
   flex: 0 0 auto;
   width: 100%;

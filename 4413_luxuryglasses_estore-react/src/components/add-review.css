@@ -1,0 +1,50 @@
+.add-review-container {
+  width: 80%;
+  margin: var(--dl-space-space-twounits);
+  padding: var(--dl-space-space-unit);
+  position: relative;
+  border-color: var(--dl-color-gray-black);
+  border-width: 1px;
+}
+.add-review-form {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.add-review-text1 {
+  width: 180px;
+}
+.add-review-textinput {
+  color: var(--dl-color-gray-black);
+  border-color: var(--dl-color-gray-black);
+  border-width: 1px;
+  margin-bottom: var(--dl-space-space-halfunit);
+  background-color: var(--dl-color-gray-white);
+}
+.add-review-text4 {
+  width: 180px;
+}
+.add-review-textinput1 {
+  color: var(--dl-color-gray-black);
+  border-color: var(--dl-color-gray-black);
+  border-width: 1px;
+  margin-bottom: var(--dl-space-space-unit);
+  background-color: var(--dl-color-gray-white);
+}
+.add-review-select {
+  width: 10%;
+  align-self: flex-start;
+  border-color: var(--dl-color-gray-black);
+  border-width: 1px;
+}
+.add-review-button {
+  color: var(--dl-color-gray-white);
+  width: 190px;
+  margin-top: var(--dl-space-space-unit);
+  align-items: flex-start;
+  border-color: var(--dl-color-gray-black80);
+  text-transform: uppercase;
+  justify-content: center;
+  background-color: var(--dl-color-gray-black80);
+}

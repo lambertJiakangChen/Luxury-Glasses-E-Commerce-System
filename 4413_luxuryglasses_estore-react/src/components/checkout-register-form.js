@@ -90,100 +90,103 @@ const CheckoutRegisterForm = (props) => {
         </div>
         <h2 className="checkout-register-form-text07">{props.heading}</h2>
         <label
-          id="fname-label-register"
-          htmlFor="fname-input-register"
+          id="fname-label-checkout"
+          htmlFor="fname-input-checkout"
           className="checkout-register-form-text08"
         >
-          {props.first_name}
+          {props.fname_label}
         </label>
         <input
           type="text"
-          id="fname-input-register"
+          id="fname-input-checkout"
           name="fname"
           placeholder={props.fname_input}
           className="checkout-register-form-textinput input"
         />
         <label
-          id="lname-label-register"
-          htmlFor="lname-input-register"
+          id="lname-label-checkout"
+          htmlFor="lname-input-checkout"
           className="checkout-register-form-text09"
         >
-          {props.last_name}
+          {props.lname_label}
         </label>
         <input
           type="text"
-          id="lname-input-register"
+          id="lname-input-checkout"
           name="lname"
           placeholder={props.lname_input}
           className="checkout-register-form-textinput1 input"
         />
         <label
-          id="email-label-register"
-          htmlFor="email-input-register"
+          id="email-label-checkout"
+          htmlFor="email-input-checkout"
           className="checkout-register-form-text10"
         >
-          {props.email}
+          {props.email_label}
         </label>
         <input
           type="text"
-          id="email-input-register"
+          id="email-input-checkout"
           name="email"
           placeholder={props.email_input}
           className="checkout-register-form-textinput2 input"
         />
         <label
-          id="username-label-register"
-          htmlFor="username-input-register"
+          id="username-label-checkout"
+          htmlFor="username-input-checkout"
           className="checkout-register-form-text11"
         >
-          {props.text5}
+          {props.username_label}
         </label>
         <input
           type="text"
-          id="username-input-register"
+          id="username-input-checkout"
           name="username"
           placeholder={props.username_input}
           className="checkout-register-form-textinput3 input"
         />
         <label
-          id="password-label-register"
-          htmlFor="password-input-register"
+          id="password-label-checkout"
+          htmlFor="password-input-checkout"
           className="checkout-register-form-label"
         >
-          {props.text51}
+          {props.password_label}
         </label>
         <input
           type="text"
-          id="password-input-register"
+          id="password-input-checkout"
           name="password"
           placeholder={props.password_input}
           className="checkout-register-form-textinput4 input"
         />
         <div className="checkout-register-form-account-options">
-          <span className="checkout-register-form-text12">
-            <span className="">Login</span>
-          </span>
-          <span className="checkout-register-form-text14">{props.login}</span>
-          <span className="checkout-register-form-text15">{props.text3}</span>
+          <Link to="/checkout-login" className="checkout-register-form-text12">
+            {props.login}
+          </Link>
+          <a
+            href="http://localhost:8080/checkout/proceed"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="checkout-register-form-text13"
+          >
+            {props.guest_login}
+          </a>
+          <button
+            type="submit"
+            className="checkout-register-form-button button"
+          >
+            {props.button_register}
+          </button>
+        </div>
+        <div className="checkout-register-form-proceed-options">
+          <Link to="/view-cart" className="checkout-register-form-text14">
+            <span>Cancel order</span>
+          </Link>
           <Link
             to="/checkout-shipping"
             className="checkout-register-form-navlink button"
           >
-            {props.button_register}
-          </Link>
-        </div>
-        <div className="checkout-register-form-proceed-options">
-          <span className="checkout-register-form-text16">
-            <span className="">Login</span>
-          </span>
-          <span className="checkout-register-form-text18">
-            <span className="">Cancel order</span>
-          </span>
-          <Link
-            to="/checkout-shipping"
-            className="checkout-register-form-navlink1 button"
-          >
-            {props.button_payment}
+            {props.button_shipping}
           </Link>
         </div>
       </form>
@@ -192,7 +195,7 @@ const CheckoutRegisterForm = (props) => {
 }
 
 CheckoutRegisterForm.defaultProps = {
-  text5: 'Username',
+  username_label: 'Username',
   rootClassName: '',
   Line5_alt2: 'Line51356',
   button_register: 'Register',
@@ -201,7 +204,7 @@ CheckoutRegisterForm.defaultProps = {
   Line5_src1:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/f919b9de-c355-4cab-ac8d-5308db77b191?org_if_sml=1152',
   email_input: 'Email',
-  email: 'Email',
+  email_label: 'Email',
   checkboxcirclefill3_alt: 'checkboxcirclefill31352',
   Line6_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/bac9efea-8f1c-4ce5-8229-33945e3e4c05?org_if_sml=1152',
@@ -210,12 +213,12 @@ CheckoutRegisterForm.defaultProps = {
   checkboxcirclefill3_src:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/2d9ddbb0-70c5-406a-bbc1-1939926e3985?org_if_sml=1454',
   lname_input: 'Last Name',
-  button_payment: 'Shipping details',
+  button_shipping: 'Shipping Details',
   checkboxcirclefill3_src1:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/2d9ddbb0-70c5-406a-bbc1-1939926e3985?org_if_sml=1454',
-  last_name: 'Last Name',
+  lname_label: 'Last Name',
   username_input: 'Username',
-  text3: 'Continue as guest',
+  guest_login: 'Continue as guest',
   heading: 'Account details',
   Line6_src1:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/c9c20ea4-ce47-4f31-930b-2b5ff88bff7d?org_if_sml=1152',
@@ -224,22 +227,22 @@ CheckoutRegisterForm.defaultProps = {
   Line5_src:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/f919b9de-c355-4cab-ac8d-5308db77b191?org_if_sml=1152',
   Line5_alt: 'Line51350',
-  first_name: 'First Name',
+  fname_label: 'First Name',
   login: 'Already registered? Sign in',
   Line5_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/c352bc07-2b10-437e-aea8-277dd565012d?org_if_sml=1152',
   checkboxcirclefill3_alt1: 'checkboxcirclefill31352',
-  text4: 'Review',
+  review: 'Review',
   fname_input: 'First Name',
   checkboxcirclefill3_alt2: 'checkboxcirclefill31358',
   Line6_alt: 'Line61351',
-  text51: 'Password',
+  password_label: 'Password',
   checkboxcirclefill3_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/91bb983f-b403-438f-9a2c-f687461681a5?org_if_sml=1454',
 }
 
 CheckoutRegisterForm.propTypes = {
-  text5: PropTypes.string,
+  username_label: PropTypes.string,
   rootClassName: PropTypes.string,
   Line5_alt2: PropTypes.string,
   button_register: PropTypes.string,
@@ -247,33 +250,34 @@ CheckoutRegisterForm.propTypes = {
   password_input: PropTypes.string,
   Line5_src1: PropTypes.string,
   email_input: PropTypes.string,
-  email: PropTypes.string,
+  email_label: PropTypes.string,
   checkboxcirclefill3_alt: PropTypes.string,
   Line6_src2: PropTypes.string,
   Line6_alt1: PropTypes.string,
   Line6_alt2: PropTypes.string,
   checkboxcirclefill3_src: PropTypes.string,
   lname_input: PropTypes.string,
-  button_payment: PropTypes.string,
+  button_shipping: PropTypes.string,
   checkboxcirclefill3_src1: PropTypes.string,
-  last_name: PropTypes.string,
+  lname_label: PropTypes.string,
   username_input: PropTypes.string,
-  text3: PropTypes.string,
+  guest_login: PropTypes.string,
   heading: PropTypes.string,
   Line6_src1: PropTypes.string,
   Line6_src: PropTypes.string,
   Line5_src: PropTypes.string,
   Line5_alt: PropTypes.string,
-  first_name: PropTypes.string,
+  fname_label: PropTypes.string,
   login: PropTypes.string,
   Line5_src2: PropTypes.string,
   checkboxcirclefill3_alt1: PropTypes.string,
-  text4: PropTypes.string,
+  review: PropTypes.string,
   fname_input: PropTypes.string,
   checkboxcirclefill3_alt2: PropTypes.string,
   Line6_alt: PropTypes.string,
-  text51: PropTypes.string,
+  password_label: PropTypes.string,
   checkboxcirclefill3_src2: PropTypes.string,
 }
+
 
 export default CheckoutRegisterForm

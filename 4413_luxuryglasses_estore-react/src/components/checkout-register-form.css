@@ -342,22 +342,6 @@
   background-color: transparent;
 }
 .checkout-register-form-text12 {
-  top: 22px;
-  color: var(--dl-color-default-100);
-  right: 51px;
-  height: auto;
-  position: absolute;
-  font-size: 16px;
-  align-self: auto;
-  font-style: Medium;
-  text-align: left;
-  font-family: Inter;
-  font-weight: 500;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-.checkout-register-form-text14 {
   top: 24px;
   color: var(--dl-color-default-800);
   right: 18px;
@@ -373,7 +357,7 @@
   font-stretch: normal;
   text-decoration: none;
 }
-.checkout-register-form-text15 {
+.checkout-register-form-text13 {
   top: 22px;
   left: 1px;
   color: var(--dl-color-default-800);
@@ -389,7 +373,7 @@
   font-stretch: normal;
   text-decoration: none;
 }
-.checkout-register-form-navlink {
+.checkout-register-form-button {
   top: 0px;
   left: 160px;
   color: var(--dl-color-gray-black80);
@@ -401,7 +385,6 @@
   align-items: center;
   border-color: var(--dl-color-gray-black80);
   justify-content: center;
-  text-decoration: none;
   background-color: #96b38e;
 }
 .checkout-register-form-proceed-options {
@@ -427,26 +410,10 @@
   justify-content: flex-start;
   background-color: transparent;
 }
-.checkout-register-form-text16 {
-  top: 22px;
-  color: var(--dl-color-default-100);
-  right: 51px;
-  height: auto;
-  position: absolute;
-  font-size: 16px;
-  align-self: auto;
-  font-style: Medium;
-  text-align: left;
-  font-family: Inter;
-  font-weight: 500;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-.checkout-register-form-text18 {
+.checkout-register-form-text14 {
   top: 21px;
   left: 113px;
-  color: var(--dl-color-default-700);
+  color: var(--dl-color-gray-black);
   height: auto;
   position: absolute;
   font-size: 16px;
@@ -461,7 +428,7 @@
   margin-bottom: 0;
   text-decoration: none;
 }
-.checkout-register-form-navlink1 {
+.checkout-register-form-navlink {
   color: var(--dl-color-gray-black80);
   right: 0px;
   width: 219px;

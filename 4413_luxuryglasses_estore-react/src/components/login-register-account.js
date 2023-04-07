@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 import './login-register-account.css'
 
 function LoginRegisterAccount(props) {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false)
-  // const [account, setAccount] = useState({})
+  
+  // HANDLE LOGIN FORM ----------------------------------------------------------------------------------------
   const navigate = useNavigate();
   var userDataObj;
 
@@ -32,17 +32,54 @@ function LoginRegisterAccount(props) {
     }
   }
 
-  const submitRegisterHandler = async(e) => {
+  // HANDLE REGISTER ACCOUNT ----------------------------------------------------------------------------------
+
+  const submitRegisterRegularHandler = async(e) => {
 
     e.preventDefault();
 
     let fname = document.getElementById("fname-input-register").value;
     let lname = document.getElementById("lname-input-register").value;
+    let email = document.getElementById("email-input-register").value;
+    let username = document.getElementById("username-input-register").value;
+    let password = document.getElementById("password-input-register").value;
+
+    if (validateRegister(fname, lname, email, username, password)) {
+      var url="http://localhost:8080/register?type=REGULAR&fname=" + fname + "&lname=" + lname + "&email=" + email + "&username=" + username + "&password=" + password;
+      var request = new XMLHttpRequest(); // create a connection
+      request.open('POST', url);
+      request.send(); // send the http request
+      request.onload = function() { // When the response comes invoke the following function
+        let data = request.responseText; // store reponse in variable and convert to JSON object
+        if (data.includes("Unable to register account")) {
+          alert(data);
+        } else if (data.includes("Successfully")){
+          alert(data + " Please Login.");
+        } else {
+          alert("Error occurred: " + data);
+        }
+      }
+    }
 
   }
 
-  function validateRegister(username) {
+  function validateRegister(fname, lname, email, username, password) {
     var loginOK = true;
+
+    if (fname.legnth == 0) {
+      alert("First name must be filled.");
+      return false;
+    }
+
+    if (lname.legnth == 0) {
+      alert("Last name must be filled.");
+      return false;
+    }
+
+    if (username.legnth == 0) {
+      alert("Username must be filled.");
+      return false;
+    }
     
     // check username is between 1 and 30
     if (username.length < 1 || username.legnth > 30) {
@@ -51,17 +88,46 @@ function LoginRegisterAccount(props) {
     }
 
     // check if username has letters, numbers and underscores only
-    var expr = /^[a-zA-Z0-9._]*$/;
+    var expr = /^[a-zA-Z0-9_]*$/;
     if (!expr.test(username)) {
-      alert("Only Alphabets, Numbers, Dot and Underscore allowed in Username.");
+      alert("Only Alphabets, Numbers and Underscore allowed in Username.");
       return false;
     }
 
-    // no need to validate password b/c is login.
+    if (password.legnth == 0) {
+      alert("Password must be filled.");
+      return false;
+    }
 
+    // validate password is at least 6 characters long
+    if (password.length < 6) {
+      alert("Password must be at least 6 chracters long.");
+      return false;
+    }
+
+    // validate password has alphanumeric
+    var expr = /^[a-zA-Z0-9]*$/;
+    if (!expr.test(password)) {
+      alert("Only Alphabets, Numbers, Dot and Underscore allowed in Password.");
+      return false;
+    }
+
+    if (email.legnth == 0) {
+      alert("Email must be filled.");
+      return false;
+    }
+
+    // validate email
+    var expr = /^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$/;
+    if (!expr.test(email)) {
+      alert("Only Alphabets, Numbers, Dot and Underscore allowed in Password.");
+      return false;
+    }
+    
     return loginOK;
   }
 
+  // ----------------------------------------------------------------------------------------------------------
   return (
     <div className="login-register-account-container">
         <form
@@ -115,6 +181,7 @@ function LoginRegisterAccount(props) {
 
         <form
           id="register"
+          onSubmit={submitRegisterRegularHandler}
           className="login-register-account-form1 section-container"
         >
           <h2 className="login-register-account-text03">{props.heading1}</h2>
@@ -162,7 +229,7 @@ function LoginRegisterAccount(props) {
             type="email"
             id="email-input-register"
             name="email"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]&#123;2,&#125;$"
+            pattern="^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"
             required
             placeholder={props.textinput_placeholder4}
             className="login-register-account-textinput4 input"
