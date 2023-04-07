@@ -276,6 +276,7 @@
 .checkout-payment-form-textinput2 {
   top: 392px;
   left: 50px;
+  color: #000000;
   height: 55px;
   position: absolute;
   border-color: var(--dl-color-gray-black);
@@ -289,6 +290,7 @@
 }
 .checkout-payment-form-textinput3 {
   top: 387px;
+  color: #000000;
   right: 61px;
   height: 55px;
   position: absolute;
@@ -298,7 +300,45 @@
 .checkout-payment-form-proceed-options {
   right: var(--dl-space-space-fourunits);
   width: 482px;
-  bottom: 79px;
+  bottom: 130px;
+  height: 60px;
+  display: flex;
+  padding: 0;
+  position: absolute;
+  align-self: auto;
+  box-sizing: border-box;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: transparent;
+  border-style: none;
+  border-width: 0;
+  margin-right: 0;
+  border-radius: 0px 0px 0px 0px;
+  margin-bottom: 0;
+  flex-direction: row;
+  padding-bottom: 0;
+  justify-content: flex-start;
+  background-color: transparent;
+}
+.checkout-payment-form-button {
+  color: var(--dl-color-gray-black80);
+  right: 0px;
+  width: 219px;
+  bottom: 0px;
+  height: 60px;
+  position: absolute;
+  font-size: 20px;
+  text-align: center;
+  align-items: center;
+  border-color: var(--dl-color-gray-black80);
+  justify-content: center;
+  background-color: #96b38e;
+}
+.checkout-payment-form-proceed-options1 {
+  left: 143px;
+  right: var(--dl-space-space-fourunits);
+  width: 482px;
+  bottom: 38px;
   height: 60px;
   display: flex;
   padding: 0;
@@ -319,22 +359,6 @@
   background-color: transparent;
 }
 .checkout-payment-form-text08 {
-  top: 22px;
-  color: var(--dl-color-default-100);
-  right: 51px;
-  height: auto;
-  position: absolute;
-  font-size: 16px;
-  align-self: auto;
-  font-style: Medium;
-  text-align: left;
-  font-family: Inter;
-  font-weight: 500;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-.checkout-payment-form-text10 {
   top: 21px;
   left: 113px;
   color: var(--dl-color-default-700);

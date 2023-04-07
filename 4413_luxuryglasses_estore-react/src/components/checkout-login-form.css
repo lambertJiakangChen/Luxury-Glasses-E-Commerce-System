@@ -292,22 +292,6 @@
 }
 .checkout-login-form-text09 {
   top: 22px;
-  color: var(--dl-color-default-100);
-  right: 51px;
-  height: auto;
-  position: absolute;
-  font-size: 16px;
-  align-self: auto;
-  font-style: Medium;
-  text-align: left;
-  font-family: Inter;
-  font-weight: 500;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-.checkout-login-form-text11 {
-  top: 22px;
   left: 161px;
   color: var(--dl-color-default-800);
   height: auto;
@@ -322,7 +306,7 @@
   font-stretch: normal;
   text-decoration: none;
 }
-.checkout-login-form-text12 {
+.checkout-login-form-text10 {
   top: 22px;
   left: 1px;
   color: var(--dl-color-default-800);
@@ -338,7 +322,7 @@
   font-stretch: normal;
   text-decoration: none;
 }
-.checkout-login-form-navlink {
+.checkout-login-form-button {
   color: var(--dl-color-gray-black80);
   right: 0px;
   width: 137px;
@@ -350,7 +334,6 @@
   align-items: center;
   border-color: var(--dl-color-gray-black80);
   justify-content: center;
-  text-decoration: none;
   background-color: #96b38e;
 }
 .checkout-login-form-proceed-options1 {
@@ -376,23 +359,7 @@
   justify-content: flex-start;
   background-color: transparent;
 }
-.checkout-login-form-text13 {
-  top: 22px;
-  color: var(--dl-color-default-100);
-  right: 51px;
-  height: auto;
-  position: absolute;
-  font-size: 16px;
-  align-self: auto;
-  font-style: Medium;
-  text-align: left;
-  font-family: Inter;
-  font-weight: 500;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-.checkout-login-form-text15 {
+.checkout-login-form-text11 {
   top: 21px;
   left: 113px;
   color: var(--dl-color-default-700);
@@ -410,7 +377,7 @@
   margin-bottom: 0;
   text-decoration: none;
 }
-.checkout-login-form-navlink1 {
+.checkout-login-form-navlink {
   color: var(--dl-color-gray-black80);
   right: 0px;
   width: 219px;

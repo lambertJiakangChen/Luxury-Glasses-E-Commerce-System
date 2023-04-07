@@ -1,5 +1,8 @@
 package com.project.ctrl;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,14 +33,17 @@ public class IdentityController {
 		try {
 			identityService.registerAccount(username, fname, lname, email, password, type);
 		} catch (Exception e) {
+			System.out.println("error registering: " + e.getMessage());
 			return "Unable to register account: " + e.getMessage();
 		}
 		
+		System.out.println("registered");
 		return "Successfully Registered.";		
 	}
 	
 	@RequestMapping("/login")
-	String login(HttpServletRequest request, HttpSession session) { 
+	Account login(HttpServletRequest request, HttpSession session) { 
+		System.out.println("called login API...");
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -46,14 +52,16 @@ public class IdentityController {
 		
 		// not registered >> return error
 		if (!identityService.isRegisteredAccount(username, password)) {
-			return "User not found. Username or password is incorrect";
+			System.out.println("error logging in. user not found.");
+			return null; // "User not found. Username or password is incorrect";
 		}
 		// registered >> add account to session
 		HttpSession newSession = request.getSession();
 		Account acc =  this.identityService.findAccountbyUserAndPass(username, password);
 		newSession.setAttribute("ACCOUNT", acc);
 		
-		return "Login Success. \n Session account: " + newSession.getAttribute("ACCOUNT").toString();
+		System.out.println("logged in.");
+		return acc;// "Login Success. \n Session account: " + newSession.getAttribute("ACCOUNT").toString();
 	    
 	}
 	
@@ -73,9 +81,9 @@ public class IdentityController {
 	
 
 	@RequestMapping("/getAllAccounts")
-	String getAllAccounts(HttpServletRequest request, HttpSession session) {
-		
-		return identityService.findAllAccounts().toString();
+	List<Account> getAllAccounts(HttpServletRequest request, HttpSession session) {
+		System.out.println("called getAllAccounts API...");
+		return identityService.findAllAccounts();
 	}
 	
 

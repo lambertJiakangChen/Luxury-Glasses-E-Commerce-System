@@ -85,34 +85,31 @@ const CheckoutReviewForm = (props) => {
           </div>
         </div>
         <h2 className="checkout-review-form-text07">{props.heading}</h2>
+        <label
+          id="confirm-label-checkout"
+          htmlFor="confirm-checkbox-checkout"
+          className="checkout-review-form-text08"
+        >
+          {props.confirm_labbel}
+        </label>
+        <input
+          type="checkbox"
+          id="confirm-checkbox-checkout"
+          name="confirm"
+          required
+          checked="true"
+          className="checkout-review-form-checkbox"
+        />
         <div className="checkout-review-form-proceed-options">
-          <span className="checkout-review-form-text08">
-            <span className="">Cancel order</span>
-          </span>
-          <Link
-            to="/checkout-review"
-            className="checkout-review-form-navlink button"
+          <Link to="/view-cart" className="checkout-review-form-text09">
+            <span>Cancel order</span>
+          </Link>
+          <button
+            type="submit"
+            className="checkout-review-form-button button"
           >
             {props.button_review}
-          </Link>
-        </div>
-        <div className="checkout-review-form-confirmation">
-          <label
-            id="confirmation-label-review"
-            htmlFor="confirmation-checkbox-review"
-            className="checkout-review-form-text10"
-          >
-            {props.cofirmation}
-          </label>
-          <input
-            type="checkbox"
-            id="confirmation-checkbox-review"
-            name="cofirmed"
-            value="true"
-            checked="true"
-            required
-            className="checkout-review-form-checkbox"
-          />
+            </button>
         </div>
       </form>
     </div>
@@ -141,7 +138,7 @@ CheckoutReviewForm.defaultProps = {
   checkboxcirclefill3_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/91bb983f-b403-438f-9a2c-f687461681a5?org_if_sml=1454',
   Line5_alt1: 'Line51350',
-  text4: 'Review',
+  review: 'Review',
   checkboxcirclefill3_alt1: 'checkboxcirclefill31352',
   Line5_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/c352bc07-2b10-437e-aea8-277dd565012d?org_if_sml=1152',
@@ -151,7 +148,7 @@ CheckoutReviewForm.defaultProps = {
   Line5_src1:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/f919b9de-c355-4cab-ac8d-5308db77b191?org_if_sml=1152',
   checkboxcirclefill3_alt2: 'checkboxcirclefill31358',
-  cofirmation: 'Check to confirm order',
+  confirm_labbel: 'Check to confirm order',
 }
 
 CheckoutReviewForm.propTypes = {
@@ -170,14 +167,14 @@ CheckoutReviewForm.propTypes = {
   Line6_alt: PropTypes.string,
   checkboxcirclefill3_src2: PropTypes.string,
   Line5_alt1: PropTypes.string,
-  text4: PropTypes.string,
+  review: PropTypes.string,
   checkboxcirclefill3_alt1: PropTypes.string,
   Line5_src2: PropTypes.string,
   Line6_alt1: PropTypes.string,
   Line6_src2: PropTypes.string,
   Line5_src1: PropTypes.string,
   checkboxcirclefill3_alt2: PropTypes.string,
-  cofirmation: PropTypes.string,
+  confirm_labbel: PropTypes.string,
 }
 
 export default CheckoutReviewForm

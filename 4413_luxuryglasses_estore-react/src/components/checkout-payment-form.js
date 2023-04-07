@@ -33,7 +33,7 @@ const CheckoutPaymentForm = (props) => {
           <span className="checkout-payment-form-text04">
             <span className="">Payment</span>
           </span>
-          <span className="checkout-payment-form-text06">{props.text4}</span>
+          <span className="checkout-payment-form-text06">{props.review}</span>
           <div className="checkout-payment-form-group6">
             <img
               alt={props.Line5_alt}
@@ -88,71 +88,75 @@ const CheckoutPaymentForm = (props) => {
         </div>
         <h2 className="checkout-payment-form-text07">{props.heading}</h2>
         <label
-          id="name-label-payment"
-          htmlFor="name-input-shipping"
+          id="fullname-label-checkout"
+          htmlFor="fullname-input-checkout"
           className="checkout-payment-form-label"
         >
-          {props.text6}
+          {props.fullname_label}
         </label>
         <input
           type="text"
-          id="name-input-payment"
-          name="name"
+          id="fullname-input-checkout"
+          name="fullname"
           required
-          placeholder={props.name_input}
+          placeholder={props.fullname_input}
           className="checkout-payment-form-textinput input"
         />
         <label
-          id="line2-label-checkout"
-          htmlFor="line2-input-shipping"
+          id="card-label-checkout"
+          htmlFor="card-input-checkout"
           className="checkout-payment-form-label1"
         >
-          {props.card_number}
+          {props.card_label}
         </label>
         <input
           type="text"
-          id="cardnum-input-payment"
+          id="card-input-checkout"
           name="card_number"
-          placeholder={props.card_number_input}
+          placeholder={props.card_input}
           className="checkout-payment-form-textinput1 input"
         />
         <label
-          id="postal-label-checkout"
-          htmlFor="postal-input-shipping"
+          id="exp-label-checkout"
+          htmlFor="exp-input-checkout"
           className="checkout-payment-form-label2"
         >
-          {props.exp}
+          {props.exp_label}
         </label>
         <input
           type="text"
-          id="exp-input-payment"
+          id="exp-input-checkout"
           name="exp"
           required
           placeholder={props.exp_input}
           className="checkout-payment-form-textinput2 input"
         />
         <label
-          id="province-label-checkout"
-          htmlFor="province-input-shipping"
+          id="cvv-label-checkout"
+          htmlFor="cvv-input-checkout"
           className="checkout-payment-form-label3"
         >
-          {props.cvv}
+          {props.cvv_label}
         </label>
         <input
           type="text"
-          id="cvv-input-payment"
+          id="cvv-input-checkout"
           name="cvv"
           required
           placeholder={props.cvv_input}
           className="checkout-payment-form-textinput3 input"
         />
         <div className="checkout-payment-form-proceed-options">
-          <span className="checkout-payment-form-text08">
-            <span className="">Login</span>
-          </span>
-          <span className="checkout-payment-form-text10">
-            <span className="">Cancel order</span>
-          </span>
+          <button
+            type="submit"
+            className="checkout-payment-form-button button">
+            {props.button_payment}
+          </button>
+        </div>
+        <div className="checkout-payment-form-proceed-options1">
+          <Link to="/view-cart" className="checkout-payment-form-text08">
+            <span>Cancel order</span>
+          </Link>
           <Link
             to="/checkout-review"
             className="checkout-payment-form-navlink button"
@@ -179,32 +183,33 @@ CheckoutPaymentForm.defaultProps = {
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/f919b9de-c355-4cab-ac8d-5308db77b191?org_if_sml=1152',
   Line6_src:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/c9c20ea4-ce47-4f31-930b-2b5ff88bff7d?org_if_sml=1152',
-  text4: 'Review',
+  review: 'Review',
   Line5_alt2: 'Line51356',
   Line5_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/c352bc07-2b10-437e-aea8-277dd565012d?org_if_sml=1152',
   checkboxcirclefill3_alt1: 'checkboxcirclefill31352',
   Line5_alt1: 'Line51350',
   heading: 'Payment Details',
-  cvv: 'Security code',
+  cvv_label: 'Security code',
   button_review: 'Review Order',
   checkboxcirclefill3_src:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/2d9ddbb0-70c5-406a-bbc1-1939926e3985?org_if_sml=1454',
-  card_number: 'Card Number',
+  card_label: 'Card Number',
   Line6_alt1: 'Line61351',
   checkboxcirclefill3_alt: 'checkboxcirclefill31352',
-  name_input: 'Full Name',
+  fullname_input: 'Full Name',
   exp_input: 'MM/YY',
   Line6_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/bac9efea-8f1c-4ce5-8229-33945e3e4c05?org_if_sml=1152',
   Line5_src:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/f919b9de-c355-4cab-ac8d-5308db77b191?org_if_sml=1152',
-  card_number_input: '1234-5678-1234-5678',
-  text6: 'Full Name',
+  card_input: '1234-5678-1234-5678',
+  fullname_label: 'Full Name',
   Line6_alt2: 'Line61357',
   Line6_src1:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/c9c20ea4-ce47-4f31-930b-2b5ff88bff7d?org_if_sml=1152',
-  exp: 'Expiration date',
+  exp_label: 'Expiration date',
+  button_payment: 'Process Payment',
 }
 
 CheckoutPaymentForm.propTypes = {
@@ -217,27 +222,28 @@ CheckoutPaymentForm.propTypes = {
   cvv_input: PropTypes.string,
   Line5_src1: PropTypes.string,
   Line6_src: PropTypes.string,
-  text4: PropTypes.string,
+  review: PropTypes.string,
   Line5_alt2: PropTypes.string,
   Line5_src2: PropTypes.string,
   checkboxcirclefill3_alt1: PropTypes.string,
   Line5_alt1: PropTypes.string,
   heading: PropTypes.string,
-  cvv: PropTypes.string,
+  cvv_label: PropTypes.string,
   button_review: PropTypes.string,
   checkboxcirclefill3_src: PropTypes.string,
-  card_number: PropTypes.string,
+  card_label: PropTypes.string,
   Line6_alt1: PropTypes.string,
   checkboxcirclefill3_alt: PropTypes.string,
-  name_input: PropTypes.string,
+  fullname_input: PropTypes.string,
   exp_input: PropTypes.string,
   Line6_src2: PropTypes.string,
   Line5_src: PropTypes.string,
-  card_number_input: PropTypes.string,
-  text6: PropTypes.string,
+  card_input: PropTypes.string,
+  fullname_label: PropTypes.string,
   Line6_alt2: PropTypes.string,
   Line6_src1: PropTypes.string,
-  exp: PropTypes.string,
+  exp_label: PropTypes.string,
+  button_payment: PropTypes.string,
 }
 
 export default CheckoutPaymentForm
