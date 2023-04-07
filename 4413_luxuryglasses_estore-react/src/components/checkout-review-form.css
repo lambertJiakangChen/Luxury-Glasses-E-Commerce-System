@@ -233,6 +233,19 @@
   position: absolute;
   align-self: flex-start;
 }
+.checkout-review-form-text08 {
+  top: 131px;
+  left: 74px;
+  position: absolute;
+}
+.checkout-review-form-checkbox {
+  top: 138px;
+  left: 50px;
+  width: auto;
+  height: auto;
+  position: absolute;
+  align-self: center;
+}
 .checkout-review-form-proceed-options {
   top: 192px;
   right: var(--dl-space-space-fourunits);
@@ -256,7 +269,7 @@
   justify-content: flex-start;
   background-color: transparent;
 }
-.checkout-review-form-text08 {
+.checkout-review-form-text09 {
   top: 21px;
   left: 113px;
   color: var(--dl-color-default-700);
@@ -274,7 +287,7 @@
   margin-bottom: 0;
   text-decoration: none;
 }
-.checkout-review-form-navlink {
+.checkout-review-form-button {
   color: var(--dl-color-gray-black80);
   right: 0px;
   width: 219px;
@@ -286,31 +299,7 @@
   align-items: center;
   border-color: var(--dl-color-gray-black80);
   justify-content: center;
-  text-decoration: none;
   background-color: #96b38e;
-}
-.checkout-review-form-confirmation {
-  top: 138px;
-  left: 50px;
-  width: 206.265625px;
-  height: 48px;
-  display: flex;
-  position: absolute;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-.checkout-review-form-text10 {
-  top: 13px;
-  left: 48px;
-  position: absolute;
-}
-.checkout-review-form-checkbox {
-  top: 0px;
-  left: 0px;
-  width: var(--dl-size-size-small);
-  height: var(--dl-size-size-small);
-  position: absolute;
-  align-self: center;
 }
 .checkout-review-form-root-class-name {
   align-self: center;

@@ -32,7 +32,7 @@ const CheckoutLoginForm = (props) => {
           <span className="checkout-login-form-text04">
             <span className="">Payment</span>
           </span>
-          <span className="checkout-login-form-text06">{props.text4}</span>
+          <span className="checkout-login-form-text06">{props.review}</span>
           <div className="checkout-login-form-group6">
             <img
               alt={props.Line5_alt}
@@ -91,13 +91,14 @@ const CheckoutLoginForm = (props) => {
           htmlFor="username-input-checkout"
           className="checkout-login-form-text08"
         >
-          {props.text5}
+          {props.username_label}
         </label>
         <input
           type="text"
           id="username-input-checkout"
           name="username"
-          placeholder={props.textinput_placeholder1}
+          placeholder={props.username_input}
+          required
           className="checkout-login-form-textinput input"
         />
         <label
@@ -105,42 +106,42 @@ const CheckoutLoginForm = (props) => {
           htmlFor="password-input-checkout"
           className="checkout-login-form-label"
         >
-          {props.text51}
+          {props.password_label}
         </label>
         <input
           type="text"
           id="password-input-checkout"
           name="password"
-          placeholder={props.textinput_placeholder11}
+          placeholder={props.password_input}
+          required
           className="checkout-login-form-textinput1 input"
         />
         <div className="checkout-login-form-proceed-options">
-          <span className="checkout-login-form-text09">
-            <span className="">Login</span>
-          </span>
-          <Link to="/checkout-register" className="checkout-login-form-text11">
-            {props.text2}
+          <Link to="/checkout-register" className="checkout-login-form-text09">
+            {props.register}
           </Link>
-          <span className="checkout-login-form-text12">{props.text3}</span>
+          <a
+            href="http://localhost:8080/checkout/proceed"
+            className="checkout-login-form-text10"
+          >
+            {props.guest_login}
+          </a>
+          <button
+            type="submit"
+            className="checkout-login-form-button button"
+          >
+            {props.login_button}
+          </button>
+        </div>
+        <div className="checkout-login-form-proceed-options1">
+          <Link to="/view-cart" className="checkout-login-form-text11">
+            <span>Cancel order</span>
+          </Link>
           <Link
             to="/checkout-shipping"
             className="checkout-login-form-navlink button"
           >
-            {props.Login_button}
-          </Link>
-        </div>
-        <div className="checkout-login-form-proceed-options1">
-          <span className="checkout-login-form-text13">
-            <span className="">Login</span>
-          </span>
-          <span className="checkout-login-form-text15">
-            <span className="">Cancel order</span>
-          </span>
-          <Link
-            to="/checkout-shipping"
-            className="checkout-login-form-navlink1 button"
-          >
-            {props.button_payment}
+            {props.button_shipping}
           </Link>
         </div>
       </form>
@@ -152,7 +153,7 @@ CheckoutLoginForm.defaultProps = {
   Line6_src:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/c9c20ea4-ce47-4f31-930b-2b5ff88bff7d?org_if_sml=1152',
   Line6_alt1: 'Line61351',
-  text5: 'Username',
+  username_label: 'Username',
   Line5_alt1: 'Line51350',
   Line5_src:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/f919b9de-c355-4cab-ac8d-5308db77b191?org_if_sml=1152',
@@ -165,7 +166,7 @@ CheckoutLoginForm.defaultProps = {
   checkboxcirclefill3_src:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/2d9ddbb0-70c5-406a-bbc1-1939926e3985?org_if_sml=1454',
   checkboxcirclefill3_alt: 'checkboxcirclefill31352',
-  text51: 'Password',
+  password_label: 'Password',
   Line5_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/c352bc07-2b10-437e-aea8-277dd565012d?org_if_sml=1152',
   checkboxcirclefill3_src1:
@@ -173,19 +174,18 @@ CheckoutLoginForm.defaultProps = {
   Line6_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/bac9efea-8f1c-4ce5-8229-33945e3e4c05?org_if_sml=1152',
   rootClassName: '',
-  text2: 'Register for account',
-  Login_button: 'Login',
+  register: 'Register for account',
+  login_button: 'Login',
   Line6_alt: 'Line61351',
-  text3: 'Continue as guest',
-  textinput_placeholder11: '********',
-  textinput_placeholder1: 'username',
-  text4: 'Review',
+  guest_login: 'Continue as guest',
+  password_input: '********',
+  username_input: 'username',
+  review: 'Review',
   checkboxcirclefill3_src2:
     'https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/ca5dbe3f-c614-4ce0-a245-7460cd9a6cc1/91bb983f-b403-438f-9a2c-f687461681a5?org_if_sml=1454',
   Line5_alt: 'Line51350',
-  button: '',
   checkboxcirclefill3_alt1: 'checkboxcirclefill31352',
-  button_payment: 'Shipping details',
+  button_shipping: 'Shipping details',
   checkboxcirclefill3_alt2: 'checkboxcirclefill31358',
   heading: 'Account details',
 }
@@ -193,7 +193,7 @@ CheckoutLoginForm.defaultProps = {
 CheckoutLoginForm.propTypes = {
   Line6_src: PropTypes.string,
   Line6_alt1: PropTypes.string,
-  text5: PropTypes.string,
+  username_label: PropTypes.string,
   Line5_alt1: PropTypes.string,
   Line5_src: PropTypes.string,
   Line5_src1: PropTypes.string,
@@ -202,23 +202,22 @@ CheckoutLoginForm.propTypes = {
   Line6_src1: PropTypes.string,
   checkboxcirclefill3_src: PropTypes.string,
   checkboxcirclefill3_alt: PropTypes.string,
-  text51: PropTypes.string,
+  password_label: PropTypes.string,
   Line5_src2: PropTypes.string,
   checkboxcirclefill3_src1: PropTypes.string,
   Line6_src2: PropTypes.string,
   rootClassName: PropTypes.string,
-  text2: PropTypes.string,
-  Login_button: PropTypes.string,
+  register: PropTypes.string,
+  login_button: PropTypes.string,
   Line6_alt: PropTypes.string,
-  text3: PropTypes.string,
-  textinput_placeholder11: PropTypes.string,
-  textinput_placeholder1: PropTypes.string,
-  text4: PropTypes.string,
+  guest_login: PropTypes.string,
+  password_input: PropTypes.string,
+  username_input: PropTypes.string,
+  review: PropTypes.string,
   checkboxcirclefill3_src2: PropTypes.string,
   Line5_alt: PropTypes.string,
-  button: PropTypes.string,
   checkboxcirclefill3_alt1: PropTypes.string,
-  button_payment: PropTypes.string,
+  button_shipping: PropTypes.string,
   checkboxcirclefill3_alt2: PropTypes.string,
   heading: PropTypes.string,
 }
