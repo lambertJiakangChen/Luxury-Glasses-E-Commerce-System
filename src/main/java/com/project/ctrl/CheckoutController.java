@@ -124,7 +124,7 @@ public class CheckoutController {
 		}
 		checkoutService.setShippingAddress(shippingAddress);
 		
-		return "Shipping Address successfully set: /n" + shippingAddress.toString() 
+		return "Shipping Address successfully set: \n" + shippingAddress.toString() 
 				+ "\n User may proceed to Payment details";
 
 	}
