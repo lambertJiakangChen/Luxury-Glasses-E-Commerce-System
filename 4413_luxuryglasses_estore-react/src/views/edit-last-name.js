@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
 
@@ -7,7 +7,32 @@ import Navbar from '../components/navbar'
 import Footer from '../components/footer'
 import './edit-last-name.css'
 
-const EditLastName = (props) => {
+function EditLastName(props) {
+  const navigate = useNavigate();
+
+  // HANDLE EDIT LAST NAME ----------------------------------------------------------------------------------------
+  const submitEditLastNameHandler = async(e) => {
+    e.preventDefault();
+
+    let lname = document.getElementById("edit-lname-input").value;
+
+    var url="http://localhost:8080/updateLastName?lname=" + lname;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; // store reponse in variable and convert to JSON object
+      if (data.includes("Success")) {
+        alert(data);
+        navigate('/account');
+      } else {
+        alert("Error occurred: " + data);
+      }
+    }
+  }
+
+  // -----------------------------------------------------------------------------------------------------------------
+  
   return (
     <div className="edit-last-name-container">
       <Helmet>
@@ -27,7 +52,10 @@ const EditLastName = (props) => {
             <h3 id="edit-lname-title" className="edit-last-name-text1">
               Edit Last Name: 
             </h3>
-            <form className="edit-last-name-form">
+            <form 
+              className="edit-last-name-form"
+              onSubmit={submitEditLastNameHandler}
+              >
               <label
                 id="edit-lname-label"
                 htmlFor="edit-lname-input"
@@ -44,7 +72,7 @@ const EditLastName = (props) => {
                 placeholder="last name"
                 className="edit-last-name-textinput input"
               />
-              <button type="button" className="edit-last-name-button button">
+              <button type="submit" className="edit-last-name-button button">
                 CONFIRM
               </button>
             </form>

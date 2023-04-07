@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
 
@@ -7,7 +7,33 @@ import Navbar from '../components/navbar'
 import Footer from '../components/footer'
 import './edit-first-name.css'
 
-const EditFirstName = (props) => {
+
+function EditFirstName(props) {
+  const navigate = useNavigate();
+
+  // HANDLE EDIT FIRST NAME ----------------------------------------------------------------------------------------
+  const submitEditFirstNameHandler = async(e) => {
+    e.preventDefault();
+
+    let fname = document.getElementById("edit-fname-input").value;
+
+    var url="http://localhost:8080/updateFirstName?fname=" + fname;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; // store reponse in variable and convert to JSON object
+      if (data.includes("Success")) {
+        alert(data);
+        navigate('/account');
+      } else {
+        alert("Error occurred: " + data);
+      }
+    }
+  }
+
+  // -----------------------------------------------------------------------------------------------------------------
+
   return (
     <div className="edit-first-name-container">
       <Helmet>
@@ -27,7 +53,10 @@ const EditFirstName = (props) => {
             <h3 id="edit-fname-title" className="edit-first-name-text1">
               Edit First Name: 
             </h3>
-            <form className="edit-first-name-form">
+            <form 
+              className="edit-first-name-form"
+              onSubmit={submitEditFirstNameHandler}
+              >
               <label
                 id="edit-fname-label"
                 htmlFor="edit-fname-input"
@@ -44,7 +73,7 @@ const EditFirstName = (props) => {
                 placeholder="first name"
                 className="edit-first-name-textinput input"
               />
-              <button type="button" className="edit-first-name-button button">
+              <button type="submit" className="edit-first-name-button button">
                 CONFIRM
               </button>
             </form>
@@ -57,6 +86,7 @@ const EditFirstName = (props) => {
       <Footer></Footer>
     </div>
   )
+
 }
 
 export default EditFirstName
