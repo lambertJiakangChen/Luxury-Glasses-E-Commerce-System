@@ -7,36 +7,133 @@ import Navbar from '../components/navbar'
 import Footer from '../components/footer'
 import './account.css'
 
-var userDataObj;
+function Account(props) {
 
-const displayAccountDetails = async(e) => {
-  e.preventDefault();
+  // DISPLAY ACCOUNT DETAILS ON LOAD ---------------------------------------------------------------------------
 
-  var url="http://localhost:8080/getAccountDetails";
-  var request = new XMLHttpRequest(); // create a connection
-  request.open('POST', url);
-  request.send(); // send the http request
-  request.onload = function() { // When the response comes invoke the following function
-    let data = request.responseText; // store reponse in variable and convert to JSON object
-    if (data.length == 0) {
-      alert ("Error. User details not found.");
-    } else {
-      userDataObj = JSON.parse(data);
+  var userDataObj;
+  const displayAccountDetails = async(e) => {
+    e.preventDefault();
 
-      document.getElementById("fname-replace").innerHTML = userDataObj.fName;
-      document.getElementById("lname-replace").innerHTML = userDataObj.lName;
-      document.getElementById("username-replace").innerHTML = userDataObj.username;
-      document.getElementById("email-replace").innerHTML = userDataObj.email;
-      document.getElementById("acc-type-replace").innerHTML = userDataObj.accountType;
+    var url="http://localhost:8080/getAccountDetails";
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; // store reponse in variable and convert to JSON object
+      if (data.length == 0) {
+        alert ("Error. User details not found.");
+      } else {
+        userDataObj = JSON.parse(data);
 
-      if (userDataObj.accountType != "ADMIN") {
-        document.getElementById("register-admin-form").style.display = 'none';
+        document.getElementById("fname-replace").innerHTML = userDataObj.fName;
+        document.getElementById("lname-replace").innerHTML = userDataObj.lName;
+        document.getElementById("username-replace").innerHTML = userDataObj.username;
+        document.getElementById("email-replace").innerHTML = userDataObj.email;
+        document.getElementById("acc-type-replace").innerHTML = userDataObj.accountType;
+
+        if (userDataObj.accountType != "ADMIN") {
+          document.getElementById("register-admin-form").style.display = 'none';
+        }
       }
     }
   }
-}
 
-const Account = (props) => {
+  // HANDLE REGISTER ADMIN ------------------------------------------------------------------------------------
+  const submitRegisterAdminHandler = async(e) => {
+    alert ("submitRegisterAdminHandler...");
+    e.preventDefault();
+
+    let fname = document.getElementById("fname-input-register-admin").value;
+    let lname = document.getElementById("lname-input-register-admin").value;
+    let email = document.getElementById("email-input-register-admin").value;
+    let username = document.getElementById("username-input-register-admin").value;
+    let password = document.getElementById("password-input-register-admin").value;
+
+    if (validateRegister(fname, lname, email, username, password)) {
+      var url="http://localhost:8080/register?type=ADMIN&fname=" + fname + "&lname=" + lname + "&email=" + email + "&username=" + username + "&password=" + password;
+      var request = new XMLHttpRequest(); // create a connection
+      request.open('POST', url);
+      request.send(); // send the http request
+      request.onload = function() { // When the response comes invoke the following function
+        let data = request.responseText; // store reponse in variable and convert to JSON object
+        if (data.includes("Unable to register account")) {
+          alert(data);
+        } else if (data.includes("Successfully")){
+          alert(data + " Please Remember the ADMIN username and passwsord.");
+        } else {
+          alert("Error occurred: " + data);
+        }
+      }
+    }
+
+  }
+
+  function validateRegister(fname, lname, email, username, password) {
+    var loginOK = true;
+
+    if (fname.legnth == 0) {
+      alert("First name must be filled.");
+      return false;
+    }
+
+    if (lname.legnth == 0) {
+      alert("Last name must be filled.");
+      return false;
+    }
+
+    if (username.legnth == 0) {
+      alert("Username must be filled.");
+      return false;
+    }
+    
+    // check username is between 1 and 30
+    if (username.length < 1 || username.legnth > 30) {
+      alert("Username must be between 1 and 30 chracters long.");
+      return false;
+    }
+
+    // check if username has letters, numbers and underscores only
+    var expr = /^[a-zA-Z0-9_]*$/;
+    if (!expr.test(username)) {
+      alert("Only Alphabets, Numbers and Underscore allowed in Username.");
+      return false;
+    }
+
+    if (password.legnth == 0) {
+      alert("Password must be filled.");
+      return false;
+    }
+
+    // validate password is at least 6 characters long
+    if (password.length < 6) {
+      alert("Password must be at least 6 chracters long.");
+      return false;
+    }
+
+    // validate password has alphanumeric
+    var expr = /^[a-zA-Z0-9]*$/;
+    if (!expr.test(password)) {
+      alert("Only Alphabets, Numbers, Dot and Underscore allowed in Password.");
+      return false;
+    }
+
+    if (email.legnth == 0) {
+      alert("Email must be filled.");
+      return false;
+    }
+
+    // validate email
+    var expr = /^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$/;
+    if (!expr.test(email)) {
+      alert("Only Alphabets, Numbers, Dot and Underscore allowed in Password.");
+      return false;
+    }
+    
+    return loginOK;
+  }
+  // ----------------------------------------------------------------------------------------------------------
+
   return (
     <div className="account-container" onLoad={displayAccountDetails}>
       <Helmet>
@@ -159,11 +256,12 @@ const Account = (props) => {
             <form
               id="register-admin"
               className="account-form section-container"
+              onSubmit={submitRegisterAdminHandler}
             >
               <h2 className="account-text34">REGISTER ADMIN</h2>
               <label
                 id="fname-label-register-admin"
-                htmlFor="fname-input-register"
+                htmlFor="fname-input-register-admin"
                 className="account-text35"
               >
                 <span>FIRST NAME</span>
@@ -179,7 +277,7 @@ const Account = (props) => {
               />
               <label
                 id="lname-label-register-admin"
-                htmlFor="lname-input-register"
+                htmlFor="lname-input-register-admin"
                 className="account-text38"
               >
                 <span>LAST NAME</span>
@@ -195,7 +293,7 @@ const Account = (props) => {
               />
               <label
                 id="email-label-register-admin"
-                htmlFor="email-input-register"
+                htmlFor="email-input-register-admin"
                 className="account-text41"
               >
                 <span>EMAIL</span>
@@ -205,14 +303,14 @@ const Account = (props) => {
                 type="email"
                 id="email-input-register-admin"
                 name="email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]&#123;2,&#125;$"
+                pattern="^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"
                 required
                 placeholder="email"
                 className="account-textinput2 input"
               />
               <label
                 id="username-label-register-admin"
-                htmlFor="username-input-register"
+                htmlFor="username-input-register-admin"
                 className="account-text44"
               >
                 USERNAME
@@ -227,7 +325,7 @@ const Account = (props) => {
               />
               <label
                 id="password-label-register-admin"
-                htmlFor="password-input-register"
+                htmlFor="password-input-register-admin"
                 className="account-text45"
               >
                 TEMPORARY PASSWORD
@@ -240,7 +338,7 @@ const Account = (props) => {
                 placeholder="temporary password"
                 className="account-textinput4 input"
               />
-              <button className="account-button button">REGISTER</button>
+              <button type="submit" className="account-button button">REGISTER</button>
             </form>
           </div>
         </div>
@@ -248,6 +346,7 @@ const Account = (props) => {
       <Footer></Footer>
     </div>
   )
+
 }
 
 export default Account

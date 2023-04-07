@@ -82,9 +82,27 @@ function DropDown(props) {
   const NavigateToLogout = () => {
     checkIsLoggedIn();
     if (data.length != 0) {
-      alert("perform logout");
+      handleLogout();
+      navigate('/loginPage');
     } else {
       alert("please login.");
+    }
+  }
+
+  function handleLogout() {
+    // alert("checkIsLoggedIn...");
+    var url="http://localhost:8080/logout";
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      data = request.responseText; // store reponse in variable and convert to JSON object
+      // alert(data);
+      if (data.includes("Logout Success")) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 
