@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet'
 
 import Navbar from '../components/navbar'
 import Tryon from '../components/tryon'
+import AddReview from '../components/add-review'
 import SingleReviewCard from '../components/single-review-card'
 import Footer from '../components/footer'
 import './productsitem1.css'
@@ -120,6 +121,7 @@ const Productsitem1 = (props) => {
         </div>
         <div className="productsitem1-container7 item-reviews-all">
           <h1 className="reviews-title">Reviews</h1>
+          <AddReview></AddReview>
           <SingleReviewCard></SingleReviewCard>
           <SingleReviewCard></SingleReviewCard>
           <SingleReviewCard></SingleReviewCard>
