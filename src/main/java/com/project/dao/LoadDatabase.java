@@ -18,7 +18,6 @@ import com.project.entity.Sequence;
 import com.project.entity.VisitEvent;
 import com.project.entity.types.AccountType;
 import com.project.entity.types.EventStatus;
-//import com.project.tryon.ImageStorageService;
 
 import jakarta.annotation.Resource;
 
@@ -38,6 +37,9 @@ public class LoadDatabase {
 		HashSet<String> category=new HashSet<String>();
 		HashSet<String> category1=new HashSet<String>();
 		HashSet<String> category2=new HashSet<String>();
+		HashSet<String> category3=new HashSet<String>();
+		HashSet<String> category4=new HashSet<String>();
+		HashSet<String> category5=new HashSet<String>();
 		color.add("red");  
 		color.add("blue");
 		color.add("green");
@@ -52,15 +54,7 @@ public class LoadDatabase {
 		color3.add("black");
 		color3.add("pink");
 		color3.add("yellow");
-		category.add("full-frame");
-		category.add("semi-rimless");
 		category.add("rimless");
-<<<<<<< HEAD
-		category1.add("rimless");
-		category2.add("semi-rimless");
-		category2.add("rimless");
-		
-=======
 		category.add("reading");
 		category.add("Oakley");
 		category.add("Cat eye");
@@ -93,7 +87,6 @@ public class LoadDatabase {
 		category.add("women");
 
 
->>>>>>> anusha-dev
 		return args -> {
 			log.info("Preloading " + sequenceDao.save(new Sequence("ORDER_ITEM", (long) 1)));
 			log.info("Preloading " + sequenceDao.save(new Sequence("ORDER", (long) 1)));
@@ -106,9 +99,11 @@ public class LoadDatabase {
 
 
 			catalogDao.save(new Item((long) 1, "Evelyn", "Oakley" , "Cat eye", "wide", 22.95, "titanium", 12.0, 56.0, 37.0, 140.0, category, color));
-			catalogDao.save(new Item((long) 2, "Yomary", "Carrera", "Cat eye", "wide", 25.95, "TR90", 19.2, 57.0, 48.0, 140.0, category1, color3));
-			catalogDao.save(new Item((long) 3, "Cicely", "Oakley", "Geometric", "wide", 15.00, "TR90", 20.0, 56.18, 45.96, 139.0, category2, color2));
-			catalogDao.save(new Item((long) 4, "Yomary", "Carrera", "Cat eye", "wide", 15.00, "TR90", 20.0, 56.18, 45.96, 139.0, category, color2));
+			catalogDao.save(new Item((long) 2, "Yomary", "Carrera", "Cat eye", "wide", 25.95, "TR90", 19.2, 57.0, 48.0, 140.0, category2, color3));
+			catalogDao.save(new Item((long) 3, "Cicely", "Oakley", "Geometric", "wide", 15.00, "TR90", 20.0, 56.18, 45.96, 139.0, category3, color2));
+			catalogDao.save(new Item((long) 4, "Yomary", "Carrera", "Cat eye", "wide", 15.00, "TR90", 20.0, 56.18, 45.96, 139.0, category2, color2));
+			catalogDao.save(new Item((long) 5, "Ace", "Oakley", "Aviator", "wide", 35.95, "mixed", 23.2, 56.02, 46.71, 142.0, category4, color2));
+			catalogDao.save(new Item((long) 6, "Litisha", "Oakley", "Cat eye", "wide", 28.98, "TR90", 10.4, 56.15, 42.88, 144.0, category5, color2)); // sunglasses
 
 			catalogDao.findAll().forEach(item -> {
 				log.info("Preloaded " + item);});
