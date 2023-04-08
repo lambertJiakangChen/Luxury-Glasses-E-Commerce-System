@@ -72,14 +72,14 @@ public class CatalogController {
 	
 
 	@RequestMapping("/viewCatalog")
-	String viewCatalog(HttpServletRequest request, HttpSession session) {
-		return catalogService.viewCatalog().toString();
+	Collection<Item> viewCatalog(HttpServletRequest request, HttpSession session) {
+		return catalogService.viewCatalog();
 	}
 
 
 	@RequestMapping("/searchByName")
-	String searchItemByName(HttpServletRequest request, HttpSession session) {
-		return catalogService.searchItemByName(request.getParameter("search")).toString();
+	Collection<Item> searchItemByName(HttpServletRequest request, HttpSession session) {
+		return catalogService.searchItemByName(request.getParameter("search"));
 	}
 
 	@RequestMapping("/sort")

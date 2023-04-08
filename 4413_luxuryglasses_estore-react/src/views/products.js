@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useState, useRef } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 import { Helmet } from 'react-helmet'
 
@@ -9,8 +11,206 @@ import Footer from '../components/footer'
 import './products.css'
 
 const Products = (props) => {
+
+  var userDataObj;
+  const navigate = useNavigate();
+  const [message, setMessage] = useState('');
+  const [message1, setMessage1] = useState('');
+  const checkbox1 = useRef();
+  const checkbox2 = useRef();
+  const checkbox3 = useRef();
+  const checkbox4 = useRef();
+  
+  // DISPLAY ITEM ON LOAD ----------------------------------------------------------
+  const viewCatalog = async(e) => {
+    e.preventDefault();
+    const target = document.querySelector('#Ajaxresult');
+    var url="http://localhost:8080/catalog/viewCatalog";
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; // store reponse in variable and convert to JSON object
+      target.textContent = data;
+      if (data.length == 0) {
+        alert ("Error item not found.");
+      } else {
+        userDataObj = JSON.parse(data);
+        document.getElementsByClassName("products-component1").name = userDataObj[0].itemName;
+        document.getElementById("Hi").innerHTML = userDataObj[0].itemName;
+        document.querySelector('#products-component1').name = userDataObj[0].itemName;
+
+        if (userDataObj.accountType != "ADMIN") {
+          document.getElementById("register-admin-form").style.display = 'none';
+        }
+      }
+    }
+  }
+  //  SEARCH BY NAME --------------------------------------------------------------------------
+  const searchByName = async(e) => {	  
+	e.preventDefault();
+	
+	const target = document.querySelector('#Ajaxresult');
+	const target2 = document.querySelector('#Hi');
+
+    let itemname = document.getElementById("search_name").value;
+
+    var url="http://localhost:8080/catalog/searchByName?search=" + itemname;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; 
+      target.textContent = data;// store reponse in variable and convert to JSON object
+      if (data.length == 0) {
+        alert ("Item not found");
+      } else {
+        userDataObj = JSON.parse(data);
+        target2.textContent = userDataObj[0].material;
+        navigate('/products');
+      }
+    }
+  }
+  //  SORT BY PRICE --------------------------------------------------------------------------
+  const sortByPrice = async(e) => {	  
+	e.preventDefault();
+	const target = document.querySelector('#Ajaxresult');
+	let sortprice;
+    if (checkbox1.current.checked) {
+        sortprice = "ascending"
+        setMessage(sortprice)
+        }
+	else if (checkbox2.current.checked) {
+        sortprice = "descending"
+        setMessage(sortprice)
+        }
+    else{
+		//sortprice = None
+		sortprice = null
+		setMessage(sortprice);
+	}
+
+    var url="http://localhost:8080/catalog/sortByPrice?sort=" + sortprice;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; 
+      if (data.length == 0) {
+        alert ("Item not found");
+      } else {
+		target.textContent = data;
+        userDataObj = JSON.parse(data);
+        navigate('/products');
+      }
+    }
+  }
+  //  SORT BY ITEMNAME --------------------------------------------------------------------------
+  const sortByName = async(e) => {	  
+	e.preventDefault();
+	const target = document.querySelector('#Ajaxresult');
+    let sortname;
+    if (checkbox3.current.checked) {
+        sortname = "ascending"
+        setMessage1(sortname)
+        }
+	else if (checkbox4.current.checked) {
+        sortname = "descending"
+        setMessage1(sortname)
+        }
+    else{
+		//sortprice = None
+		sortname = null
+		setMessage1(sortname);
+	}
+
+    var url="http://localhost:8080/catalog/sortByItemName?sort=" + sortname;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; 
+      if (data.length == 0) {
+        alert ("Item not found");
+      } else {
+		target.textContent = data;
+        userDataObj = JSON.parse(data);
+        navigate('/products');
+      }
+    }
+  }
+  //  FILTER BY COLOR --------------------------------------------------------------------------
+   const filterByColor = async(e) => {	  
+	e.preventDefault();
+	
+	const target = document.querySelector('#Ajaxresult');
+
+    let color = document.getElementById("filter-color").value;
+
+    var url="http://localhost:8080/catalog/filterByColor?color=" + color;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; 
+      target.textContent = data;// store reponse in variable and convert to JSON object
+      if (data.length == 0) {
+        alert ("no item has this color");
+      } else {
+        userDataObj = JSON.parse(data);
+        navigate('/products');
+      }
+    }
+  }
+  //  FILTER BY BRAND --------------------------------------------------------------------------
+  const filterByBrand = async(e) => {	  
+	e.preventDefault();
+	
+	const target = document.querySelector('#Ajaxresult');
+
+    let brand = document.getElementById("filter-brand").value;
+
+    var url="http://localhost:8080/catalog/filterByBrand?brand=" + brand;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; 
+      target.textContent = data;// store reponse in variable and convert to JSON object
+      if (data.length == 0) {
+        alert ("no item has this brand");
+      } else {
+        userDataObj = JSON.parse(data);
+        navigate('/products');
+      }
+    }
+  }
+  //  FILTER BY cate --------------------------------------------------------------------------
+  const filterByCate = async(e) => {	  
+	e.preventDefault();
+	
+	const target = document.querySelector('#Ajaxresult');
+
+    let cate = document.getElementById("filter-cate").value;
+
+    var url="http://localhost:8080/catalog/filterByCategory?cate=" + cate;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; 
+      target.textContent = data;// store reponse in variable and convert to JSON object
+      if (data.length == 0) {
+        alert ("no item has this category");
+      } else {
+        userDataObj = JSON.parse(data);
+        navigate('/products');
+      }
+    }
+  }
+  // -----------------------------------------------------------
   return (
-    <div className="products-container">
+    <div className="products-container" onLoad={viewCatalog}>
       <Helmet>
         <title>Products - 4413_LuxuryGlasses_EStore</title>
         <meta
@@ -23,10 +223,12 @@ const Products = (props) => {
         <form className="products-form">
           <input
             type="text"
+            id="search_name"
+            name="search"
             placeholder="Enter an item name"
             className="products-input input"
           />
-          <button type="submit" className="products-button button">
+          <button type="submit" className="products-button button" onClick = {searchByName}>
             SEARCH
           </button>
         </form>
@@ -37,27 +239,30 @@ const Products = (props) => {
               <div className="products-container04">
                 <input
                   type="checkbox"
-                  id="price-sort-asc"
-                  name="search"
+                  id="sort-price-asc"
+                  name="sort"
                   value="ascending"
                   className="products-checkbox"
+                  ref={checkbox1}
                 />
                 <label>ascending</label>
               </div>
               <div className="products-container05">
                 <input
                   type="checkbox"
-                  id="price-sort-des"
+                  id="sort-price-des"
                   name="sort"
                   value="descending"
                   className="products-checkbox1"
+                  ref={checkbox2}
                 />
                 <label>descending</label>
               </div>
-              <button type="submit" className="button">
+              <button type="submit" className="button" onClick = {sortByPrice}>
                 Go
               </button>
             </form>
+            <p>{message}</p>
           </div>
           <div className="products-container06">
             <h1 className="products-text3">Name</h1>
@@ -65,29 +270,35 @@ const Products = (props) => {
               <div className="products-container07">
                 <input
                   type="checkbox"
-                  id="name-sort-asc"
+                  id="sort"
                   name="sort"
                   value="ascending"
                   className="products-checkbox2"
+                  ref={checkbox3}
                 />
                 <label>ascending</label>
               </div>
               <div className="products-container08">
                 <input
                   type="checkbox"
-                  id="name-sort-des"
+                  id="sort"
                   name="sort"
                   value="descending"
                   className="products-checkbox3"
+                  ref={checkbox4}
                 />
                 <label>descending</label>
               </div>
+              <button type="submit" className="button" onClick = {sortByName}>
+                Go
+              </button>
             </form>
+            <p>{message1}</p>
           </div>
+          
           <div className="products-container09">
-            <form className="products-form3">
-              <div className="products-container10"></div>
               <div className="products-container11">
+               <form className="products-form3">
                 <div className="products-container12">
                   <svg viewBox="0 0 1024 1024" className="products-icon">
                     <path d="M406 598q80 0 136-56t56-136-56-136-136-56-136 56-56 136 56 136 136 56zM662 598l212 212-64 64-212-212v-34l-12-12q-76 66-180 66-116 0-197-80t-81-196 81-197 197-81 196 81 80 197q0 42-20 95t-46 85l12 12h34z"></path>
@@ -100,7 +311,12 @@ const Products = (props) => {
                     className="products-textinput input"
                   />
                   <label className="products-text6">filter by Color</label>
+                  <button type="submit" className="button" onClick = {filterByColor}>
+	                Go
+	              </button>          
                 </div>
+                </form>
+                <form className="products-form4">
                 <div className="products-container13">
                   <svg viewBox="0 0 1024 1024" className="products-icon2">
                     <path d="M406 598q80 0 136-56t56-136-56-136-136-56-136 56-56 136 56 136 136 56zM662 598l212 212-64 64-212-212v-34l-12-12q-76 66-180 66-116 0-197-80t-81-196 81-197 197-81 196 81 80 197q0 42-20 95t-46 85l12 12h34z"></path>
@@ -113,7 +329,12 @@ const Products = (props) => {
                     className="products-textinput1 input"
                   />
                   <label className="products-text7">filter by Brand</label>
+                  <button type="submit" className="button" onClick = {filterByBrand}>
+	                Go
+	              </button>
                 </div>
+                </form>    
+                <form className="products-form5">          
                 <div className="products-container14">
                   <svg viewBox="0 0 1024 1024" className="products-icon4">
                     <path d="M406 598q80 0 136-56t56-136-56-136-136-56-136 56-56 136 56 136 136 56zM662 598l212 212-64 64-212-212v-34l-12-12q-76 66-180 66-116 0-197-80t-81-196 81-197 197-81 196 81 80 197q0 42-20 95t-46 85l12 12h34z"></path>
@@ -125,60 +346,67 @@ const Products = (props) => {
                     placeholder="Enter category"
                     className="products-textinput2 input"
                   />
-                  <label className="products-text8">filter by Category</label>
+                  <label className="products-text8">filter by Cate</label>
+                  <button type="submit" className="button" onClick = {filterByCate}>
+	                Go
+	              </button>
                 </div>
+                </form>
               </div>
-            </form>
           </div>
         </div>
+        <div id="Ajaxresult"></div>
+        <div id="Hi"></div>
         <div className="products-container15">
           <div className="products-container16">
             <div className="products-items">
               <Link to="/productsitem1" className="products-navlink">
                 <ItemCard
-                  image_src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDF8fHdhdGNofGVufDB8fHx8MTY4MDM2Nzk4MA&amp;ixlib=rb-4.0.3&amp;w=1500"
+                  name="item1"
+                  image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
                   rootClassName="item-card-root-class-name29"
+                  value="19"
                   className="products-component1"
                 ></ItemCard>
               </Link>
               <Link to="/productsitem2" className="products-navlink1">
                 <ItemCard
                   name="item2"
+                  image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
                   rootClassName="item-card-root-class-name27"
+                  value="23"
                   className="products-component2"
                 ></ItemCard>
               </Link>
               <Link to="/productsitem3" className="products-navlink2">
                 <ItemCard
                   name="item3"
-                  image_src="https://images.unsplash.com/photo-1590312261344-59437f04f9ac?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDEwOXx8d2F0Y2h8ZW58MHx8fHwxNjgwMzcyNTAy&amp;ixlib=rb-4.0.3&amp;w=1500"
+                  image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
                   rootClassName="item-card-root-class-name26"
+                  value="23"
                   className="products-component3"
                 ></ItemCard>
               </Link>
               <ItemCard
                 name="item3"
-                image_src="https://images.unsplash.com/photo-1590312261344-59437f04f9ac?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDEwOXx8d2F0Y2h8ZW58MHx8fHwxNjgwMzcyNTAy&amp;ixlib=rb-4.0.3&amp;w=1500"
+                image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
                 rootClassName="item-card-root-class-name22"
+                value="19"
                 className="products-component4"
               ></ItemCard>
               <ItemCard
                 name="item3"
-                image_src="https://images.unsplash.com/photo-1590312261344-59437f04f9ac?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDEwOXx8d2F0Y2h8ZW58MHx8fHwxNjgwMzcyNTAy&amp;ixlib=rb-4.0.3&amp;w=1500"
+                image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
                 rootClassName="item-card-root-class-name23"
+                value="23"
                 className="products-component5"
               ></ItemCard>
               <ItemCard
                 name="item3"
-                image_src="https://images.unsplash.com/photo-1590312261344-59437f04f9ac?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDEwOXx8d2F0Y2h8ZW58MHx8fHwxNjgwMzcyNTAy&amp;ixlib=rb-4.0.3&amp;w=1500"
+                image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
                 rootClassName="item-card-root-class-name24"
+                value="22"
                 className="products-component6"
-              ></ItemCard>
-              <ItemCard
-                name="item3"
-                image_src="https://images.unsplash.com/photo-1590312261344-59437f04f9ac?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDEwOXx8d2F0Y2h8ZW58MHx8fHwxNjgwMzcyNTAy&amp;ixlib=rb-4.0.3&amp;w=1500"
-                rootClassName="item-card-root-class-name25"
-                className="products-component7"
               ></ItemCard>
             </div>
           </div>
