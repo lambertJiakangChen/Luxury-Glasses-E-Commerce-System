@@ -10,7 +10,28 @@ import SingleReviewCard from '../components/single-review-card'
 import Footer from '../components/footer'
 import './productsitem1.css'
 
-const Productsitem1 = (props) => {
+function Productsitem1(props) {
+
+  const submitAddToCartHandler = async(e) => {
+    e.preventDefault();
+
+    let itemName = document.getElementById("item-name").innerHTML;
+
+    var url="http://localhost:8080/cart/addItem?item=" + itemName;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; // store reponse in variable and convert to JSON object
+      if (data.includes("Added to Cart")) {
+        alert(data);
+        navigate('/account');
+      } else {
+        alert("Error occurred: " + data);
+      }
+    }
+  }
+
   return (
     <div className="productsitem1-container">
       <Helmet>
@@ -30,20 +51,20 @@ const Productsitem1 = (props) => {
               className="productsitem1-image"
             />
             <div className="productsitem1-container3">
-              <h1 className="productsitem1-text">
-                Citizen Promaster Fugu Dive Automatic(item1)
+              <h1 className="productsitem1-text" id="item-name">
+                Evelyn
               </h1>
+              <p id="item-id">1</p>
               <p className="productsitem1-text01">
-                Brand:Evelyn   Material:TR90  Shape: Cat eye
+                Brand:Oakley  Material:TR90  Shape: Cat eye
               </p>
               <h2 className="productsitem1-text02">$99999</h2>
-              <form className="productsitem1-form">
-                <Link
-                  to="/checkout-login"
-                  className="productsitem1-button button"
-                >
+              <form 
+                className="productsitem1-form"
+                onSubmit={submitAddToCartHandler}>
+                <button type="submit" className="productsitem1-button button">
                   ADD TO CART
-                </Link>
+                </button>
               </form>
               <p className="productsitem1-text03">
                 <span className="productsitem1-text04">SPECIFICATIONS</span>
