@@ -100,7 +100,7 @@ public class CheckoutController {
 	@RequestMapping("/shipping")
 	String addAddress(HttpServletRequest request, HttpSession session) {
 		String country = request.getParameter("country");
-		String name = request.getParameter("fullname");
+		String name = request.getParameter("name");
 //		long phone = Long.parseLong(request.getParameter("phone"));
 		String phone = request.getParameter("phone");
 		String line1 = request.getParameter("line1");
