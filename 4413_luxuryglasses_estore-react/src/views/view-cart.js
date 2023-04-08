@@ -9,9 +9,36 @@ import CartItemCard from '../components/cart-item-card'
 import Footer from '../components/footer'
 import './view-cart.css'
 
-const ViewCart = (props) => {
+function ViewCart(props) {
+
+  const getNumberOfItemsAndTotal = async(e) => {
+    var numberOfItems = 0;
+    var total = 0.0;
+    e.preventDefault();
+
+    var url="http://localhost:8080/cart/getAllItems";
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; // store reponse in variable and convert to JSON object
+      if (data.length == 0) {
+        document.getElementById("title-subtotal").innerHTML = "SUBTOTAL (0)";
+      } else {
+        var cartDataObj = JSON.parse(data);
+
+        for (const item of Object.entries(cartDataObj)) {
+          numberOfItems += item[1].quantity;
+          total += item[1].totalPrice;
+        }
+        document.getElementById("title-subtotal").innerHTML = "SUBTOTAL (" + numberOfItems + ")";
+        document.getElementById("subtotal-replace").innerHTML = "$" + total;
+      }
+    }
+  }
+
   return (
-    <div className="view-cart-container">
+    <div className="view-cart-container" onLoad={getNumberOfItemsAndTotal}>
       <Helmet>
         <title>ViewCart - 4413_LuxuryGlasses_EStore</title>
         <meta
@@ -32,7 +59,7 @@ const ViewCart = (props) => {
               <CartItemCard></CartItemCard>
             </div>
             <div id="cart-total" className="view-cart-container4">
-              <h3 id="title-subtotal">SUBTOTAL (X)</h3>
+              <h3 id="title-subtotal">SUBTOTAL</h3>
               <p id="subtotal-replace" className="view-cart-text2">
                 $
               </p>

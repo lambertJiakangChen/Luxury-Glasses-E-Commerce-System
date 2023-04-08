@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -32,7 +34,7 @@ public class Item {
 	private Set<String> category = new HashSet<String>();
 	private Set<String> colors = new HashSet<String>();
 	
-	@OneToMany
+	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER) //, cascade = CascadeType.ALL
 	private List<Review> reviews;
 	
 //	private int stock; 
