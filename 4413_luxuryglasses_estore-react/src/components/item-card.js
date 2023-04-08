@@ -58,7 +58,7 @@ const ItemCard = (props) => {
 }
 
 ItemCard.defaultProps = {
-  name: 'item1',
+  name: 'Glasses_item',
   image_src: 'a294c255-8765-472c-8132-de368d706ea7',
   image_alt: 'image',
   currency: '$',

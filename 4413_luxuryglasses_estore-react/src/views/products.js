@@ -24,23 +24,21 @@ const Products = (props) => {
   // DISPLAY ITEM ON LOAD ----------------------------------------------------------
   const viewCatalog = async(e) => {
     e.preventDefault();
-
-    var url="http://localhost:8080/viewCatalog";
+    const target = document.querySelector('#Ajaxresult');
+    var url="http://localhost:8080/catalog/viewCatalog";
     var request = new XMLHttpRequest(); // create a connection
     request.open('POST', url);
     request.send(); // send the http request
     request.onload = function() { // When the response comes invoke the following function
       let data = request.responseText; // store reponse in variable and convert to JSON object
+      target.textContent = data;
       if (data.length == 0) {
         alert ("Error item not found.");
       } else {
         userDataObj = JSON.parse(data);
-
-        document.getElementById("fname-replace").innerHTML = userDataObj.fName;
-        document.getElementById("lname-replace").innerHTML = userDataObj.lName;
-        document.getElementById("username-replace").innerHTML = userDataObj.username;
-        document.getElementById("email-replace").innerHTML = userDataObj.email;
-        document.getElementById("acc-type-replace").innerHTML = userDataObj.accountType;
+        document.getElementsByClassName("products-component1").name = userDataObj[0].itemName;
+        document.getElementById("Hi").innerHTML = userDataObj[0].itemName;
+        document.querySelector('#products-component1').name = userDataObj[0].itemName;
 
         if (userDataObj.accountType != "ADMIN") {
           document.getElementById("register-admin-form").style.display = 'none';
@@ -367,6 +365,7 @@ const Products = (props) => {
                   name="item1"
                   image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
                   rootClassName="item-card-root-class-name29"
+                  value="19"
                   className="products-component1"
                 ></ItemCard>
               </Link>
@@ -375,6 +374,7 @@ const Products = (props) => {
                   name="item2"
                   image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
                   rootClassName="item-card-root-class-name27"
+                  value="23"
                   className="products-component2"
                 ></ItemCard>
               </Link>
@@ -383,6 +383,7 @@ const Products = (props) => {
                   name="item3"
                   image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
                   rootClassName="item-card-root-class-name26"
+                  value="23"
                   className="products-component3"
                 ></ItemCard>
               </Link>
@@ -390,18 +391,21 @@ const Products = (props) => {
                 name="item3"
                 image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
                 rootClassName="item-card-root-class-name22"
+                value="19"
                 className="products-component4"
               ></ItemCard>
               <ItemCard
                 name="item3"
                 image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
                 rootClassName="item-card-root-class-name23"
+                value="23"
                 className="products-component5"
               ></ItemCard>
               <ItemCard
                 name="item3"
                 image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
                 rootClassName="item-card-root-class-name24"
+                value="22"
                 className="products-component6"
               ></ItemCard>
             </div>
