@@ -119,19 +119,19 @@ public class CatalogController {
 	
 
 	@RequestMapping("/filterByBrand")
-	String filterCatalogByBrand(HttpServletRequest request, HttpSession session) {
-		return catalogService.filterbybrand(request.getParameter("brand")).toString();
+	Collection<Item> filterCatalogByBrand(HttpServletRequest request, HttpSession session) {
+		return catalogService.filterbybrand(request.getParameter("brand"));
 	}
 	
 	@RequestMapping("/filterByCategory")
-	String filterCatalogByCatagory(HttpServletRequest request, HttpSession session) {
-		return catalogService.filterbycate(request.getParameter("cate")).toString();
+	Collection<Item> filterCatalogByCatagory(HttpServletRequest request, HttpSession session) {
+		return catalogService.filterbycate(request.getParameter("cate"));
 	}
 	
 
 	@RequestMapping("/filterByColor")
-	String filterCatalogByColor(HttpServletRequest request, HttpSession session) {
-		return catalogService.filterbycolor(request.getParameter("color")).toString();
+	Collection<Item> filterCatalogByColor(HttpServletRequest request, HttpSession session) {
+		return catalogService.filterbycolor(request.getParameter("color"));
 	}
 	
 

@@ -9,10 +9,12 @@ import Navbar from '../components/navbar'
 import ItemCard from '../components/item-card'
 import Footer from '../components/footer'
 import './products.css'
+import productsitem1 from "./productsitem1.js"
 
-const Products = (props) => {
+const Products = () => {
 
   var userDataObj;
+  var my;
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
   const [message1, setMessage1] = useState('');
@@ -37,12 +39,45 @@ const Products = (props) => {
         alert ("Error item not found.");
       } else {
         userDataObj = JSON.parse(data);
-        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
-        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
-        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
-        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
-        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
-        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
+        if (userDataObj[0] != null){
+	        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
+	        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
+	        document.getElementById("color1-replace").innerHTML = userDataObj[0].color;
+	        document.getElementById("category1-replace").innerHTML = userDataObj[0].category;
+	        document.getElementById("brand1-replace").innerHTML = userDataObj[0].brand;
+        }else{
+			document.getElementById("item1-replace").innerHTML = "ItemName";
+	        document.getElementById("price1-replace").innerHTML = "price";
+	        document.getElementById("color1-replace").innerHTML = "color";
+	        document.getElementById("category1-replace").innerHTML = "category";
+	        document.getElementById("brand1-replace").innerHTML = "brand";
+		}
+	    if (userDataObj[1] != null){
+	        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
+	        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
+	        document.getElementById("color2-replace").innerHTML = userDataObj[1].color;
+	        document.getElementById("category2-replace").innerHTML = userDataObj[1].category;
+	        document.getElementById("brand2-replace").innerHTML = userDataObj[1].brand;
+        }else{
+			document.getElementById("item2-replace").innerHTML = "ItemName";
+	        document.getElementById("price2-replace").innerHTML = "price";
+	        document.getElementById("color2-replace").innerHTML = "color";
+	        document.getElementById("category2-replace").innerHTML = "category";
+	        document.getElementById("brand2-replace").innerHTML = "brand";
+		}
+	    if (userDataObj[2] != null){
+	        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
+	        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
+	        document.getElementById("color3-replace").innerHTML = userDataObj[2].color;
+	        document.getElementById("category3-replace").innerHTML = userDataObj[2].category;
+	        document.getElementById("brand3-replace").innerHTML = userDataObj[2].brand;
+        }else{
+			document.getElementById("item3-replace").innerHTML = "ItemName";
+	        document.getElementById("price3-replace").innerHTML = "price";
+	        document.getElementById("color3-replace").innerHTML = "mycolor";
+	        document.getElementById("category3-replace").innerHTML = "category";
+	        document.getElementById("brand3-replace").innerHTML = "brand";
+		}
       }
     }
   }
@@ -65,20 +100,44 @@ const Products = (props) => {
         alert ("Item not found");
       } else {
         userDataObj = JSON.parse(data);
-        if (userDataObj[0] != null){
+         if (userDataObj[0] != null){
 	        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
 	        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
-	        }
+	        document.getElementById("color1-replace").innerHTML = userDataObj[0].color;
+	        document.getElementById("category1-replace").innerHTML = userDataObj[0].category;
+	        document.getElementById("brand1-replace").innerHTML = userDataObj[0].brand;
+        }else{
+			document.getElementById("item1-replace").innerHTML = "ItemName";
+	        document.getElementById("price1-replace").innerHTML = "price";
+	        document.getElementById("color1-replace").innerHTML = "color";
+	        document.getElementById("category1-replace").innerHTML = "category";
+	        document.getElementById("brand1-replace").innerHTML = "brand";
+		}
 	    if (userDataObj[1] != null){
 	        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
 	        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
-	        }
+	        document.getElementById("color2-replace").innerHTML = userDataObj[1].color;
+	        document.getElementById("category2-replace").innerHTML = userDataObj[1].category;
+	        document.getElementById("brand2-replace").innerHTML = userDataObj[1].brand;
+        }else{
+			document.getElementById("item2-replace").innerHTML = "ItemName";
+	        document.getElementById("price2-replace").innerHTML = "price";
+	        document.getElementById("color2-replace").innerHTML = "color";
+	        document.getElementById("category2-replace").innerHTML = "category";
+	        document.getElementById("brand2-replace").innerHTML = "brand";
+		}
 	    if (userDataObj[2] != null){
 	        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
 	        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
+	        document.getElementById("color3-replace").innerHTML = userDataObj[2].color;
+	        document.getElementById("category3-replace").innerHTML = userDataObj[2].category;
+	        document.getElementById("brand3-replace").innerHTML = userDataObj[2].brand;
         }else{
 			document.getElementById("item3-replace").innerHTML = "ItemName";
 	        document.getElementById("price3-replace").innerHTML = "price";
+	        document.getElementById("color3-replace").innerHTML = "mycolor";
+	        document.getElementById("category3-replace").innerHTML = "category";
+	        document.getElementById("brand3-replace").innerHTML = "brand";
 		}
         navigate('/products');
       }
@@ -114,12 +173,27 @@ const Products = (props) => {
         alert ("Item not found");
       } else {
         userDataObj = JSON.parse(data);
-        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
-        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
-        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
-        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
-        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
-        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
+        if (userDataObj[0] != null){
+	        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
+	        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
+        }else{
+			document.getElementById("item1-replace").innerHTML = "ItemName";
+	        document.getElementById("price1-replace").innerHTML = "price";
+		}
+	    if (userDataObj[1] != null){
+	        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
+	        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
+        }else{
+			document.getElementById("item2-replace").innerHTML = "ItemName";
+	        document.getElementById("price2-replace").innerHTML = "price";
+		}
+	    if (userDataObj[2] != null){
+	        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
+	        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
+        }else{
+			document.getElementById("item3-replace").innerHTML = "ItemName";
+	        document.getElementById("price3-replace").innerHTML = "price";
+		}
         navigate('/products');
       }
     }
@@ -154,12 +228,27 @@ const Products = (props) => {
         alert ("Item not found");
       } else {
         userDataObj = JSON.parse(data);
-        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
-        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
-        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
-        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
-        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
-        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
+        if (userDataObj[0] != null){
+	        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
+	        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
+        }else{
+			document.getElementById("item1-replace").innerHTML = "ItemName";
+	        document.getElementById("price1-replace").innerHTML = "price";
+		}
+	    if (userDataObj[1] != null){
+	        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
+	        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
+        }else{
+			document.getElementById("item2-replace").innerHTML = "ItemName";
+	        document.getElementById("price2-replace").innerHTML = "price";
+		}
+	    if (userDataObj[2] != null){
+	        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
+	        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
+        }else{
+			document.getElementById("item3-replace").innerHTML = "ItemName";
+	        document.getElementById("price3-replace").innerHTML = "price";
+		}
         navigate('/products');
       }
     }
@@ -243,7 +332,7 @@ const Products = (props) => {
           content="Products - 4413_LuxuryGlasses_EStore"
         />
       </Helmet>
-      <Navbar rootClassName="navbar-root-class-name8"></Navbar>
+      <Navbar rootClassName="navbar-root-class-name8"></Navbar>   
       <div className="products-container01">
         <form className="products-form">
           <input
@@ -398,6 +487,15 @@ const Products = (props) => {
                 <p id="price1-replace" className="price1-text33">
                   price
                 </p>
+                <p id="brand1-replace" className="brand1-text33">
+                  brand
+                </p>
+                <p id="category1-replace" className="Category1-text33">
+                  category
+                </p>
+                <p id="color1-replace" className="color1-text33">
+                  color
+                </p>
                 </div>
               </Link>
               <Link to="/productsitem2" className="products-navlink1">
@@ -412,6 +510,15 @@ const Products = (props) => {
                 </p>
                 <p id="price2-replace" className="price2-text33">
                   price
+                </p>
+                <p id="brand2-replace" className="brand2-text33">
+                  brand
+                </p>
+                <p id="category2-replace" className="Category2-text33">
+                  category
+                </p>
+                <p id="color2-replace" className="color2-text33">
+                  color
                 </p>
                 </div>
               </Link>
@@ -428,12 +535,23 @@ const Products = (props) => {
                 <p id="price3-replace" className="price3-text33">
                   price
                 </p>
+                <p id="brand3-replace" className="brand3-text33">
+                  brand
+                </p>
+                <p id="category3-replace" className="category3-text33">
+                  category
+                </p>
+                <p id="color3-replace" className="color3-text33">
+                  color
+                </p>
                 </div>
               </Link>
+              <productsitem1 value = "nihao"/>
               <ItemCard               
                 image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
                 rootClassName="item-card-root-class-name22"               
                 className="products-component4"
+                varOne = {my}
               ></ItemCard>
               <ItemCard               
                 image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"

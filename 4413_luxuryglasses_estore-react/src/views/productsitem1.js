@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
-
 import Navbar from '../components/navbar'
 import Tryon from '../components/tryon'
 import AddReview from '../components/add-review'
@@ -10,7 +9,7 @@ import SingleReviewCard from '../components/single-review-card'
 import Footer from '../components/footer'
 import './productsitem1.css'
 
-function Productsitem1(props) {
+const Productsitem1 = (props) => {
 
   const submitAddToCartHandler = async(e) => {
     e.preventDefault();
@@ -51,8 +50,8 @@ function Productsitem1(props) {
               className="productsitem1-image"
             />
             <div className="productsitem1-container3">
-              <h1 className="productsitem1-text" id="item-name">
-                Evelyn
+              <h1 className="productsitem1-text" id="item-name">               
+				{props.value}			
               </h1>
               <p id="item-id">1</p>
               <p className="productsitem1-text01">

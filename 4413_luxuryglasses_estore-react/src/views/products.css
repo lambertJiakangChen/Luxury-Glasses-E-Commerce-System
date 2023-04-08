@@ -286,7 +286,7 @@
 .firstitem {
   flex: 0 0 auto;
   width: 195px;
-  height: 366px;
+  height: 440px;
   margin: var(--dl-space-space-unit);
   display: flex;
   margin-top: var(--dl-space-space-threeunits);
@@ -300,13 +300,13 @@
 }
 .firstitemimage {
   width: 192px;
-  height: 306px;
+  height: 440px;
   object-fit: cover;
 }
 .seconditem {
   flex: 0 0 auto;
   width: 195px;
-  height: 366px;
+  height: 440px;
   margin: var(--dl-space-space-unit);
   display: flex;
   margin-top: var(--dl-space-space-threeunits);
@@ -326,7 +326,7 @@
 .thirditem {
   flex: 0 0 auto;
   width: 195px;
-  height: 366px;
+  height: 440px;
   margin: var(--dl-space-space-unit);
   display: flex;
   margin-top: var(--dl-space-space-threeunits);
@@ -342,6 +342,24 @@
   width: 192px;
   height: 306px;
   object-fit: cover;
+}
+.Category1-text33{
+	text-align: center;
+}
+.Category2-text33{
+	text-align: center;
+}
+.Category3-text33{
+	text-align: center;
+}
+.color1-text33{
+	text-align: center;
+}
+.color2-text33{
+	text-align: center;
+}
+.color3-text33{
+	text-align: center;
 }
 @media(max-width: 767px) {
   .products-items {
