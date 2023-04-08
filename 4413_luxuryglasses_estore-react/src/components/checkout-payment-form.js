@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 import PropTypes from 'prop-types'
@@ -7,6 +7,38 @@ import './checkout-payment-form.css'
 
 const CheckoutPaymentForm = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  var clickCount = 0
+  
+  const submitHandler = async(e) => {
+	  e.preventDefault();
+	  clickCount += 1;
+	  let fullname = document.getElementById("fullname-input-checkout").value;
+	  let card = document.getElementById("card-input-checkout").value;
+	  let exp = document.getElementById("exp-input-checkout").value;
+	  let cvv = document.getElementById("cvv-input-checkout").value;
+	  
+	  if (clickCount % 3 === 0) {
+		  // Payment is denied at every 3rd request
+		  clickCount = 0;
+		  alert("Credit Card Authorization Failed.");
+	  } else {
+	    // process payment
+	     var url= "http://localhost:8080/checkout/payment?fullname=" + fullname + "&card=" + card 
+	     + "&exp=" + exp + "&cvv=" + cvv;
+	     var request = new XMLHttpRequest();
+	     request.open('POST', url);
+	     request.send();
+	     request.onload = function() {
+			 let data = request.responseText;
+			 if (data.includes("successfully")){
+				 alert(data + " \nProceed to payment details");
+			 } else {
+				alert("Error occurred: " + data);
+			 }
+		}
+	  }
+  }
+  
   return (
     <div
       id="checkout_payment_form"
@@ -22,6 +54,7 @@ const CheckoutPaymentForm = (props) => {
         method="POST"
         enctype="application/x-www-form-urlencoded"
         className="checkout-payment-form-form"
+        onSubmit={submitHandler}
       >
         <div className="checkout-payment-form-checkout-stage">
           <span className="checkout-payment-form-text">
@@ -112,7 +145,7 @@ const CheckoutPaymentForm = (props) => {
         <input
           type="text"
           id="card-input-checkout"
-          name="card_number"
+          name="card"
           placeholder={props.card_input}
           className="checkout-payment-form-textinput1 input"
         />

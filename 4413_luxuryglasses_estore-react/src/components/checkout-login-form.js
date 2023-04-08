@@ -7,6 +7,52 @@ import './checkout-login-form.css'
 
 const CheckoutLoginForm = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const submitHandler = async(e) => {
+    e.preventDefault();
+
+    let username = document.getElementById("username-input-checkout").value;
+    let password = document.getElementById("password-input-checkout").value;
+
+    var url="http://localhost:8080/checkout/proceedlogin?username=" + username + "&password=" + password;
+    var request = new XMLHttpRequest();
+    request.open('POST', url);
+    request.send();
+    request.onload = function() {
+      let data = request.responseText;
+      if (data.length == 0) {
+        alert ("User not found. Username or password is incorrect.");
+      } else if (data.includes("Login Success")){
+		  setIsLoggedIn(true);
+		  var proceed = "Proceed to shipping details";
+		  //document.getElementsByClassName("checkout-login-form-proceed-options").innerHTML = proceed;
+		  alert (proceed);
+      } else {
+          alert("Error occurred: " + data);
+      }
+    }
+  }
+  
+  const guestLoginHandler = async(e) => {
+    e.preventDefault();
+
+    var url="http://localhost:8080/checkout/proceed";
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; // store reponse in variable and convert to JSON object
+      if (data.length == 0) {
+        alert ("Something went wrong. Try again later");
+      } else if (data.includes("User can continue as guest")){
+		var proceed = " Proceed to shipping details";
+        alert (data + proceed);
+      } else {
+          alert("Error occurred: " + data);
+      }
+    }
+  }
+  
   return (
     <div
       id="checkout_login_form"
@@ -21,6 +67,7 @@ const CheckoutLoginForm = (props) => {
         password
         username
         className="checkout-login-form-form"
+        onSubmit={submitHandler}
       >
         <div className="checkout-login-form-checkout-stage">
           <span className="checkout-login-form-text">
@@ -109,7 +156,7 @@ const CheckoutLoginForm = (props) => {
           {props.password_label}
         </label>
         <input
-          type="text"
+          type="password"
           id="password-input-checkout"
           name="password"
           placeholder={props.password_input}
@@ -117,15 +164,13 @@ const CheckoutLoginForm = (props) => {
           className="checkout-login-form-textinput1 input"
         />
         <div className="checkout-login-form-proceed-options">
+          <span id="loggedin"></span>
           <Link to="/checkout-register" className="checkout-login-form-text09">
             {props.register}
           </Link>
-          <a
-            href="http://localhost:8080/checkout/proceed"
-            className="checkout-login-form-text10"
-          >
+          <span className="checkout-login-form-text10" onClick={guestLoginHandler}>
             {props.guest_login}
-          </a>
+          </span>
           <button
             type="submit"
             className="checkout-login-form-button button"
