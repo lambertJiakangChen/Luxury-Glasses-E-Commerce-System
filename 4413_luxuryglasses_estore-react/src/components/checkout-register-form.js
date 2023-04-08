@@ -8,8 +8,7 @@ import './checkout-register-form.css'
 const CheckoutRegisterForm = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   
-  const handleRegisterSubmit = async(e) => {
-
+  const submitHandler = async(e) => {
     e.preventDefault();
 
     let fname = document.getElementById("fname-input-checkout").value;
@@ -26,13 +25,35 @@ const CheckoutRegisterForm = (props) => {
       request.onload = function() {
         let data = request.responseText;
         if (data.includes("Unable to register account")) {
-          alert(data);
+			alert(data);
         } else if (data.includes("Successfully")){
-          alert(data + " Proceed to shipping details");
+			setIsLoggedIn(true);
+			alert(data + " Proceed to shipping details");
         } else {
-          alert("Error occurred: " + data);
+			alert("Error occurred: " + data);
         }
       }
+  }
+  
+   const guestLoginHandler = async(e) => {
+    e.preventDefault();
+
+    var url="http://localhost:8080/checkout/proceed";
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; // store reponse in variable and convert to JSON object
+      if (data.length == 0) {
+        alert ("Something went wrong. Try again later");
+      } else if (data.includes("User can continue as guest")){
+		  setIsLoggedIn(true);
+		var proceed = " Proceed to shipping details";
+        alert (data + proceed);
+      } else {
+          alert("Error occurred: " + data);
+      }
+    }
   }
   
   return (
@@ -52,7 +73,7 @@ const CheckoutRegisterForm = (props) => {
         password
         username
         className="checkout-register-form-form"
-        onSubmit={handleRegisterSubmit}
+        onSubmit={submitHandler}
       >
         <div className="checkout-register-form-checkout-stage">
           <span className="checkout-register-form-text">
@@ -182,7 +203,7 @@ const CheckoutRegisterForm = (props) => {
           {props.password_label}
         </label>
         <input
-          type="text"
+          type="password"
           id="password-input-checkout"
           name="password"
           placeholder={props.password_input}
@@ -192,14 +213,9 @@ const CheckoutRegisterForm = (props) => {
           <Link to="/checkout-login" className="checkout-register-form-text12">
             {props.login}
           </Link>
-          <a
-            href="http://localhost:8080/checkout/proceed"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="checkout-register-form-text13"
-          >
+          <span className="checkout-register-form-text13" onClick={guestLoginHandler}>
             {props.guest_login}
-          </a>
+          </span>
           <button
             type="submit"
             className="checkout-register-form-button button"

@@ -6,7 +6,11 @@ import PropTypes from 'prop-types'
 import './checkout-shipping-form.css'
 
 const CheckoutShippingForm = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isChecked, setIsChecked] = useState(false);
+  
+  const checkboxChangeHandler = (event) => {
+    setIsChecked(event.target.checked);
+  };
   
   const submitHandler = async(e) => {
 
@@ -20,7 +24,7 @@ const CheckoutShippingForm = (props) => {
     let province = document.getElementById("province-input-checkout").value;
     let postal = document.getElementById("postal-input-checkout").value;
     let phone = document.getElementById("phone-input-checkout").value;
-    let makedefault = document.getElementById("default-checkbox-checkout").value;
+    let makedefault = isChecked;
 
       var url= "http://localhost:8080/checkout/shipping?country=" + country + "&fullname=" + fullname 
       + "&phone=" + phone + "&line1=" + line1 + "&line2=" + line2 + "&city=" + city + "&province=" + province 
@@ -252,8 +256,9 @@ const CheckoutShippingForm = (props) => {
           type="checkbox"
           id="default-checkbox-checkout"
           name="default"
-          checked="true"
           className="checkout-shipping-form-checkbox"
+          checked={isChecked}
+          onChange={checkboxChangeHandler}
         />
        <div className="checkout-shipping-form-proceed-options">
           <button
