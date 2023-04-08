@@ -27,6 +27,14 @@ import jakarta.servlet.http.HttpSession;
 public class CatalogController {
 	
 	@Autowired CatalogService catalogService;
+	
+//	@ResponseBody
+//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+//    public List<Item> viewCatalog() {
+//        Spliterator<Item> items = catalogDao.findAll().spliterator();
+//        return StreamSupport.stream(items, false).collect(Collectors.toList());
+//    }
+	
 
 	@RequestMapping("/addItem")
 	String addItem(HttpServletRequest request, HttpSession session) {
@@ -89,24 +97,24 @@ public class CatalogController {
 	}
 	
 	@RequestMapping("/sortByPrice")
-	String sortCatalogByPrice(HttpServletRequest request, HttpSession session) {
+	Collection<Item> sortCatalogByPrice(HttpServletRequest request, HttpSession session) {
 		if (request.getParameter("sort") != null && request.getParameter("sort").equals("ascending")) {
-			return catalogService.sortPrice(request.getParameter("sort")).toString();
+			return catalogService.sortPrice(request.getParameter("sort"));
 	    }else if (request.getParameter("sort") != null && request.getParameter("sort").equals("descending")) {
-	    	return catalogService.sortPrice(request.getParameter("sort")).toString();
+	    	return catalogService.sortPrice(request.getParameter("sort"));
 	    }
-		return "please choose ascending or descending";
+		return null;
 	}
 	
 
 	@RequestMapping("/sortByItemName")
-	String sortCatalogByItemName(HttpServletRequest request, HttpSession session) {
+	Collection<Item> sortCatalogByItemName(HttpServletRequest request, HttpSession session) {
 		if (request.getParameter("sort") != null && request.getParameter("sort").equals("ascending")) {
-			return catalogService.sortItemName(request.getParameter("sort")).toString();
+			return catalogService.sortItemName(request.getParameter("sort"));
 	    }else if (request.getParameter("sort") != null && request.getParameter("sort").equals("descending")) {
-	    	return catalogService.sortItemName(request.getParameter("sort")).toString();
+	    	return catalogService.sortItemName(request.getParameter("sort"));
 	    }
-		return "please choose ascending or descending";
+		return null;
 	}
 	
 
