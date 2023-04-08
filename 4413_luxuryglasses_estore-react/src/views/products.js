@@ -25,24 +25,24 @@ const Products = (props) => {
   const viewCatalog = async(e) => {
     e.preventDefault();
     const target = document.querySelector('#Ajaxresult');
+    const target2 = document.querySelector('#Hi');
     var url="http://localhost:8080/catalog/viewCatalog";
     var request = new XMLHttpRequest(); // create a connection
     request.open('POST', url);
     request.send(); // send the http request
     request.onload = function() { // When the response comes invoke the following function
       let data = request.responseText; // store reponse in variable and convert to JSON object
-      target.textContent = data;
+      target.textContent = "Test output " + data;
       if (data.length == 0) {
         alert ("Error item not found.");
       } else {
         userDataObj = JSON.parse(data);
-        document.getElementsByClassName("products-component1").name = userDataObj[0].itemName;
-        document.getElementById("Hi").innerHTML = userDataObj[0].itemName;
-        document.querySelector('#products-component1').name = userDataObj[0].itemName;
-
-        if (userDataObj.accountType != "ADMIN") {
-          document.getElementById("register-admin-form").style.display = 'none';
-        }
+        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
+        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
+        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
+        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
+        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
+        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
       }
     }
   }
@@ -51,7 +51,6 @@ const Products = (props) => {
 	e.preventDefault();
 	
 	const target = document.querySelector('#Ajaxresult');
-	const target2 = document.querySelector('#Hi');
 
     let itemname = document.getElementById("search_name").value;
 
@@ -61,12 +60,26 @@ const Products = (props) => {
     request.send(); // send the http request
     request.onload = function() { // When the response comes invoke the following function
       let data = request.responseText; 
-      target.textContent = data;// store reponse in variable and convert to JSON object
+      target.textContent = "Test output " + data;// store reponse in variable and convert to JSON object
       if (data.length == 0) {
         alert ("Item not found");
       } else {
         userDataObj = JSON.parse(data);
-        target2.textContent = userDataObj[0].material;
+        if (userDataObj[0] != null){
+	        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
+	        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
+	        }
+	    if (userDataObj[1] != null){
+	        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
+	        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
+	        }
+	    if (userDataObj[2] != null){
+	        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
+	        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
+        }else{
+			document.getElementById("item3-replace").innerHTML = "ItemName";
+	        document.getElementById("price3-replace").innerHTML = "price";
+		}
         navigate('/products');
       }
     }
@@ -94,13 +107,19 @@ const Products = (props) => {
     var request = new XMLHttpRequest(); // create a connection
     request.open('POST', url);
     request.send(); // send the http request
-    request.onload = function() { // When the response comes invoke the following function
+    request.onload = function() { // When the response comes invoke the following function     
       let data = request.responseText; 
+      target.textContent = "Test output " + data;
       if (data.length == 0) {
         alert ("Item not found");
       } else {
-		target.textContent = data;
         userDataObj = JSON.parse(data);
+        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
+        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
+        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
+        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
+        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
+        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
         navigate('/products');
       }
     }
@@ -130,11 +149,17 @@ const Products = (props) => {
     request.send(); // send the http request
     request.onload = function() { // When the response comes invoke the following function
       let data = request.responseText; 
+      target.textContent = "Test output " + data;
       if (data.length == 0) {
         alert ("Item not found");
       } else {
-		target.textContent = data;
         userDataObj = JSON.parse(data);
+        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
+        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
+        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
+        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
+        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
+        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
         navigate('/products');
       }
     }
@@ -361,51 +386,63 @@ const Products = (props) => {
           <div className="products-container16">
             <div className="products-items">
               <Link to="/productsitem1" className="products-navlink">
-                <ItemCard
-                  name="item1"
-                  image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
-                  rootClassName="item-card-root-class-name29"
-                  value="19"
-                  className="products-component1"
-                ></ItemCard>
+               <div className = "firstitem">
+                <img
+                  src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
+                  alt="image"
+                  className='firstitemimage'
+                />
+                <p id="item1-replace" className="item1-text33">
+                  ItemName
+                </p>
+                <p id="price1-replace" className="price1-text33">
+                  price
+                </p>
+                </div>
               </Link>
               <Link to="/productsitem2" className="products-navlink1">
-                <ItemCard
-                  name="item2"
-                  image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
-                  rootClassName="item-card-root-class-name27"
-                  value="23"
-                  className="products-component2"
-                ></ItemCard>
+                <div className = "seconditem">
+                <img
+                  src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
+                  alt="image"
+                  className='seconditemimage'
+                />
+                <p id="item2-replace" className="item2-text33">
+                  ItemName
+                </p>
+                <p id="price2-replace" className="price2-text33">
+                  price
+                </p>
+                </div>
               </Link>
               <Link to="/productsitem3" className="products-navlink2">
-                <ItemCard
-                  name="item3"
-                  image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
-                  rootClassName="item-card-root-class-name26"
-                  value="23"
-                  className="products-component3"
-                ></ItemCard>
+                <div className = "thirditem">
+                <img
+                  src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
+                  alt="image"
+                  className='thirditemimage'
+                />
+                <p id="item3-replace" className="item3-text33">
+                  ItemName
+                </p>
+                <p id="price3-replace" className="price3-text33">
+                  price
+                </p>
+                </div>
               </Link>
-              <ItemCard
-                name="item3"
+              <ItemCard               
                 image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
-                rootClassName="item-card-root-class-name22"
-                value="19"
+                rootClassName="item-card-root-class-name22"               
                 className="products-component4"
               ></ItemCard>
-              <ItemCard
-                name="item3"
+              <ItemCard               
                 image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
-                rootClassName="item-card-root-class-name23"
-                value="23"
+                rootClassName="item-card-root-class-name23"                
                 className="products-component5"
               ></ItemCard>
-              <ItemCard
-                name="item3"
+              <ItemCard                
                 image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
-                rootClassName="item-card-root-class-name24"
-                value="22"
+                rootClassName="item-card-root-class-name24"              
                 className="products-component6"
               ></ItemCard>
             </div>

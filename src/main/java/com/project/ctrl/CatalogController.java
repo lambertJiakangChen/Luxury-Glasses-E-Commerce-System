@@ -89,24 +89,24 @@ public class CatalogController {
 	}
 	
 	@RequestMapping("/sortByPrice")
-	String sortCatalogByPrice(HttpServletRequest request, HttpSession session) {
+	Collection<Item> sortCatalogByPrice(HttpServletRequest request, HttpSession session) {
 		if (request.getParameter("sort") != null && request.getParameter("sort").equals("ascending")) {
-			return catalogService.sortPrice(request.getParameter("sort")).toString();
+			return catalogService.sortPrice(request.getParameter("sort"));
 	    }else if (request.getParameter("sort") != null && request.getParameter("sort").equals("descending")) {
-	    	return catalogService.sortPrice(request.getParameter("sort")).toString();
+	    	return catalogService.sortPrice(request.getParameter("sort"));
 	    }
-		return "please choose ascending or descending";
+		return null;
 	}
 	
 
 	@RequestMapping("/sortByItemName")
-	String sortCatalogByItemName(HttpServletRequest request, HttpSession session) {
+	Collection<Item> sortCatalogByItemName(HttpServletRequest request, HttpSession session) {
 		if (request.getParameter("sort") != null && request.getParameter("sort").equals("ascending")) {
-			return catalogService.sortItemName(request.getParameter("sort")).toString();
+			return catalogService.sortItemName(request.getParameter("sort"));
 	    }else if (request.getParameter("sort") != null && request.getParameter("sort").equals("descending")) {
-	    	return catalogService.sortItemName(request.getParameter("sort")).toString();
+	    	return catalogService.sortItemName(request.getParameter("sort"));
 	    }
-		return "please choose ascending or descending";
+		return null;
 	}
 	
 
