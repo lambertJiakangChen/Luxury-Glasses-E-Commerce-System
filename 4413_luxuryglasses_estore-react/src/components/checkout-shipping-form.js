@@ -7,6 +7,37 @@ import './checkout-shipping-form.css'
 
 const CheckoutShippingForm = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  
+  const submitHandler = async(e) => {
+
+    e.preventDefault();
+
+    let country = document.getElementById("country-input-checkout").value;
+    let fullname = document.getElementById("fullname-input-checkout").value;
+    let line1 = document.getElementById("line1-input-checkout").value;
+    let line2 = document.getElementById("line2-input-checkout").value;
+    let city = document.getElementById("city-input-checkout").value;
+    let province = document.getElementById("province-input-checkout").value;
+    let postal = document.getElementById("postal-input-checkout").value;
+    let phone = document.getElementById("phone-input-checkout").value;
+    let makedefault = document.getElementById("default-checkbox-checkout").value;
+
+      var url= "http://localhost:8080/checkout/shipping?country=" + country + "&fullname=" + fullname 
+      + "&phone=" + phone + "&line1=" + line1 + "&line2=" + line2 + "&city=" + city + "&province=" + province 
+      + "&postal=" + postal + "&default=" + makedefault;
+      var request = new XMLHttpRequest();
+      request.open('POST', url);
+      request.send();
+      request.onload = function() {
+        let data = request.responseText;
+        if (data.includes("successfully")){
+          alert(data + " Proceed to payment details");
+        } else {
+          alert("Error occurred: " + data);
+        }
+      }
+  }
+  
   return (
     <div
       id="checkout_shipping_form"
@@ -25,6 +56,7 @@ const CheckoutShippingForm = (props) => {
         fullname
         province
         className="checkout-shipping-form-form"
+        onSubmit={submitHandler}
       >
         <div className="checkout-shipping-form-checkout-stage">
           <span className="checkout-shipping-form-text">
@@ -91,30 +123,30 @@ const CheckoutShippingForm = (props) => {
         </div>
         <h2 className="checkout-shipping-form-text07">{props.heading}</h2>
         <label
-          id="country-label-shipping"
-          htmlFor="country-input-shipping"
+          id="country-label-checkout"
+          htmlFor="country-input-checkout"
           className="checkout-shipping-form-label"
         >
           {props.country_label}
         </label>
         <input
           type="text"
-          id="country-input-shipping"
+          id="country-input-checkout"
           name="country"
           required
           placeholder={props.country_input}
           className="checkout-shipping-form-textinput input"
         />
         <label
-          id="name-label-shipping"
-          htmlFor="name-input-shipping"
+          id="fullname-label-checkout"
+          htmlFor="fullname-input-checkout"
           className="checkout-shipping-form-label1"
         >
           {props.fullname_label}
         </label>
         <input
           type="text"
-          id="name-input-shipping"
+          id="fullname-input-checkout"
           name="fullname"
           required
           placeholder={props.fullname_input}
@@ -122,14 +154,14 @@ const CheckoutShippingForm = (props) => {
         />
         <label
           id="line1-label-checkout"
-          htmlFor="line1-input-shipping"
+          htmlFor="line1-input-checkout"
           className="checkout-shipping-form-label2"
         >
           {props.line1_label}
         </label>
         <input
           type="text"
-          id="line1-input-shipping"
+          id="line1-input-checkout"
           name="line1"
           required
           placeholder={props.line1_input}
@@ -137,7 +169,7 @@ const CheckoutShippingForm = (props) => {
         />
         <label
           id="line2-label-checkout"
-          htmlFor="line2-input-shipping"
+          htmlFor="line2-input-checkout"
           className="checkout-shipping-form-label3"
         >
           {props.line2_label}

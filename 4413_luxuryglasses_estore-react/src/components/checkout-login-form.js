@@ -7,6 +7,34 @@ import './checkout-login-form.css'
 
 const CheckoutLoginForm = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  
+  var userDataObj;
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+
+    let username = document.getElementById("username-input-checkout").value;
+    let password = document.getElementById("password-input-checkout").value;
+
+    var url="http://localhost:8080/checkout/proceedlogin?username=" + username + "&password=" + password;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function
+      let data = request.responseText; // store reponse in variable and convert to JSON object
+      if (data.length == 0) {
+        alert ("User not found. Username or password is incorrect.");
+      } else if (data.includes("Login Success")){
+		userDataObj = JSON.parse(data);
+		var proceed = "Proceed to shipping details";
+        //document.getElementsByClassName("checkout-login-form-proceed-options").innerHTML = proceed;
+        alert (proceed);
+      } else {
+          alert("Error occurred: " + data);
+      }
+    }
+  }
+  
   return (
     <div
       id="checkout_login_form"
@@ -21,6 +49,7 @@ const CheckoutLoginForm = (props) => {
         password
         username
         className="checkout-login-form-form"
+        onSubmit={handleSubmit}
       >
         <div className="checkout-login-form-checkout-stage">
           <span className="checkout-login-form-text">
@@ -117,6 +146,7 @@ const CheckoutLoginForm = (props) => {
           className="checkout-login-form-textinput1 input"
         />
         <div className="checkout-login-form-proceed-options">
+          <span id="loggedin"></span>
           <Link to="/checkout-register" className="checkout-login-form-text09">
             {props.register}
           </Link>

@@ -7,6 +7,27 @@ import './checkout-review-form.css'
 
 const CheckoutReviewForm = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  
+  const submitHandler = async(e) => {
+
+    e.preventDefault();
+
+    let confirm = document.getElementById("confirm-checkbox-checkout").value;
+
+      var url= "http://localhost:8080/checkout/payment?confirm=" + confirm;
+      var request = new XMLHttpRequest();
+      request.open('POST', url);
+      request.send();
+      request.onload = function() {
+        let data = request.responseText;
+        if (data.includes("Order Confirmed")){
+          alert(data);
+        } else {
+          alert("Error occurred: " + data);
+        }
+      }
+  }  
+  
   return (
     <div
       id="checkout_cofirmation_form"
@@ -20,6 +41,7 @@ const CheckoutReviewForm = (props) => {
         enctype="application/x-www-form-urlencoded"
         confirmed="true"
         className="checkout-review-form-form"
+        onSubmit={submitHandler}
       >
         <div className="checkout-review-form-checkout-stage">
           <span className="checkout-review-form-text">
@@ -96,8 +118,6 @@ const CheckoutReviewForm = (props) => {
           type="checkbox"
           id="confirm-checkbox-checkout"
           name="confirm"
-          required
-          checked="true"
           className="checkout-review-form-checkbox"
         />
         <div className="checkout-review-form-proceed-options">

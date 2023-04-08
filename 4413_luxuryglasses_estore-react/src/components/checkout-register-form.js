@@ -7,6 +7,34 @@ import './checkout-register-form.css'
 
 const CheckoutRegisterForm = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  
+  const handleRegisterSubmit = async(e) => {
+
+    e.preventDefault();
+
+    let fname = document.getElementById("fname-input-checkout").value;
+    let lname = document.getElementById("lname-input-checkout").value;
+    let email = document.getElementById("email-input-checkout").value;
+    let username = document.getElementById("username-input-checkout").value;
+    let password = document.getElementById("password-input-checkout").value;
+
+      var url="http://localhost:8080/checkout/proceedregister?type=REGULAR&fname=" + fname 
+      	+ "&lname=" + lname + "&email=" + email + "&username=" + username + "&password=" + password;
+      var request = new XMLHttpRequest();
+      request.open('POST', url);
+      request.send();
+      request.onload = function() {
+        let data = request.responseText;
+        if (data.includes("Unable to register account")) {
+          alert(data);
+        } else if (data.includes("Successfully")){
+          alert(data + " Proceed to shipping details");
+        } else {
+          alert("Error occurred: " + data);
+        }
+      }
+  }
+  
   return (
     <div
       id="checkout_register_form"
@@ -24,6 +52,7 @@ const CheckoutRegisterForm = (props) => {
         password
         username
         className="checkout-register-form-form"
+        onSubmit={handleRegisterSubmit}
       >
         <div className="checkout-register-form-checkout-stage">
           <span className="checkout-register-form-text">
