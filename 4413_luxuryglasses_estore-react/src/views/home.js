@@ -194,16 +194,15 @@ const Home = (props) => {
             <SectionHeading></SectionHeading>
             <div id="gallery" className="home-gallery">
               <div className="home-left">
-                <Link to="/productsitem1" className="home-navlink">
                   <ItemCard
                     name="Evelyn"
+                    itemId="1"
                     value="22.95"
                     image_alt="evelyn"
                     image_src="/playground_assets/evelyn-bg-1500w.png"
                     rootClassName="rootClassName4"
                     className="home-component10"
                   ></ItemCard>
-                </Link>
               </div>
               <div className="home-right">
                 <div className="home-top">
@@ -211,6 +210,7 @@ const Home = (props) => {
                     <Link to="/productsitem1" className="home-navlink1">
                       <ItemCard
                         name="Yomary"
+                        itemId="2"
                         value="25.95"
                         image_alt="yomary"
                         image_src="/playground_assets/yomary-bg-1500w.png"
@@ -223,6 +223,7 @@ const Home = (props) => {
                     <Link to="/productsitem1" className="home-navlink2">
                       <ItemCard
                         name="Ace"
+                        itemId="5"
                         value="35.95"
                         image_alt="ace"
                         image_src="/playground_assets/ace-bg-1500w.png"
@@ -237,6 +238,7 @@ const Home = (props) => {
                     <Link to="/productsitem1" className="home-navlink3">
                       <ItemCard
                         name="Litisha"
+                        itemId="6"
                         value="28.98"
                         image_alt="litisha"
                         image_src="/playground_assets/litisha-bg-1500w.png"
@@ -249,6 +251,7 @@ const Home = (props) => {
                     <Link to="/productsitem1" className="home-navlink4">
                       <ItemCard
                         name="Cicely"
+                        itemId="3"
                         value="15.00"
                         image_alt="cicely"
                         image_src="/playground_assets/cicely-bg-1500w.png"

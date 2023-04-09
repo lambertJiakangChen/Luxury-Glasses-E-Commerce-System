@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {useNavigate} from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+
 import { Helmet } from 'react-helmet'
 import Navbar from '../components/navbar'
 import Tryon from '../components/tryon'
@@ -11,7 +11,30 @@ import './productsitem1.css'
 
 const Productsitem1 = () => {
   var userDataObj;
-  const navigate = useNavigate();
+  
+  const onLoadHandler = async(e) => {
+	e.preventDefault();
+	const { itemId } = useParams();
+	console.log("Onloading");
+	var url="http://localhost:8080/catalog/findItem?itemId=" + itemId;
+    var request = new XMLHttpRequest();
+    request.open('POST', url);
+    request.send(); 
+    request.onload = function() {
+	let data = request.responseText;
+	console.log(data);
+      if (data.length == 0) {
+        alert ("Item not found");
+      } else {
+        userDataObj = JSON.parse(data);
+        document.getElementById("item-name").innerHTML = userDataObj.itemName;
+        document.getElementById("item-id").innerHTML = userDataObj.itemId;
+        document.getElementByClassName("productsitem1-text01").innerHTML = "Brand:" + userDataObj.brand
+        + "  Material:" + userDataObj.material + "  Shape:" + userDataObj.shape;
+
+      }
+	}
+  }
 
   const submitAddToCartHandler = async(e) => {
     e.preventDefault();
@@ -154,8 +177,9 @@ const recommandbycate = async(e) => {
       }
     }
   }
+  
   return (
-    <div className="productsitem1-container">
+    <div className="productsitem1-container" onLoad={onLoadHandler}>
       <Helmet>
         <title>Productsitem1 - 4413_LuxuryGlasses_EStore</title>
         <meta
@@ -174,8 +198,8 @@ const recommandbycate = async(e) => {
             />
             <div className="productsitem1-container3">
               <h1 className="productsitem1-text" id="item-name"> 
-               Cicely             		
-              </h1>
+               Cicely
+               </h1>         		
               <p id="item-id">1</p>
               <p className="productsitem1-text01">
                 Brand:Oakley  Material:TR90  Shape: Cat eye

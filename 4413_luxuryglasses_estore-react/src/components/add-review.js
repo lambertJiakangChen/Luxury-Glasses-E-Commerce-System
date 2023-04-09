@@ -5,10 +5,36 @@ import PropTypes from 'prop-types'
 import './add-review.css'
 
 const AddReview = (props) => {
+	
+  const submitHandler = async(e) => {
+	  e.preventDefault();
+	  /*const urlParams = new URLSearchParams(window.location.search);
+	  const itemId = urlParams.get('id');
+	  
+	  //let itemId = document.getElementById("item-input-checkout").value;
+	  let rating = document.getElementById("rating-select-review").value;
+	  let comments = document.getElementById("comments-input-review").value;
+	  let userEmail = document.getElementById("email-input-review").value;
+	  
+      var url= "http://localhost:8080/catalog/addReview?item=" + itemId + "&rating=" + rating 
+      + "&comments=" + comments + "&userEmail=" + userEmail;
+      var request = new XMLHttpRequest();
+      request.open('POST', url);
+      request.send();
+      request.onload = function() {
+        let data = request.responseText;
+        if (data.includes("Review added")){
+          // alert("Order Successfully Completed.");
+        } else {
+          alert("Error occurred: " + data);
+        }
+      }*/
+  }
+	
   return (
     <div id="add-review-container" className="add-review-container">
       <h3>{props.heading}</h3>
-      <form className="add-review-form">
+      <form className="add-review-form" onSubmit={submitHandler}>
         <label
           id="email-label-review"
           htmlFor="email-input-review"

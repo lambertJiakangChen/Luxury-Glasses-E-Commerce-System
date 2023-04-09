@@ -27,14 +27,6 @@ import jakarta.servlet.http.HttpSession;
 public class CatalogController {
 	
 	@Autowired CatalogService catalogService;
-	
-//	@ResponseBody
-//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//    public List<Item> viewCatalog() {
-//        Spliterator<Item> items = catalogDao.findAll().spliterator();
-//        return StreamSupport.stream(items, false).collect(Collectors.toList());
-//    }
-	
 
 	@RequestMapping("/addItem")
 	String addItem(HttpServletRequest request, HttpSession session) {
@@ -134,6 +126,17 @@ public class CatalogController {
 		return catalogService.filterbycolor(request.getParameter("color"));
 	}
 	
+	@RequestMapping("/findItem")
+	String findItem(HttpServletRequest request, HttpSession session) {
+		String itemId = request.getParameter("itemId");
+		String result;
+		try {
+			result = catalogService.findItemById(Long.parseLong(itemId)).toString();
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+		return result;
+	}
 
 	@RequestMapping("/ViewDetails")
 	String viewDetails(HttpServletRequest request, HttpSession session) {
