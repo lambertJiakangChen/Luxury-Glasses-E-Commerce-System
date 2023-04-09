@@ -27,7 +27,6 @@ const Productsitem3 = (props) => {
       let data = request.responseText; // store reponse in variable and convert to JSON object
       if (data.includes("Added to Cart")) {
         alert(data);
-        navigate('/account');
       } else {
         alert("Error occurred: " + data);
       }
@@ -174,13 +173,14 @@ const recommandbycate = async(e) => {
               className="productsitem3-image"
             />
             <div className="productsitem3-container3">
-              <h1 className="productsitem3-text">
+              <h1 className="productsitem3-text"  id="item-name">
                 Cicely
               </h1>
+              <p id="item-id-3">3</p>
               <p className="productsitem3-text01">
-                Brand:Evelyn   Material:TR90  Shape: Cat eye
+                Brand:Oakley   Material:TR90  Shape: Geometric
               </p>
-              <h2 className="productsitem3-text02">$99999</h2>
+              <h2 className="productsitem3-text02">$15</h2>
               <form className="productsitem3-form" onSubmit={submitAddToCartHandler}>
                 <button type="submit" className="productsitem3-button button">
                   ADD TO CART
@@ -189,15 +189,15 @@ const recommandbycate = async(e) => {
               <p className="productsitem3-text03">
                 <span className="productsitem3-text04">SPECIFICATIONS</span>
                 <br className="productsitem3-text05"></br>
-                <span className="productsitem3-text06">size:15.0</span>
+                <span className="productsitem3-text06">size:wide</span>
                 <br className="productsitem3-text07"></br>
                 <span className="productsitem3-text08">weight:20.0</span>
                 <br className="productsitem3-text09"></br>
-                <span className="productsitem3-text10">lenswidth:12.0</span>
+                <span className="productsitem3-text10">lenswidth:139.0</span>
                 <br className="productsitem3-text11"></br>
-                <span className="productsitem3-text12">lensheight:56.0</span>
+                <span className="productsitem3-text12">lensheight:56.18</span>
                 <br className="productsitem3-text13"></br>
-                <span className="productsitem3-text14">framwidth:37.0</span>
+                <span className="productsitem3-text14">framwidth:45.96</span>
                 <br></br>
               </p>
               <p className="productsitem3-text16">Color:</p>
