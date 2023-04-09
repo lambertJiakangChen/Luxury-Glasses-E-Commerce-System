@@ -8,6 +8,7 @@ import CartEmpty from '../components/cart-empty'
 import CartItemCard from '../components/cart-item-card'
 import Footer from '../components/footer'
 import './view-cart.css'
+import '../components/cart-empty.css'
 
 function ViewCart(props) {
 
@@ -17,13 +18,16 @@ function ViewCart(props) {
     e.preventDefault();
 
     var url="http://localhost:8080/cart/getAllItems";
-    var request = new XMLHttpRequest(); // create a connection
+    var request = new XMLHttpRequest(); 
     request.open('POST', url);
-    request.send(); // send the http request
-    request.onload = function() { // When the response comes invoke the following function
-      let data = request.responseText; // store reponse in variable and convert to JSON object
+    request.send(); 
+    request.onload = function() {
+      let data = request.responseText; 
       if (data.length == 0) {
+        document.getElementsByClassName("cart-empty-container")[0].style.display = 'flex';
+        document.getElementsByClassName("view-cart-container2")[0].style.display = 'none';
         document.getElementById("title-subtotal").innerHTML = "SUBTOTAL (0)";
+        document.getElementById("subtotal-replace").innerHTML = "$0.0"
       } else {
         var cartDataObj = JSON.parse(data);
 
@@ -52,11 +56,22 @@ function ViewCart(props) {
           <h1 id="title-cart" className="view-cart-text">
             SHOPPING CART
           </h1>
+          
+          {/* Cart Empty */}
           <CartEmpty rootClassName="cart-empty-root-class-name"></CartEmpty>
+          {/* ........... */}
+
           <div className="view-cart-container2">
             <div id="cart-all-items" className="view-cart-container3">
-              <CartItemCard></CartItemCard>
-              <CartItemCard></CartItemCard>
+              <CartItemCard 
+                itemName={'Evelyn'}
+              />
+              <CartItemCard 
+                itemName={'Yomary'}
+              />
+              <CartItemCard 
+                itemName={'Cicely'}
+              />
             </div>
             <div id="cart-total" className="view-cart-container4">
               <h3 id="title-subtotal">SUBTOTAL</h3>
