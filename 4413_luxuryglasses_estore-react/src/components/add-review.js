@@ -24,7 +24,10 @@ const AddReview = (props) => {
         let data = request.responseText;
         if (data.includes("Review added")){
           alert("Thanks for the review");
+          var form = document.getElementsByClassName("add-review-form")[0];
+          form.reset();  // Reset all form data
           navigate(`/productsitem1/${itemId}`);
+          return false;
         } else {
           alert("Error occurred: " + data);
         }

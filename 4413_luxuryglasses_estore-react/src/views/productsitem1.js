@@ -364,9 +364,6 @@ const recommandbycate = async(e) => {
 			  ))}
           	</div>
           	<SingleReviewCard></SingleReviewCard>
-          	<SingleReviewCard></SingleReviewCard>
-          	<SingleReviewCard></SingleReviewCard>
-          	<SingleReviewCard></SingleReviewCard>
           </div>
         </div>
       </div>
