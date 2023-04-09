@@ -73,7 +73,7 @@ public class LoadDatabase {
 			catalogDao.save(new Item((long) 1, "Evelyn", "Oakley" , "Cat eye", "wide", 22.95, "titanium", 12.0, 56.0, 37.0, 140.0, category, color));
 			catalogDao.save(new Item((long) 2, "Yomary", "Carrera", "Cat eye", "wide", 25.95, "TR90", 12.0, 56.0, 37.0, 140.0, category2, color));
 			catalogDao.save(new Item((long) 3, "Cicely", "Oakley", "Geometric", "wide", 15.00, "TR90", 20.0, 56.18, 45.96, 139.0, category, color3));
-			catalogDao.save(new Item((long) 4, "Yomary", "Carrera", "Cat eye", "wide", 15.00, "TR90", 20.0, 56.18, 45.96, 139.0, category3, color2));
+			catalogDao.save(new Item((long) 4, "Yomi", "Carrera", "Cat eye", "wide", 15.00, "TR90", 20.0, 56.18, 45.96, 139.0, category2, color2));
 			catalogDao.save(new Item((long) 5, "Ace", "Oakley", "Aviator", "wide", 35.95, "mixed", 23.2, 56.02, 46.71, 142.0, category, color));
 			catalogDao.save(new Item((long) 6, "Litisha", "Oakley", "Cat eye", "wide", 28.98, "TR90", 10.4, 56.15, 42.88, 144.0, category, color2)); // sunglasses
 

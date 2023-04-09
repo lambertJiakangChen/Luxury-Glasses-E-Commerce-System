@@ -1,13 +1,102 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import {useNavigate} from 'react-router-dom';
 import { Helmet } from 'react-helmet'
-
+import { useState, useRef } from 'react';
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
 import './monthlysale.css'
 
 const Monthlysale = (props) => {
+  var userDataObj;
+  const navigate = useNavigate();
+  const [message, setMessage] = useState('');
+  const checkbox1 = useRef();
+  const checkbox2 = useRef();
+  const checkbox3 = useRef();
+  const checkbox4 = useRef();
+  const checkbox5 = useRef();
+  const checkbox6 = useRef();
+  const checkbox7 = useRef();
+  const checkbox8 = useRef();
+  const checkbox9 = useRef();
+  const checkbox10 = useRef();
+  const checkbox11= useRef();
+  const checkbox12 = useRef();
+  const monthlysolditems = async(e) => {	   
+	e.preventDefault();
+	const target = document.querySelector('#Ajaxresult');
+	let themonth;
+    if (checkbox1.current.checked) {
+        themonth = "Jan"
+        setMessage(themonth)
+        }
+	else if (checkbox2.current.checked) {
+        themonth = "Feb"
+        setMessage(themonth)
+        }
+    else if (checkbox3.current.checked) {
+	    themonth = "Mar"
+	    setMessage(themonth)
+    }
+    else if (checkbox4.current.checked) {
+        themonth = "April"
+        setMessage(themonth)
+        }
+    else if (checkbox5.current.checked) {
+        themonth = "May"
+        setMessage(themonth)
+        }
+    else if (checkbox6.current.checked) {
+        themonth = "Jun"
+        setMessage(themonth)
+        }
+    else if (checkbox7.current.checked) {
+        themonth = "Jul"
+        setMessage(themonth)
+        }
+    else if (checkbox8.current.checked) {
+        themonth = "Aug"
+        setMessage(themonth)
+        }
+    else if (checkbox9.current.checked) {
+        themonth = "Sep"
+        setMessage(themonth)
+        }
+    else if (checkbox10.current.checked) {
+        themonth = "Oct"
+        setMessage(themonth)
+        }
+    else if (checkbox11.current.checked) {
+        themonth = "Nov"
+        setMessage(themonth)
+        }
+    else if (checkbox12.current.checked) {
+        themonth = "Dec"
+        setMessage(themonth)
+        }
+    else{
+		//sortprice = None
+		themonth = null
+		setMessage(themonth);
+	}
+
+    var url="http://localhost:8080/analytics/monthlysolditems?month=" + themonth;
+    var request = new XMLHttpRequest(); // create a connection
+    request.open('POST', url);
+    request.send(); // send the http request
+    request.onload = function() { // When the response comes invoke the following function     
+      let data = request.responseText; 
+      target.textContent = data;
+      if (data.length < 70) {
+        target.textContent = "No item this month";
+      } else {
+        target.textContent = data;
+       
+        navigate('/monthlysale');
+      }
+    }
+  }
   return (
     <div className="monthlysale-container">
       <Helmet>
@@ -35,8 +124,8 @@ const Monthlysale = (props) => {
                     id="M-Jan"
                     name="month"
                     value="Jan"
-                    checked="true"
                     className="monthlysale-checkbox"
+                    ref={checkbox1}
                   />
                   <label className="monthlysale-text02">January</label>
                 </div>
@@ -46,8 +135,8 @@ const Monthlysale = (props) => {
                     id="M-Feb"
                     name="month"
                     value="Feb"
-                    checked="true"
                     className="monthlysale-checkbox01"
+                    ref={checkbox2}
                   />
                   <label className="monthlysale-text03">February</label>
                 </div>
@@ -57,8 +146,8 @@ const Monthlysale = (props) => {
                     id="M-Mar"
                     name="month"
                     value="Mar"
-                    checked="true"
                     className="monthlysale-checkbox02"
+                    ref={checkbox3}
                   />
                   <label className="monthlysale-text04">March</label>
                 </div>
@@ -68,8 +157,8 @@ const Monthlysale = (props) => {
                     id="M-Apr"
                     name="month"
                     value="April"
-                    checked="true"
                     className="monthlysale-checkbox03"
+                    ref={checkbox4}
                   />
                   <label className="monthlysale-text05">April</label>
                 </div>
@@ -79,8 +168,8 @@ const Monthlysale = (props) => {
                     id="M-May"
                     name="month"
                     value="May"
-                    checked="true"
                     className="monthlysale-checkbox04"
+                    ref={checkbox5}
                   />
                   <label className="monthlysale-text06">May</label>
                 </div>
@@ -90,8 +179,8 @@ const Monthlysale = (props) => {
                     id="M-Jun"
                     name="month"
                     value="Jun"
-                    checked="true"
                     className="monthlysale-checkbox05"
+                    ref={checkbox6}
                   />
                   <label>June</label>
                 </div>
@@ -103,8 +192,8 @@ const Monthlysale = (props) => {
                     id="M-Jul"
                     name="month"
                     value="Jul"
-                    checked="true"
                     className="monthlysale-checkbox06"
+                    ref={checkbox7}
                   />
                   <label className="monthlysale-text08">July</label>
                 </div>
@@ -114,8 +203,8 @@ const Monthlysale = (props) => {
                     id="M-Aug"
                     name="month"
                     value="Aug"
-                    checked="true"
                     className="monthlysale-checkbox07"
+                    ref={checkbox8}
                   />
                   <label className="monthlysale-text09">August</label>
                 </div>
@@ -125,8 +214,8 @@ const Monthlysale = (props) => {
                     id="M-Sep"
                     name="month"
                     value="Sep"
-                    checked="true"
                     className="monthlysale-checkbox08"
+                    ref={checkbox9}
                   />
                   <label className="monthlysale-text10">September</label>
                 </div>
@@ -136,8 +225,8 @@ const Monthlysale = (props) => {
                     id="M-Oct"
                     name="month"
                     value="Oct"
-                    checked="true"
                     className="monthlysale-checkbox09"
+                    ref={checkbox10}
                   />
                   <label className="monthlysale-text11">October</label>
                 </div>
@@ -146,9 +235,9 @@ const Monthlysale = (props) => {
                     type="checkbox"
                     id="M-Nov"
                     name="month"
-                    value="Nov"
-                    checked="true"
+                    value="Nov"                   
                     className="monthlysale-checkbox10"
+                    ref={checkbox11}
                   />
                   <label className="monthlysale-text12">November</label>
                 </div>
@@ -157,20 +246,20 @@ const Monthlysale = (props) => {
                     type="checkbox"
                     id="M-Dec"
                     name="month"
-                    checked="true"
-                    autoComplete="Dec"
+                    value="Dec"                   
                     className="monthlysale-checkbox11"
+                    ref={checkbox12}
                   />
                   <label>December</label>
                 </div>
               </div>
-              <Link to="/account" className="monthlysale-navlink button">
-                Search
-              </Link>
+              <button type="submit" className="monthbutton" onClick = {monthlysolditems}>
+                Go
+              </button>
             </form>
           </div>
           <div className="monthlysale-container17">
-            <span className="monthlysale-text14">Output</span>
+            <div id="Ajaxresult"></div>
           </div>
         </div>
       </div>
