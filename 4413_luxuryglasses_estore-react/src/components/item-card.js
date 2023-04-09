@@ -1,12 +1,19 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import './item-card.css'
 
 const ItemCard = (props) => {
+	
+const navigate = useNavigate();
+  const onClickHandler = async(e) => {
+    e.preventDefault();
+    navigate(`/productsitem1/${props.itemId}`);
+  }
+  
   return (
-    <div className={`item-card-gallery-card ${props.rootClassName} `}>
+    <div className={`item-card-gallery-card ${props.rootClassName} `} onClick={onClickHandler}>
       <div className="item-card-container">
         <div className="item-card-container1">
           <img
@@ -50,7 +57,8 @@ const ItemCard = (props) => {
         </div>
         <div className="item-card-container3">
           <span className="item-card-currency">{props.currency}</span>
-          <span className="item-card-value">{props.varOne}</span>
+          <span className="item-card-value">{props.value}</span>
+          <span id="item-card-id" style={{display: 'none'}}>{props.itemId}</span>
         </div>
       </div>
     </div>
@@ -64,6 +72,7 @@ ItemCard.defaultProps = {
   currency: '$',
   value: '9999',
   rootClassName: '',
+  itemId: '1',
 }
 
 ItemCard.propTypes = {
@@ -73,6 +82,7 @@ ItemCard.propTypes = {
   currency: PropTypes.string,
   value: PropTypes.string,
   rootClassName: PropTypes.string,
+  itemId: PropTypes.string,
 }
 
 export default ItemCard

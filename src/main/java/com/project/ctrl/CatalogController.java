@@ -27,14 +27,6 @@ import jakarta.servlet.http.HttpSession;
 public class CatalogController {
 	
 	@Autowired CatalogService catalogService;
-	
-//	@ResponseBody
-//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//    public List<Item> viewCatalog() {
-//        Spliterator<Item> items = catalogDao.findAll().spliterator();
-//        return StreamSupport.stream(items, false).collect(Collectors.toList());
-//    }
-	
 
 	@RequestMapping("/addItem")
 	String addItem(HttpServletRequest request, HttpSession session) {
@@ -134,6 +126,17 @@ public class CatalogController {
 		return catalogService.filterbycolor(request.getParameter("color"));
 	}
 	
+	@RequestMapping("/findItem")
+	Item findItem(HttpServletRequest request, HttpSession session) {
+		String itemId = request.getParameter("itemId");
+		Item result;
+		try {
+			result = catalogService.findItemById(Long.parseLong(itemId));
+		} catch (Exception e) {
+			return null;
+		}
+		return result;
+	}
 
 	@RequestMapping("/ViewDetails")
 	String viewDetails(HttpServletRequest request, HttpSession session) {
@@ -201,12 +204,13 @@ public class CatalogController {
 	}
 	
 	@RequestMapping("/getReviewsByItem") 
-	String getReviewsByItem(HttpServletRequest request, HttpSession session) {
+	List<Review> getReviewsByItem(HttpServletRequest request, HttpSession session) {
 		Long itemId = Long.valueOf(request.getParameter("item"));		
 	    Item item = catalogService.findItemById(itemId);
 	    
 	    if (item == null) {
-	    	return "Cound not get Reviews: Item ID not found.";
+	    	//return "Could not get Reviews: Item ID not found.";
+	    	return null;
 	    }
 	    
 	    List<Review> reviews = catalogService.listAllReviewsByItem(item);
@@ -220,7 +224,7 @@ public class CatalogController {
 	    result += "}";
 		
 		
-		return result;
+		return reviews;
 		
 	}
 }

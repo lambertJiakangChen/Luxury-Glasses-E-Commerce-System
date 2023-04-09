@@ -27,7 +27,6 @@ const Productsitem2 = (props) => {
       let data = request.responseText; // store reponse in variable and convert to JSON object
       if (data.includes("Added to Cart")) {
         alert(data);
-        navigate('/account');
       } else {
         alert("Error occurred: " + data);
       }
@@ -177,10 +176,11 @@ const recommandbycate = async(e) => {
               <h1 className="productsitem1-text" id="item-name"> 
                Yomary            		
               </h1>
+              <p id="item-id-2">2</p>
               <p className="productsitem2-text01">
-                Brand:Evelyn   Material:TR90  Shape: Cat eye
+                Brand:Carrera  Material:TR90  Shape: Cat eye
               </p>
-              <h2 className="productsitem2-text02">$99999</h2>
+              <h2 className="productsitem2-text02">$25.95</h2>
               <form className="productsitem2-form" onSubmit={submitAddToCartHandler}>
                 <button type="submit" className="productsitem2-button button">
                   ADD TO CART
@@ -189,11 +189,11 @@ const recommandbycate = async(e) => {
               <p className="productsitem2-text03">
                 <span className="productsitem2-text04">SPECIFICATIONS</span>
                 <br className="productsitem2-text05"></br>
-                <span className="productsitem2-text06">size:15.0</span>
+                <span className="productsitem2-text06">size:wide</span>
                 <br className="productsitem2-text07"></br>
-                <span className="productsitem2-text08">weight:20.0</span>
+                <span className="productsitem2-text08">weight:12.0</span>
                 <br className="productsitem2-text09"></br>
-                <span className="productsitem2-text10">lenswidth:12.0</span>
+                <span className="productsitem2-text10">lenswidth:140.0</span>
                 <br className="productsitem2-text11"></br>
                 <span className="productsitem2-text12">lensheight:56.0</span>
                 <br className="productsitem2-text13"></br>

@@ -305,6 +305,9 @@
   padding-top: var(--dl-space-space-twounits);
   padding-bottom: var(--dl-space-space-twounits);
 }
+.productsitem1-container8 {
+  width: var(--dl-size-size-maxwidth);
+}
 @media(max-width: 767px) {
   .productsitem1-main {
     padding-bottom: var(--dl-space-space-threeunits);
