@@ -77,9 +77,6 @@ public class CatalogServiceImpl implements CatalogService {
 	
 	@Override
 	public Item findItemById(Long itemId) {
-		System.out.println("Finding Item by id");
-		
-		
 		for (Item item: catalogDao.findAll()) {
 			if (item.getId() == itemId) {
 				return item;

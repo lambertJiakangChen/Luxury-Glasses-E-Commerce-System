@@ -276,12 +276,12 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item\n[id=" + getId() + ", brand=" + getBrand() +", itemName=" + getItemName() + ", shape=" + getShape() 
+		return "Item [id=" + getId() + ", brand=" + getBrand() +", itemName=" + getItemName() + ", shape=" + getShape() 
 				+ ", size=" + getSize() + ", price=" + getPrice() 
-				+ ", weight=" + getWeight() + ", material=" + getMaterial() + ", demiension=" 
-				+ getLensWidth() + "-" + getLensHeight() + "-" 
+				+ ", weight=" + getWeight() + ", material=" + getMaterial() + ", lensWidth=" 
+				+ getLensWidth() + ", lensHeight=" + getLensHeight() + ", frameWidth=" 
 				+ getFrameWidth() + ", category=" + getCategory()
-				+ ", colors=" + getColor() + "]\n";
+				+ ", colors=" + getColor() + "]";
 	}
 
 	@Override

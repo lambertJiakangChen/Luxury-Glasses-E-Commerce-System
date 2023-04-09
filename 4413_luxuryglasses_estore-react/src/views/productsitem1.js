@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import {useNavigate} from 'react-router-dom';
+import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
+
 import { Helmet } from 'react-helmet'
 import Navbar from '../components/navbar'
 import Tryon from '../components/tryon'
@@ -11,7 +11,48 @@ import './productsitem1.css'
 
 const Productsitem1 = () => {
   var userDataObj;
-  const navigate = useNavigate();
+  const { itemId } = useParams();
+  const [reviews, setReviews] = useState([]);
+  
+  const onLoadHandler = async(e) => {
+	e.preventDefault();
+	var url="http://localhost:8080/catalog/findItem?itemId=" + itemId;
+    var request = new XMLHttpRequest();
+    request.open('POST', url);
+    request.send(); 
+    request.onload = function() {
+	  let data = request.response;
+      if (data.length == 0) {
+        alert ("Item not found");
+      } else {
+        userDataObj = JSON.parse(data);
+        document.getElementById("item-name").innerHTML = userDataObj.itemName;
+        document.getElementById("item-id").innerHTML = userDataObj.itemId;
+        document.getElementById("item-description").innerHTML = "Brand:" + userDataObj.brand
+        + "  Material:" + userDataObj.material + "  Shape:" + userDataObj.shape;
+        document.getElementById("item-price").innerHTML = "$" + userDataObj.price;
+        document.getElementById("item-size").innerHTML = "Size:" + userDataObj.size;
+        document.getElementById("item-weight").innerHTML = "Weight:" + userDataObj.weight;
+        document.getElementById("item-lenswidth").innerHTML = "lenswidth::" + userDataObj.lensWidth;
+        document.getElementById("item-lensheight").innerHTML = "lensheight:" + userDataObj.lensHeight;
+        document.getElementById("item-framewidth").innerHTML = "framewidth:" + userDataObj.frameWidth;
+        document.getElementById("item-color").innerHTML = userDataObj.color;
+        document.getElementById("item-cate").innerHTML = userDataObj.category;
+        
+        document.getElementById("item-review-number").innerHTML = "Number of reviews: " + userDataObj.reviews.length;
+        
+        url="http://localhost:8080/catalog/getReviewsByItem?item=" + itemId;
+	    request.open('POST', url);
+	    request.send(); 
+	    request.onload = function() {
+			data = request.response;
+      		if (data.length == 0) {
+				  setReviews(data);
+			}
+		}
+      }
+	}
+  }
 
   const submitAddToCartHandler = async(e) => {
     e.preventDefault();
@@ -153,8 +194,9 @@ const recommandbycate = async(e) => {
       }
     }
   }
+  
   return (
-    <div className="productsitem1-container">
+    <div className="productsitem1-container" onLoad={onLoadHandler}>
       <Helmet>
         <title>Productsitem1 - 4413_LuxuryGlasses_EStore</title>
         <meta
@@ -173,13 +215,13 @@ const recommandbycate = async(e) => {
             />
             <div className="productsitem1-container3">
               <h1 className="productsitem1-text" id="item-name"> 
-               Evelyn             		
-              </h1>
-              <p id="item-id-1">1</p>
-              <p className="productsitem1-text01">
-                Brand:Oakley  Material:Titanium  Shape: Cat eye
+               Cicely
+               </h1>         		
+              <p id="item-id">1</p>
+              <p className="productsitem1-text01" id="item-description">
+                Brand:Oakley  Material:TR90  Shape: Cat eye
               </p>
-              <h2 className="productsitem1-text02">$22.95</h2>
+              <h2 className="productsitem1-text02" id="item-price">$99999</h2>
               <form 
                 className="productsitem1-form"
                 onSubmit={submitAddToCartHandler}>
@@ -190,19 +232,19 @@ const recommandbycate = async(e) => {
               <p className="productsitem1-text03">
                 <span className="productsitem1-text04">SPECIFICATIONS</span>
                 <br className="productsitem1-text05"></br>
-                <span className="productsitem1-text06">size:wide</span>
+                <span className="productsitem1-text06" id="item-size">size:15.0</span>
                 <br className="productsitem1-text07"></br>
-                <span className="productsitem1-text08">weight:12.0</span>
+                <span className="productsitem1-text08" id="item-weight">weight:20.0</span>
                 <br className="productsitem1-text09"></br>
-                <span className="productsitem1-text10">lenswidth:140.0</span>
+                <span className="productsitem1-text10" id="item-lenswidth">lenswidth:12.0</span>
                 <br className="productsitem1-text11"></br>
-                <span className="productsitem1-text12">lensheight:56.0</span>
+                <span className="productsitem1-text12" id="item-lensheight">lensheight:56.0</span>
                 <br className="productsitem1-text13"></br>
-                <span className="productsitem1-text14">framwidth:37.0</span>
+                <span className="productsitem1-text14" id="item-framewidth">framewidth:37.0</span>
                 <br></br>
               </p>
               <p className="productsitem1-text16">Color:</p>
-              <div className="productsitem1-container4">
+              <div className="productsitem1-container4" id="item-color">
                 <img
                   alt="image"
                   src="https://images.unsplash.com/photo-1611242320536-f12d3541249b?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDE2fHxyZWR8ZW58MHx8fHwxNjgwMzkwMjY3&amp;ixlib=rb-4.0.3&amp;w=200"
@@ -222,7 +264,7 @@ const recommandbycate = async(e) => {
               <p className="productsitem1-text17">
                 <span>Category:</span>
                 <br></br>
-                <span>full-frame   semi-rimless  rimless</span>
+                <span id="item-cate">full-frame   semi-rimless  rimless</span>
                 <br></br>
               </p>
             </div>
@@ -312,10 +354,20 @@ const recommandbycate = async(e) => {
         <div className="productsitem1-container7 item-reviews-all">
           <h1 className="reviews-title">Reviews</h1>
           <AddReview></AddReview>
-          <SingleReviewCard></SingleReviewCard>
-          <SingleReviewCard></SingleReviewCard>
-          <SingleReviewCard></SingleReviewCard>
-          <SingleReviewCard></SingleReviewCard>
+          <div className="productsitem1-container8" id="item-display-reviews">
+          	<p id="item-review-number">Number of reviews: </p>
+          	<div>
+          	{reviews.map(review => (
+				  <SingleReviewCard
+				  heading={review.userEmail}
+				  text={review.comments}></SingleReviewCard>
+			  ))}
+          	</div>
+          	<SingleReviewCard></SingleReviewCard>
+          	<SingleReviewCard></SingleReviewCard>
+          	<SingleReviewCard></SingleReviewCard>
+          	<SingleReviewCard></SingleReviewCard>
+          </div>
         </div>
       </div>
       <Footer></Footer>
