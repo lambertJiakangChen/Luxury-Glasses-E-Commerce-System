@@ -174,13 +174,13 @@ const recommandbycate = async(e) => {
             />
             <div className="productsitem1-container3">
               <h1 className="productsitem1-text" id="item-name"> 
-               Cicely             		
+               Evelyn             		
               </h1>
               <p id="item-id">1</p>
               <p className="productsitem1-text01">
-                Brand:Oakley  Material:TR90  Shape: Cat eye
+                Brand:Oakley  Material:titanium  Shape: Cat eye
               </p>
-              <h2 className="productsitem1-text02">$99999</h2>
+              <h2 className="productsitem1-text02">$22.95</h2>
               <form 
                 className="productsitem1-form"
                 onSubmit={submitAddToCartHandler}>
@@ -193,13 +193,13 @@ const recommandbycate = async(e) => {
                 <br className="productsitem1-text05"></br>
                 <span className="productsitem1-text06">size:15.0</span>
                 <br className="productsitem1-text07"></br>
-                <span className="productsitem1-text08">weight:20.0</span>
+                <span className="productsitem1-text08">weight:12.0</span>
                 <br className="productsitem1-text09"></br>
-                <span className="productsitem1-text10">lenswidth:12.0</span>
+                <span className="productsitem1-text10">lenswidth:140.0</span>
                 <br className="productsitem1-text11"></br>
-                <span className="productsitem1-text12">lensheight:56.0</span>
+                <span className="productsitem1-text12">lensheight:37.0</span>
                 <br className="productsitem1-text13"></br>
-                <span className="productsitem1-text14">framwidth:37.0</span>
+                <span className="productsitem1-text14">framwidth:56.0</span>
                 <br></br>
               </p>
               <p className="productsitem1-text16">Color:</p>
