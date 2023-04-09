@@ -78,6 +78,45 @@ const Products = () => {
 	        document.getElementById("category3-replace").innerHTML = "category";
 	        document.getElementById("brand3-replace").innerHTML = "brand";
 		}
+		if (userDataObj[3] != null){
+	        document.getElementById("item4-replace").innerHTML = userDataObj[3].itemName;
+	        document.getElementById("price4-replace").innerHTML = "$" + userDataObj[3].price;
+	        document.getElementById("color4-replace").innerHTML = userDataObj[3].color;
+	        document.getElementById("category4-replace").innerHTML = userDataObj[3].category;
+	        document.getElementById("brand4-replace").innerHTML = userDataObj[3].brand;
+        }else{
+			document.getElementById("item4-replace").innerHTML = "ItemName";
+	        document.getElementById("price4-replace").innerHTML = "price";
+	        document.getElementById("color4-replace").innerHTML = "mycolor";
+	        document.getElementById("category4-replace").innerHTML = "category";
+	        document.getElementById("brand4-replace").innerHTML = "brand";
+		}
+		if (userDataObj[4] != null){
+	        document.getElementById("item5-replace").innerHTML = userDataObj[4].itemName;
+	        document.getElementById("price5-replace").innerHTML = "$" + userDataObj[4].price;
+	        document.getElementById("color5-replace").innerHTML = userDataObj[4].color;
+	        document.getElementById("category5-replace").innerHTML = userDataObj[4].category;
+	        document.getElementById("brand5-replace").innerHTML = userDataObj[4].brand;
+        }else{
+			document.getElementById("item5-replace").innerHTML = "ItemName";
+	        document.getElementById("price5-replace").innerHTML = "price";
+	        document.getElementById("color5-replace").innerHTML = "mycolor";
+	        document.getElementById("category5-replace").innerHTML = "category";
+	        document.getElementById("brand5-replace").innerHTML = "brand";
+		}
+		if (userDataObj[5] != null){
+	        document.getElementById("item6-replace").innerHTML = userDataObj[5].itemName;
+	        document.getElementById("price6-replace").innerHTML = "$" + userDataObj[5].price;
+	        document.getElementById("color6-replace").innerHTML = userDataObj[5].color;
+	        document.getElementById("category6-replace").innerHTML = userDataObj[5].category;
+	        document.getElementById("brand6-replace").innerHTML = userDataObj[5].brand;
+        }else{
+			document.getElementById("item6-replace").innerHTML = "ItemName";
+	        document.getElementById("price6-replace").innerHTML = "price";
+	        document.getElementById("color6-replace").innerHTML = "mycolor";
+	        document.getElementById("category6-replace").innerHTML = "category";
+	        document.getElementById("brand6-replace").innerHTML = "brand";
+		}
       }     
     }
     
@@ -139,6 +178,45 @@ const Products = () => {
 	        document.getElementById("color3-replace").innerHTML = "mycolor";
 	        document.getElementById("category3-replace").innerHTML = "category";
 	        document.getElementById("brand3-replace").innerHTML = "brand";
+		}
+		if (userDataObj[3] != null){
+	        document.getElementById("item4-replace").innerHTML = userDataObj[3].itemName;
+	        document.getElementById("price4-replace").innerHTML = "$" + userDataObj[3].price;
+	        document.getElementById("color4-replace").innerHTML = userDataObj[3].color;
+	        document.getElementById("category4-replace").innerHTML = userDataObj[3].category;
+	        document.getElementById("brand4-replace").innerHTML = userDataObj[3].brand;
+        }else{
+			document.getElementById("item4-replace").innerHTML = "ItemName";
+	        document.getElementById("price4-replace").innerHTML = "price";
+	        document.getElementById("color4-replace").innerHTML = "mycolor";
+	        document.getElementById("category4-replace").innerHTML = "category";
+	        document.getElementById("brand4-replace").innerHTML = "brand";
+		}
+		if (userDataObj[4] != null){
+	        document.getElementById("item5-replace").innerHTML = userDataObj[4].itemName;
+	        document.getElementById("price5-replace").innerHTML = "$" + userDataObj[4].price;
+	        document.getElementById("color5-replace").innerHTML = userDataObj[4].color;
+	        document.getElementById("category5-replace").innerHTML = userDataObj[4].category;
+	        document.getElementById("brand5-replace").innerHTML = userDataObj[4].brand;
+        }else{
+			document.getElementById("item5-replace").innerHTML = "ItemName";
+	        document.getElementById("price5-replace").innerHTML = "price";
+	        document.getElementById("color5-replace").innerHTML = "mycolor";
+	        document.getElementById("category5-replace").innerHTML = "category";
+	        document.getElementById("brand5-replace").innerHTML = "brand";
+		}
+		if (userDataObj[5] != null){
+	        document.getElementById("item6-replace").innerHTML = userDataObj[5].itemName;
+	        document.getElementById("price6-replace").innerHTML = "$" + userDataObj[5].price;
+	        document.getElementById("color6-replace").innerHTML = userDataObj[5].color;
+	        document.getElementById("category6-replace").innerHTML = userDataObj[5].category;
+	        document.getElementById("brand6-replace").innerHTML = userDataObj[5].brand;
+        }else{
+			document.getElementById("item6-replace").innerHTML = "ItemName";
+	        document.getElementById("price6-replace").innerHTML = "price";
+	        document.getElementById("color6-replace").innerHTML = "mycolor";
+	        document.getElementById("category6-replace").innerHTML = "category";
+	        document.getElementById("brand6-replace").innerHTML = "brand";
 		}
         navigate('/products');
       }
@@ -213,6 +291,45 @@ const Products = () => {
 	        document.getElementById("category3-replace").innerHTML = "category";
 	        document.getElementById("brand3-replace").innerHTML = "brand";
 		}
+		if (userDataObj[3] != null){
+	        document.getElementById("item4-replace").innerHTML = userDataObj[3].itemName;
+	        document.getElementById("price4-replace").innerHTML = "$" + userDataObj[3].price;
+	        document.getElementById("color4-replace").innerHTML = userDataObj[3].color;
+	        document.getElementById("category4-replace").innerHTML = userDataObj[3].category;
+	        document.getElementById("brand4-replace").innerHTML = userDataObj[3].brand;
+        }else{
+			document.getElementById("item4-replace").innerHTML = "ItemName";
+	        document.getElementById("price4-replace").innerHTML = "price";
+	        document.getElementById("color4-replace").innerHTML = "mycolor";
+	        document.getElementById("category4-replace").innerHTML = "category";
+	        document.getElementById("brand4-replace").innerHTML = "brand";
+		}
+		if (userDataObj[4] != null){
+	        document.getElementById("item5-replace").innerHTML = userDataObj[4].itemName;
+	        document.getElementById("price5-replace").innerHTML = "$" + userDataObj[4].price;
+	        document.getElementById("color5-replace").innerHTML = userDataObj[4].color;
+	        document.getElementById("category5-replace").innerHTML = userDataObj[4].category;
+	        document.getElementById("brand5-replace").innerHTML = userDataObj[4].brand;
+        }else{
+			document.getElementById("item5-replace").innerHTML = "ItemName";
+	        document.getElementById("price5-replace").innerHTML = "price";
+	        document.getElementById("color5-replace").innerHTML = "mycolor";
+	        document.getElementById("category5-replace").innerHTML = "category";
+	        document.getElementById("brand5-replace").innerHTML = "brand";
+		}
+		if (userDataObj[5] != null){
+	        document.getElementById("item6-replace").innerHTML = userDataObj[5].itemName;
+	        document.getElementById("price6-replace").innerHTML = "$" + userDataObj[5].price;
+	        document.getElementById("color6-replace").innerHTML = userDataObj[5].color;
+	        document.getElementById("category6-replace").innerHTML = userDataObj[5].category;
+	        document.getElementById("brand6-replace").innerHTML = userDataObj[5].brand;
+        }else{
+			document.getElementById("item6-replace").innerHTML = "ItemName";
+	        document.getElementById("price6-replace").innerHTML = "price";
+	        document.getElementById("color6-replace").innerHTML = "mycolor";
+	        document.getElementById("category6-replace").innerHTML = "category";
+	        document.getElementById("brand6-replace").innerHTML = "brand";
+		}
         navigate('/products');
       }
     }
@@ -286,6 +403,45 @@ const Products = () => {
 	        document.getElementById("category3-replace").innerHTML = "category";
 	        document.getElementById("brand3-replace").innerHTML = "brand";
 		}
+		if (userDataObj[3] != null){
+	        document.getElementById("item4-replace").innerHTML = userDataObj[3].itemName;
+	        document.getElementById("price4-replace").innerHTML = "$" + userDataObj[3].price;
+	        document.getElementById("color4-replace").innerHTML = userDataObj[3].color;
+	        document.getElementById("category4-replace").innerHTML = userDataObj[3].category;
+	        document.getElementById("brand4-replace").innerHTML = userDataObj[3].brand;
+        }else{
+			document.getElementById("item4-replace").innerHTML = "ItemName";
+	        document.getElementById("price4-replace").innerHTML = "price";
+	        document.getElementById("color4-replace").innerHTML = "mycolor";
+	        document.getElementById("category4-replace").innerHTML = "category";
+	        document.getElementById("brand4-replace").innerHTML = "brand";
+		}
+		if (userDataObj[4] != null){
+	        document.getElementById("item5-replace").innerHTML = userDataObj[4].itemName;
+	        document.getElementById("price5-replace").innerHTML = "$" + userDataObj[4].price;
+	        document.getElementById("color5-replace").innerHTML = userDataObj[4].color;
+	        document.getElementById("category5-replace").innerHTML = userDataObj[4].category;
+	        document.getElementById("brand5-replace").innerHTML = userDataObj[4].brand;
+        }else{
+			document.getElementById("item5-replace").innerHTML = "ItemName";
+	        document.getElementById("price5-replace").innerHTML = "price";
+	        document.getElementById("color5-replace").innerHTML = "mycolor";
+	        document.getElementById("category5-replace").innerHTML = "category";
+	        document.getElementById("brand5-replace").innerHTML = "brand";
+		}
+		if (userDataObj[5] != null){
+	        document.getElementById("item6-replace").innerHTML = userDataObj[5].itemName;
+	        document.getElementById("price6-replace").innerHTML = "$" + userDataObj[5].price;
+	        document.getElementById("color6-replace").innerHTML = userDataObj[5].color;
+	        document.getElementById("category6-replace").innerHTML = userDataObj[5].category;
+	        document.getElementById("brand6-replace").innerHTML = userDataObj[5].brand;
+        }else{
+			document.getElementById("item6-replace").innerHTML = "ItemName";
+	        document.getElementById("price6-replace").innerHTML = "price";
+	        document.getElementById("color6-replace").innerHTML = "mycolor";
+	        document.getElementById("category6-replace").innerHTML = "category";
+	        document.getElementById("brand6-replace").innerHTML = "brand";
+		}
         navigate('/products');
       }
     }
@@ -347,6 +503,45 @@ const Products = () => {
 	        document.getElementById("color3-replace").innerHTML = "mycolor";
 	        document.getElementById("category3-replace").innerHTML = "category";
 	        document.getElementById("brand3-replace").innerHTML = "brand";
+		}
+		if (userDataObj[3] != null){
+	        document.getElementById("item4-replace").innerHTML = userDataObj[3].itemName;
+	        document.getElementById("price4-replace").innerHTML = "$" + userDataObj[3].price;
+	        document.getElementById("color4-replace").innerHTML = userDataObj[3].color;
+	        document.getElementById("category4-replace").innerHTML = userDataObj[3].category;
+	        document.getElementById("brand4-replace").innerHTML = userDataObj[3].brand;
+        }else{
+			document.getElementById("item4-replace").innerHTML = "ItemName";
+	        document.getElementById("price4-replace").innerHTML = "price";
+	        document.getElementById("color4-replace").innerHTML = "mycolor";
+	        document.getElementById("category4-replace").innerHTML = "category";
+	        document.getElementById("brand4-replace").innerHTML = "brand";
+		}
+		if (userDataObj[4] != null){
+	        document.getElementById("item5-replace").innerHTML = userDataObj[4].itemName;
+	        document.getElementById("price5-replace").innerHTML = "$" + userDataObj[4].price;
+	        document.getElementById("color5-replace").innerHTML = userDataObj[4].color;
+	        document.getElementById("category5-replace").innerHTML = userDataObj[4].category;
+	        document.getElementById("brand5-replace").innerHTML = userDataObj[4].brand;
+        }else{
+			document.getElementById("item5-replace").innerHTML = "ItemName";
+	        document.getElementById("price5-replace").innerHTML = "price";
+	        document.getElementById("color5-replace").innerHTML = "mycolor";
+	        document.getElementById("category5-replace").innerHTML = "category";
+	        document.getElementById("brand5-replace").innerHTML = "brand";
+		}
+		if (userDataObj[5] != null){
+	        document.getElementById("item6-replace").innerHTML = userDataObj[5].itemName;
+	        document.getElementById("price6-replace").innerHTML = "$" + userDataObj[5].price;
+	        document.getElementById("color6-replace").innerHTML = userDataObj[5].color;
+	        document.getElementById("category6-replace").innerHTML = userDataObj[5].category;
+	        document.getElementById("brand6-replace").innerHTML = userDataObj[5].brand;
+        }else{
+			document.getElementById("item6-replace").innerHTML = "ItemName";
+	        document.getElementById("price6-replace").innerHTML = "price";
+	        document.getElementById("color6-replace").innerHTML = "mycolor";
+	        document.getElementById("category6-replace").innerHTML = "category";
+	        document.getElementById("brand6-replace").innerHTML = "brand";
 		}
         navigate('/products');
       }
@@ -410,6 +605,45 @@ const Products = () => {
 	        document.getElementById("category3-replace").innerHTML = "category";
 	        document.getElementById("brand3-replace").innerHTML = "brand";
 		}
+		if (userDataObj[3] != null){
+	        document.getElementById("item4-replace").innerHTML = userDataObj[3].itemName;
+	        document.getElementById("price4-replace").innerHTML = "$" + userDataObj[3].price;
+	        document.getElementById("color4-replace").innerHTML = userDataObj[3].color;
+	        document.getElementById("category4-replace").innerHTML = userDataObj[3].category;
+	        document.getElementById("brand4-replace").innerHTML = userDataObj[3].brand;
+        }else{
+			document.getElementById("item4-replace").innerHTML = "ItemName";
+	        document.getElementById("price4-replace").innerHTML = "price";
+	        document.getElementById("color4-replace").innerHTML = "mycolor";
+	        document.getElementById("category4-replace").innerHTML = "category";
+	        document.getElementById("brand4-replace").innerHTML = "brand";
+		}
+		if (userDataObj[4] != null){
+	        document.getElementById("item5-replace").innerHTML = userDataObj[4].itemName;
+	        document.getElementById("price5-replace").innerHTML = "$" + userDataObj[4].price;
+	        document.getElementById("color5-replace").innerHTML = userDataObj[4].color;
+	        document.getElementById("category5-replace").innerHTML = userDataObj[4].category;
+	        document.getElementById("brand5-replace").innerHTML = userDataObj[4].brand;
+        }else{
+			document.getElementById("item5-replace").innerHTML = "ItemName";
+	        document.getElementById("price5-replace").innerHTML = "price";
+	        document.getElementById("color5-replace").innerHTML = "mycolor";
+	        document.getElementById("category5-replace").innerHTML = "category";
+	        document.getElementById("brand5-replace").innerHTML = "brand";
+		}
+		if (userDataObj[5] != null){
+	        document.getElementById("item6-replace").innerHTML = userDataObj[5].itemName;
+	        document.getElementById("price6-replace").innerHTML = "$" + userDataObj[5].price;
+	        document.getElementById("color6-replace").innerHTML = userDataObj[5].color;
+	        document.getElementById("category6-replace").innerHTML = userDataObj[5].category;
+	        document.getElementById("brand6-replace").innerHTML = userDataObj[5].brand;
+        }else{
+			document.getElementById("item6-replace").innerHTML = "ItemName";
+	        document.getElementById("price6-replace").innerHTML = "price";
+	        document.getElementById("color6-replace").innerHTML = "mycolor";
+	        document.getElementById("category6-replace").innerHTML = "category";
+	        document.getElementById("brand6-replace").innerHTML = "brand";
+		}
         navigate('/products');
       }
     }
@@ -471,6 +705,45 @@ const Products = () => {
 	        document.getElementById("color3-replace").innerHTML = "mycolor";
 	        document.getElementById("category3-replace").innerHTML = "category";
 	        document.getElementById("brand3-replace").innerHTML = "brand";
+		}
+		if (userDataObj[3] != null){
+	        document.getElementById("item4-replace").innerHTML = userDataObj[3].itemName;
+	        document.getElementById("price4-replace").innerHTML = "$" + userDataObj[3].price;
+	        document.getElementById("color4-replace").innerHTML = userDataObj[3].color;
+	        document.getElementById("category4-replace").innerHTML = userDataObj[3].category;
+	        document.getElementById("brand4-replace").innerHTML = userDataObj[3].brand;
+        }else{
+			document.getElementById("item4-replace").innerHTML = "ItemName";
+	        document.getElementById("price4-replace").innerHTML = "price";
+	        document.getElementById("color4-replace").innerHTML = "mycolor";
+	        document.getElementById("category4-replace").innerHTML = "category";
+	        document.getElementById("brand4-replace").innerHTML = "brand";
+		}
+		if (userDataObj[4] != null){
+	        document.getElementById("item5-replace").innerHTML = userDataObj[4].itemName;
+	        document.getElementById("price5-replace").innerHTML = "$" + userDataObj[4].price;
+	        document.getElementById("color5-replace").innerHTML = userDataObj[4].color;
+	        document.getElementById("category5-replace").innerHTML = userDataObj[4].category;
+	        document.getElementById("brand5-replace").innerHTML = userDataObj[4].brand;
+        }else{
+			document.getElementById("item5-replace").innerHTML = "ItemName";
+	        document.getElementById("price5-replace").innerHTML = "price";
+	        document.getElementById("color5-replace").innerHTML = "mycolor";
+	        document.getElementById("category5-replace").innerHTML = "category";
+	        document.getElementById("brand5-replace").innerHTML = "brand";
+		}
+		if (userDataObj[5] != null){
+	        document.getElementById("item6-replace").innerHTML = userDataObj[5].itemName;
+	        document.getElementById("price6-replace").innerHTML = "$" + userDataObj[5].price;
+	        document.getElementById("color6-replace").innerHTML = userDataObj[5].color;
+	        document.getElementById("category6-replace").innerHTML = userDataObj[5].category;
+	        document.getElementById("brand6-replace").innerHTML = userDataObj[5].brand;
+        }else{
+			document.getElementById("item6-replace").innerHTML = "ItemName";
+	        document.getElementById("price6-replace").innerHTML = "price";
+	        document.getElementById("color6-replace").innerHTML = "mycolor";
+	        document.getElementById("category6-replace").innerHTML = "category";
+	        document.getElementById("brand6-replace").innerHTML = "brand";
 		}
         navigate('/products');
       }
@@ -700,22 +973,76 @@ const Products = () => {
                 </p>
                 </div>
               </Link>            
-              <ItemCard               
-                image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
-                rootClassName="item-card-root-class-name22"               
-                className="products-component4"
-                value = {my}
-              ></ItemCard>
-              <ItemCard               
-                image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
-                rootClassName="item-card-root-class-name23"                
-                className="products-component5"
-              ></ItemCard>
-              <ItemCard                
-                image_src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
-                rootClassName="item-card-root-class-name24"              
-                className="products-component6"
-              ></ItemCard>
+              <div className = "fouthitem">
+                <img
+                  src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
+                  alt="image"
+                  className='fouthitemimage'
+                />
+                <p id="item4-replace" className="item4-text33">
+                  ItemName
+                </p>
+                <p id="price4-replace" className="price4-text33">
+                  price
+                </p>
+                <p id="brand4-replace" className="brand4-text33">
+                  brand
+                </p>
+                <p id="category4-replace" className="Category4-text33">
+                  category
+                </p>
+                <p id="color4-replace" className="color4-text33">
+                  color
+                </p>
+               </div>
+               <div className = "fifthitem">
+                <img
+                  src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
+                  alt="image"
+                  className='fifthitemimage'
+                />
+                <p id="item5-replace" className="item5-text33">
+                  ItemName
+                </p>
+                <p id="price5-replace" className="price5-text33">
+                  price
+                </p>
+                <p id="brand5-replace" className="brand5-text33">
+                  brand
+                </p>
+                <p id="category5-replace" className="Category5-text33">
+                  category
+                </p>
+                <p id="color5-replace" className="color5-text33">
+                  color
+                </p>
+               </div>
+               <div className = "sixthitem">
+                <img
+                  src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
+                  alt="image"
+                  className='sixthitemimage'
+                />
+                <p id="item6-replace" className="item6-text33">
+                  ItemName
+                </p>
+                <p id="price6-replace" className="price6-text33">
+                  price
+                </p>
+                <p id="brand6-replace" className="brand6-text33">
+                  brand
+                </p>
+                <p id="category6-replace" className="Category6-text33">
+                  category
+                </p>
+                <p id="color6-replace" className="color6-text33">
+                  color
+                </p>
+               </div>
+                <Link to={{
+				  pathname: '/details',
+				  state: {id: 1, name: 'sabaoon', shirt: 'green'}
+				}} >Learn More</Link>
             </div>
           </div>
         </div>
