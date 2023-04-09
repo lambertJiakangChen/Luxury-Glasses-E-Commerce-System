@@ -33,127 +33,126 @@ const Productsitem3 = (props) => {
     }
   }
 //  Recommand by color --------------------------------------------------------------------------
-const recommandbycolor = async(e) => {	  
-	e.preventDefault();
-	
-	const target = document.querySelector('#Ajaxresult');
-	const target2 = document.querySelector('#Hi');
-    var url="http://localhost:8080/catalog/recommendItems?by=color";
-    var request = new XMLHttpRequest(); // create a connection
-    request.open('POST', url);
-    request.send(); // send the http request
-    request.onload = function() { // When the response comes invoke the following function
-      let data = request.responseText; 
-      target.textContent = "Test output " + JSON.parse(data)[0].itemName;// store reponse in variable and convert to JSON object
-      if (data.length == 0) {
-        alert ("Item not found");
-      } else {
-        userDataObj = JSON.parse(data);
-         if (userDataObj[0] != null){
-	        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
-	        target2.textContent = userDataObj[0].itemName;
-	        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
-	        document.getElementById("color1-replace").innerHTML = userDataObj[0].color;
-	        document.getElementById("category1-replace").innerHTML = userDataObj[0].category;
-	        document.getElementById("brand1-replace").innerHTML = userDataObj[0].brand;
-        }else{
-			document.getElementById("item1-replace").innerHTML = "ItemName";
-	        document.getElementById("price1-replace").innerHTML = "price";
-	        document.getElementById("color1-replace").innerHTML = "color";
-	        document.getElementById("category1-replace").innerHTML = "category";
-	        document.getElementById("brand1-replace").innerHTML = "brand";
-		}
-	    if (userDataObj[1] != null){
-	        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
-	        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
-	        document.getElementById("color2-replace").innerHTML = userDataObj[1].color;
-	        document.getElementById("category2-replace").innerHTML = userDataObj[1].category;
-	        document.getElementById("brand2-replace").innerHTML = userDataObj[1].brand;
-        }else{
-			document.getElementById("item2-replace").innerHTML = "ItemName";
-	        document.getElementById("price2-replace").innerHTML = "price";
-	        document.getElementById("color2-replace").innerHTML = "color";
-	        document.getElementById("category2-replace").innerHTML = "category";
-	        document.getElementById("brand2-replace").innerHTML = "brand";
-		}
-	    if (userDataObj[2] != null){
-	        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
-	        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
-	        document.getElementById("color3-replace").innerHTML = userDataObj[2].color;
-	        document.getElementById("category3-replace").innerHTML = userDataObj[2].category;
-	        document.getElementById("brand3-replace").innerHTML = userDataObj[2].brand;
-        }else{
-			document.getElementById("item3-replace").innerHTML = "ItemName";
-	        document.getElementById("price3-replace").innerHTML = "price";
-	        document.getElementById("color3-replace").innerHTML = "mycolor";
-	        document.getElementById("category3-replace").innerHTML = "category";
-	        document.getElementById("brand3-replace").innerHTML = "brand";
-		}
-        navigate('productsitem1');
-      }
-    }
-  }
-  //  Recommand by color --------------------------------------------------------------------------
-const recommandbycate = async(e) => {	  
-	e.preventDefault();
-	
-	const target = document.querySelector('#Ajaxresult');
-	const target2 = document.querySelector('#Hi');
-    var url="http://localhost:8080/catalog/recommendItems?by=category";
-    var request = new XMLHttpRequest(); // create a connection
-    request.open('POST', url);
-    request.send(); // send the http request
-    request.onload = function() { // When the response comes invoke the following function
-      let data = request.responseText; 
-      target.textContent = "Test output " + JSON.parse(data)[0].itemName;// store reponse in variable and convert to JSON object
-      if (data.length == 0) {
-        alert ("Item not found");
-      } else {
-        userDataObj = JSON.parse(data);
-         if (userDataObj[0] != null){
-	        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
-	        target2.textContent = userDataObj[0].itemName;
-	        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
-	        document.getElementById("color1-replace").innerHTML = userDataObj[0].color;
-	        document.getElementById("category1-replace").innerHTML = userDataObj[0].category;
-	        document.getElementById("brand1-replace").innerHTML = userDataObj[0].brand;
-        }else{
-			document.getElementById("item1-replace").innerHTML = "ItemName";
-	        document.getElementById("price1-replace").innerHTML = "price";
-	        document.getElementById("color1-replace").innerHTML = "color";
-	        document.getElementById("category1-replace").innerHTML = "category";
-	        document.getElementById("brand1-replace").innerHTML = "brand";
-		}
-	    if (userDataObj[1] != null){
-	        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
-	        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
-	        document.getElementById("color2-replace").innerHTML = userDataObj[1].color;
-	        document.getElementById("category2-replace").innerHTML = userDataObj[1].category;
-	        document.getElementById("brand2-replace").innerHTML = userDataObj[1].brand;
-        }else{
-			document.getElementById("item2-replace").innerHTML = "ItemName";
-	        document.getElementById("price2-replace").innerHTML = "price";
-	        document.getElementById("color2-replace").innerHTML = "color";
-	        document.getElementById("category2-replace").innerHTML = "category";
-	        document.getElementById("brand2-replace").innerHTML = "brand";
-		}
-	    if (userDataObj[2] != null){
-	        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
-	        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
-	        document.getElementById("color3-replace").innerHTML = userDataObj[2].color;
-	        document.getElementById("category3-replace").innerHTML = userDataObj[2].category;
-	        document.getElementById("brand3-replace").innerHTML = userDataObj[2].brand;
-        }else{
-			document.getElementById("item3-replace").innerHTML = "ItemName";
-	        document.getElementById("price3-replace").innerHTML = "price";
-	        document.getElementById("color3-replace").innerHTML = "mycolor";
-	        document.getElementById("category3-replace").innerHTML = "category";
-	        document.getElementById("brand3-replace").innerHTML = "brand";
-		}
-        navigate('productsitem1');
-      }
-    }
-  }
+	const recommandbycolor = async(e) => {	  
+		e.preventDefault();		
+		const target = document.querySelector('#Ajaxresult');
+		const target2 = document.querySelector('#Hi');
+	    var url="http://localhost:8080/catalog/recommendItems?by=color";
+	    var request = new XMLHttpRequest(); // create a connection
+	    request.open('POST', url);
+	    request.send(); // send the http request
+	    request.onload = function() { // When the response comes invoke the following function
+	      let data = request.responseText; 
+	      //target.textContent = "Test output " + data;// store reponse in variable and convert to JSON object
+	      if (data.length == 0) {
+	        alert ("Item not found");
+	      } else {
+	        userDataObj = JSON.parse(data);
+	         if (userDataObj[0] != null){
+		        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
+		        //target2.textContent = "by color";
+		        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
+		        document.getElementById("color1-replace").innerHTML = userDataObj[0].color;
+		        document.getElementById("category1-replace").innerHTML = userDataObj[0].category;
+		        document.getElementById("brand1-replace").innerHTML = userDataObj[0].brand;
+	        }else{
+				document.getElementById("item1-replace").innerHTML = "ItemName";
+		        document.getElementById("price1-replace").innerHTML = "price";
+		        document.getElementById("color1-replace").innerHTML = "color";
+		        document.getElementById("category1-replace").innerHTML = "category";
+		        document.getElementById("brand1-replace").innerHTML = "brand";
+			}
+		    if (userDataObj[1] != null){
+		        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
+		        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
+		        document.getElementById("color2-replace").innerHTML = userDataObj[1].color;
+		        document.getElementById("category2-replace").innerHTML = userDataObj[1].category;
+		        document.getElementById("brand2-replace").innerHTML = userDataObj[1].brand;
+	        }else{
+				document.getElementById("item2-replace").innerHTML = "ItemName";
+		        document.getElementById("price2-replace").innerHTML = "price";
+		        document.getElementById("color2-replace").innerHTML = "color";
+		        document.getElementById("category2-replace").innerHTML = "category";
+		        document.getElementById("brand2-replace").innerHTML = "brand";
+			}
+		    if (userDataObj[2] != null){
+		        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
+		        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
+		        document.getElementById("color3-replace").innerHTML = userDataObj[2].color;
+		        document.getElementById("category3-replace").innerHTML = userDataObj[2].category;
+		        document.getElementById("brand3-replace").innerHTML = userDataObj[2].brand;
+	        }else{
+				document.getElementById("item3-replace").innerHTML = "ItemName";
+		        document.getElementById("price3-replace").innerHTML = "price";
+		        document.getElementById("color3-replace").innerHTML = "mycolor";
+		        document.getElementById("category3-replace").innerHTML = "category";
+		        document.getElementById("brand3-replace").innerHTML = "brand";
+			}
+	        navigate('/productsitem3');
+	      }
+	    }
+	  }
+  //  Recommand by cat --------------------------------------------------------------------------
+	const recommandbycate = async(e) => {	  
+		
+		const target = document.querySelector('#Ajaxresult');
+		const target2 = document.querySelector('#Hi');
+	    var url="http://localhost:8080/catalog/recommendItems?by=category";
+	    var request = new XMLHttpRequest(); // create a connection
+	    request.open('POST', url);
+	    request.send(); // send the http request
+	    request.onload = function() { // When the response comes invoke the following function
+	      let data = request.responseText; 
+	      //target.textContent = "Test output " + JSON.parse(data)[0].itemName;// store reponse in variable and convert to JSON object
+	      if (data.length == 0) {
+	        alert ("Item not found");
+	      } else {
+	        userDataObj = JSON.parse(data);
+	         if (userDataObj[0] != null){
+		        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
+		        //target2.textContent = "by category";
+		        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
+		        document.getElementById("color1-replace").innerHTML = userDataObj[0].color;
+		        document.getElementById("category1-replace").innerHTML = userDataObj[0].category;
+		        document.getElementById("brand1-replace").innerHTML = userDataObj[0].brand;
+	        }else{
+				document.getElementById("item1-replace").innerHTML = "ItemName";
+		        document.getElementById("price1-replace").innerHTML = "price";
+		        document.getElementById("color1-replace").innerHTML = "color";
+		        document.getElementById("category1-replace").innerHTML = "category";
+		        document.getElementById("brand1-replace").innerHTML = "brand";
+			}
+		    if (userDataObj[1] != null){
+		        document.getElementById("item2-replace").innerHTML = userDataObj[1].itemName;
+		        document.getElementById("price2-replace").innerHTML = "$" + userDataObj[1].price;
+		        document.getElementById("color2-replace").innerHTML = userDataObj[1].color;
+		        document.getElementById("category2-replace").innerHTML = userDataObj[1].category;
+		        document.getElementById("brand2-replace").innerHTML = userDataObj[1].brand;
+	        }else{
+				document.getElementById("item2-replace").innerHTML = "ItemName";
+		        document.getElementById("price2-replace").innerHTML = "price";
+		        document.getElementById("color2-replace").innerHTML = "color";
+		        document.getElementById("category2-replace").innerHTML = "category";
+		        document.getElementById("brand2-replace").innerHTML = "brand";
+			}
+		    if (userDataObj[2] != null){
+		        document.getElementById("item3-replace").innerHTML = userDataObj[2].itemName;
+		        document.getElementById("price3-replace").innerHTML = "$" + userDataObj[2].price;
+		        document.getElementById("color3-replace").innerHTML = userDataObj[2].color;
+		        document.getElementById("category3-replace").innerHTML = userDataObj[2].category;
+		        document.getElementById("brand3-replace").innerHTML = userDataObj[2].brand;
+	        }else{
+				document.getElementById("item3-replace").innerHTML = "ItemName";
+		        document.getElementById("price3-replace").innerHTML = "price";
+		        document.getElementById("color3-replace").innerHTML = "mycolor";
+		        document.getElementById("category3-replace").innerHTML = "category";
+		        document.getElementById("brand3-replace").innerHTML = "brand";
+			}
+	        navigate('/productsitem3');
+	      }
+	    }
+ }
+  
   return (
     <div className="productsitem3-container">
       <Helmet>
@@ -241,7 +240,7 @@ const recommandbycate = async(e) => {
           <h2 className="productsitem3-text22">Recommend watches</h2>
         </div>
         <div className="productsitem3-container6">
-          <div className="productsitem3-gallery-card">
+          <div className = "firstitem">
             <img
               src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
               alt="image"
@@ -261,9 +260,9 @@ const recommandbycate = async(e) => {
             </p>
             <p id="color1-replace" className="color1-text33">
               color
-            </p>       
+            </p>
           </div>
-          <div className="productsitem3-gallery-card1">
+          <div className = "seconditem">
             <img
               src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
               alt="image"
@@ -285,14 +284,27 @@ const recommandbycate = async(e) => {
               color
             </p>
           </div>
-          <div className="productsitem3-gallery-card2">
+          <div className = "thirditem">
             <img
+              src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
               alt="image"
-              src="https://play.teleporthq.io/static/svg/default-img.svg"
-              className="productsitem3-image6"
+              className='thirditemimage'
             />
-            <h2 className="productsitem3-text27">item4</h2>
-            <span className="productsitem3-text28">$9999</span>
+            <p id="item3-replace" className="item3-text33">
+              ItemName
+            </p>
+            <p id="price3-replace" className="price3-text33">
+              price
+            </p>
+            <p id="brand3-replace" className="brand3-text33">
+              brand
+            </p>
+            <p id="category3-replace" className="Category3-text33">
+              category
+            </p>
+            <p id="color3-replace" className="color3-text33">
+              color
+            </p>
           </div>
         </div>
         <div className="productsitem3-container7 item-reviews-all">

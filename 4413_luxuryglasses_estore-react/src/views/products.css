@@ -285,7 +285,7 @@
 
 .firstitem {
   flex: 0 0 auto;
-  width: 230px;
+  width: 220px;
   height: 460px;
   margin: var(--dl-space-space-unit);
   display: flex;
@@ -299,13 +299,13 @@
   background-color: var(--dl-color-pallet-green);
 }
 .firstitemimage {
-  width: 230px;
+  width: 220px;
   height: 306px;
   object-fit: cover;
 }
 .seconditem {
   flex: 0 0 auto;
-  width: 230px;
+  width: 220px;
   height: 460px;
   margin: var(--dl-space-space-unit);
   display: flex;
@@ -319,13 +319,13 @@
   background-color: var(--dl-color-pallet-green);
 }
 .seconditemimage {
-  width: 230px;
+  width: 220px;
   height: 306px;
   object-fit: cover;
 }
 .thirditem {
   flex: 0 0 auto;
-  width: 230px;
+  width: 220px;
   height: 460px;
   margin: var(--dl-space-space-unit);
   display: flex;
@@ -339,7 +339,67 @@
   background-color: var(--dl-color-pallet-green);
 }
 .thirditemimage {
-  width: 230px;
+  width: 220px;
+  height: 306px;
+  object-fit: cover;
+}
+.fouthitem {
+  flex: 0 0 auto;
+  width: 220px;
+  height: 460px;
+  margin: var(--dl-space-space-unit);
+  display: flex;
+  margin-top: var(--dl-space-space-threeunits);
+  align-items: center;
+  margin-left: var(--dl-space-space-threeunits);
+  margin-right: var(--dl-space-space-threeunits);
+  margin-bottom: var(--dl-space-space-threeunits);
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: var(--dl-color-pallet-green);
+}
+.fouthitemimage {
+  width: 220px;
+  height: 306px;
+  object-fit: cover;
+}
+.fifthitem {
+  flex: 0 0 auto;
+  width: 220px;
+  height: 460px;
+  margin: var(--dl-space-space-unit);
+  display: flex;
+  margin-top: var(--dl-space-space-threeunits);
+  align-items: center;
+  margin-left: var(--dl-space-space-threeunits);
+  margin-right: var(--dl-space-space-threeunits);
+  margin-bottom: var(--dl-space-space-threeunits);
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: var(--dl-color-pallet-green);
+}
+.fifthitemimage {
+  width: 220px;
+  height: 306px;
+  object-fit: cover;
+}
+.sixthitem {
+  flex: 0 0 auto;
+  width: 220px;
+  height: 460px;
+  margin: var(--dl-space-space-unit);
+  display: flex;
+  margin-top: var(--dl-space-space-threeunits);
+  align-items: center;
+  margin-left: var(--dl-space-space-threeunits);
+  margin-right: var(--dl-space-space-threeunits);
+  margin-bottom: var(--dl-space-space-threeunits);
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: var(--dl-color-pallet-green);
+}
+.sixthitemimage {
+  width: 220px;
   height: 306px;
   object-fit: cover;
 }
