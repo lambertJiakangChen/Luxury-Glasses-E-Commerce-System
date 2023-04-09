@@ -41,6 +41,7 @@
   align-items: flex-start;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
 }
 .webusage-text1 {
   align-self: center;

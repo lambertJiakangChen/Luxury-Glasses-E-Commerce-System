@@ -263,7 +263,7 @@
   align-self: center;
   margin-right: var(--dl-space-space-unit);
 }
-.monthlysale-navlink {
+.monthbutton {
   color: var(--dl-color-gray-black60);
   width: 100%;
   align-self: stretch;
