@@ -50,7 +50,7 @@ const ItemCard = (props) => {
         </div>
         <div className="item-card-container3">
           <span className="item-card-currency">{props.currency}</span>
-          <span className="item-card-value">{props.value}</span>
+          <span className="item-card-value">{props.varOne}</span>
         </div>
       </div>
     </div>
