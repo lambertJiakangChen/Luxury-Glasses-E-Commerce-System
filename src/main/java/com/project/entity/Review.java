@@ -2,6 +2,8 @@ package com.project.entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -17,6 +19,7 @@ public class Review {
     private int rating;
     private String comments;
 	
+    @JsonIgnore 
 	@ManyToOne
     private Item item;
 	private String userEmail; 
