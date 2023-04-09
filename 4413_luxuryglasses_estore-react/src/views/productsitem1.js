@@ -67,7 +67,6 @@ const Productsitem1 = () => {
       let data = request.responseText; // store reponse in variable and convert to JSON object
       if (data.includes("Added to Cart")) {
         alert(data);
-        navigate('/account');
       } else {
         alert("Error occurred: " + data);
       }
