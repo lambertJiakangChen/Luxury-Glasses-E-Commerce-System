@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
+import { useLocation, Link } from "react-router-dom";
 import { Helmet } from 'react-helmet'
 import {useNavigate} from 'react-router-dom';
 import Navbar from '../components/navbar'
@@ -44,14 +43,13 @@ const Productsitem2 = (props) => {
 	    request.send(); // send the http request
 	    request.onload = function() { // When the response comes invoke the following function
 	      let data = request.responseText; 
-	      target.textContent = "Test output " + data;// store reponse in variable and convert to JSON object
+	     //target.textContent = "Test output " + data;// store reponse in variable and convert to JSON object
 	      if (data.length == 0) {
 	        alert ("Item not found");
 	      } else {
 	        userDataObj = JSON.parse(data);
 	         if (userDataObj[0] != null){
 		        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
-		        target2.textContent = userDataObj[0].itemName;
 		        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
 		        document.getElementById("color1-replace").innerHTML = userDataObj[0].color;
 		        document.getElementById("category1-replace").innerHTML = userDataObj[0].category;
@@ -104,14 +102,14 @@ const Productsitem2 = (props) => {
 	    request.send(); // send the http request
 	    request.onload = function() { // When the response comes invoke the following function
 	      let data = request.responseText; 
-	      target.textContent = "Test output " + JSON.parse(data)[0].itemName;// store reponse in variable and convert to JSON object
+	      //target.textContent = "Test output " + JSON.parse(data)[0].itemName;// store reponse in variable and convert to JSON object
 	      if (data.length == 0) {
 	        alert ("Item not found");
 	      } else {
 	        userDataObj = JSON.parse(data);
 	         if (userDataObj[0] != null){
 		        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
-		        target2.textContent = userDataObj[0].itemName;
+		        //target2.textContent = "by category";
 		        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
 		        document.getElementById("color1-replace").innerHTML = userDataObj[0].color;
 		        document.getElementById("category1-replace").innerHTML = userDataObj[0].category;
@@ -185,11 +183,11 @@ const Productsitem2 = (props) => {
                 <button type="submit" className="productsitem2-button button">
                   ADD TO CART
                 </button>            
-              </form>
+              </form>         		        
               <p className="productsitem2-text03">
                 <span className="productsitem2-text04">SPECIFICATIONS</span>
                 <br className="productsitem2-text05"></br>
-                <span className="productsitem2-text06">size:wide</span>
+                <span className="productsitem2-text06">size:Wide</span>
                 <br className="productsitem2-text07"></br>
                 <span className="productsitem2-text08">weight:12.0</span>
                 <br className="productsitem2-text09"></br>
@@ -199,7 +197,7 @@ const Productsitem2 = (props) => {
                 <br className="productsitem2-text13"></br>
                 <span className="productsitem2-text14">framwidth:37.0</span>
                 <br></br>
-              </p>
+              </p>             
               <p className="productsitem2-text16">Color:</p>
               <div className="productsitem2-container4">
                 <img

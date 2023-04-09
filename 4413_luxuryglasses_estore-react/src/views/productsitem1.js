@@ -83,14 +83,14 @@ const Productsitem1 = () => {
 	    request.send(); // send the http request
 	    request.onload = function() { // When the response comes invoke the following function
 	      let data = request.responseText; 
-	      target.textContent = "Test output " + data;// store reponse in variable and convert to JSON object
+	      //target.textContent = "Test output " + data;// store reponse in variable and convert to JSON object
 	      if (data.length == 0) {
 	        alert ("Item not found");
 	      } else {
 	        userDataObj = JSON.parse(data);
 	         if (userDataObj[0] != null){
 		        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
-		        target2.textContent = userDataObj[0].itemName;
+		        //target2.textContent = "by color";
 		        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
 		        document.getElementById("color1-replace").innerHTML = userDataObj[0].color;
 		        document.getElementById("category1-replace").innerHTML = userDataObj[0].category;
@@ -128,7 +128,7 @@ const Productsitem1 = () => {
 		        document.getElementById("category3-replace").innerHTML = "category";
 		        document.getElementById("brand3-replace").innerHTML = "brand";
 			}
-	        navigate('/productsitem2');
+	        navigate('/productsitem1');
 	      }
 	    }
 	  }
@@ -143,14 +143,14 @@ const Productsitem1 = () => {
 	    request.send(); // send the http request
 	    request.onload = function() { // When the response comes invoke the following function
 	      let data = request.responseText; 
-	      target.textContent = "Test output " + JSON.parse(data)[0].itemName;// store reponse in variable and convert to JSON object
+	      //target.textContent = "Test output " + JSON.parse(data)[0].itemName;// store reponse in variable and convert to JSON object
 	      if (data.length == 0) {
 	        alert ("Item not found");
 	      } else {
 	        userDataObj = JSON.parse(data);
 	         if (userDataObj[0] != null){
 		        document.getElementById("item1-replace").innerHTML = userDataObj[0].itemName;
-		        target2.textContent = userDataObj[0].itemName;
+		        //target2.textContent = "by category";
 		        document.getElementById("price1-replace").innerHTML = "$" + userDataObj[0].price;
 		        document.getElementById("color1-replace").innerHTML = userDataObj[0].color;
 		        document.getElementById("category1-replace").innerHTML = userDataObj[0].category;
@@ -188,7 +188,7 @@ const Productsitem1 = () => {
 		        document.getElementById("category3-replace").innerHTML = "category";
 		        document.getElementById("brand3-replace").innerHTML = "brand";
 			}
-	        navigate('/productsitem2');
+	        navigate('/productsitem1');
 	      }
 	    }
      }

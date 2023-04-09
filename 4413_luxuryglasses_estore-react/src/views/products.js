@@ -14,7 +14,6 @@ import productsitem1 from "./productsitem1.js"
 const Products = () => {
 
   var userDataObj;
-  var my;
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
   const [message1, setMessage1] = useState('');
@@ -27,14 +26,13 @@ const Products = () => {
   const viewCatalog = async(e) => {
     e.preventDefault();
     const target = document.querySelector('#Ajaxresult');
-    const target2 = document.querySelector('#Hi');
     var url="http://localhost:8080/catalog/viewCatalog";
     var request = new XMLHttpRequest(); // create a connection
     request.open('POST', url);
     request.send(); // send the http request
     request.onload = function() { // When the response comes invoke the following function
       let data = request.responseText; // store reponse in variable and convert to JSON object
-      target.textContent = "Test output " + data;
+      //target.textContent = "Test output " + data;
       if (data.length == 0) {
         alert ("Error item not found.");
       } else {
@@ -135,7 +133,7 @@ const Products = () => {
     request.send(); // send the http request
     request.onload = function() { // When the response comes invoke the following function
       let data = request.responseText; 
-      target.textContent = "Test output " + data;// store reponse in variable and convert to JSON object
+      //target.textContent = "Test output " + data;// store reponse in variable and convert to JSON object
       if (data.length == 0) {
         alert ("Item not found");
       } else {
@@ -247,7 +245,7 @@ const Products = () => {
     request.send(); // send the http request
     request.onload = function() { // When the response comes invoke the following function     
       let data = request.responseText; 
-      target.textContent = "Test output " + data;
+      //target.textContent = "Test output " + data;
       if (data.length == 0) {
         alert ("Item not found");
       } else {
@@ -359,7 +357,7 @@ const Products = () => {
     request.send(); // send the http request
     request.onload = function() { // When the response comes invoke the following function
       let data = request.responseText; 
-      target.textContent = "Test output " + data;
+      //target.textContent = "Test output " + data;
       if (data.length == 0) {
         alert ("Item not found");
       } else {
@@ -460,7 +458,7 @@ const Products = () => {
     request.send(); // send the http request
     request.onload = function() { // When the response comes invoke the following function
       let data = request.responseText; 
-      target.textContent = data;// store reponse in variable and convert to JSON object
+      //target.textContent = data;// store reponse in variable and convert to JSON object
       if (data.length == 0) {
         alert ("no item has this color");
       } else {
@@ -561,7 +559,7 @@ const Products = () => {
     request.send(); // send the http request
     request.onload = function() { // When the response comes invoke the following function
       let data = request.responseText; 
-      target.textContent = data;// store reponse in variable and convert to JSON object
+      //target.textContent = data;// store reponse in variable and convert to JSON object
       if (data.length == 0) {
         alert ("no item has this brand");
       } else {
@@ -662,7 +660,7 @@ const Products = () => {
     request.send(); // send the http request
     request.onload = function() { // When the response comes invoke the following function
       let data = request.responseText; 
-      target.textContent = data;// store reponse in variable and convert to JSON object
+      //target.textContent = data;// store reponse in variable and convert to JSON object
       if (data.length == 0) {
         alert ("no item has this category");
       } else {
@@ -1040,7 +1038,7 @@ const Products = () => {
                 </p>
                </div>
                 <Link to={{
-				  pathname: '/details',
+				  pathname: '/productsitem2',
 				  state: {id: 1, name: 'sabaoon', shirt: 'green'}
 				}} >Learn More</Link>
             </div>
