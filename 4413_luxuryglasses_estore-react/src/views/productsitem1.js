@@ -13,16 +13,25 @@ const Productsitem1 = () => {
   var userDataObj;
   const { itemId } = useParams();
   const [reviews, setReviews] = useState([]);
-  
+
+
+// Update the review Count -------------------------------------------------------------------  
+ function updateReviewCount(newValue) {
+	 alert("review count updated!")
+  document.getElementById("item-review-number").innerHTML = "Number of reviews: " + newValue;
+}
+ 
+ 
+//  Display Item Details dynamically on loading ----------------------------------------------- 
   const onLoadHandler = async(e) => {
 	e.preventDefault();
 	var url="http://localhost:8080/catalog/findItem?itemId=" + itemId;
     var request = new XMLHttpRequest();
-    request.open('POST', url);
+    request.open('POST', url); // find item from itemId passed through url
     request.send(); 
     request.onload = function() {
 	  let data = request.response;
-      if (data.length == 0) {
+      if (!data) {
         alert ("Item not found");
       } else {
         userDataObj = JSON.parse(data);
@@ -39,21 +48,26 @@ const Productsitem1 = () => {
         document.getElementById("item-color").innerHTML = userDataObj.color;
         document.getElementById("item-cate").innerHTML = userDataObj.category;
         
-        document.getElementById("item-review-number").innerHTML = "Number of reviews: " + userDataObj.reviews.length;
+        //document.getElementById("item-review-number").innerHTML = "Number of reviews: " + userDataObj.reviews.length;
+        updateReviewCount(userDataObj.reviews.length);
         
         url="http://localhost:8080/catalog/getReviewsByItem?item=" + itemId;
-	    request.open('POST', url);
+        request = new XMLHttpRequest();
+	    request.open('GET', url); // get the reviews for this item
 	    request.send(); 
 	    request.onload = function() {
 			data = request.response;
-      		if (data.length == 0) {
-				  setReviews(data);
+      		if (!data) {
+				  alert ("Item not found");
+			} else {
+				userDataObj = JSON.parse(data);
+				setReviews(Array.from(userDataObj));
 			}
 		}
       }
 	}
   }
-
+//  Add Item to cart --------------------------------------------------------------------------
   const submitAddToCartHandler = async(e) => {
     e.preventDefault();
 
@@ -351,7 +365,7 @@ const Productsitem1 = () => {
         </div>
         <div className="productsitem1-container7 item-reviews-all">
           <h1 className="reviews-title">Reviews</h1>
-          <AddReview></AddReview>
+          <AddReview updateReviewCount={updateReviewCount}></AddReview>
           <div className="productsitem1-container8" id="item-display-reviews">
           	<p id="item-review-number">Number of reviews: </p>
           	<div>
@@ -361,7 +375,6 @@ const Productsitem1 = () => {
 				  text={review.comments}></SingleReviewCard>
 			  ))}
           	</div>
-          	<SingleReviewCard></SingleReviewCard>
           </div>
         </div>
       </div>

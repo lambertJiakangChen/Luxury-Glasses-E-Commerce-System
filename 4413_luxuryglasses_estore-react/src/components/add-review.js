@@ -1,12 +1,11 @@
 import React from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import './add-review.css'
 
 const AddReview = (props) => {
 	const { itemId } = useParams();
-	const navigate = useNavigate();
 	
   const submitHandler = async(e) => {
 	  e.preventDefault();
@@ -18,26 +17,45 @@ const AddReview = (props) => {
       var url= "http://localhost:8080/catalog/addReview?item=" + itemId + "&rating=" + rating 
       + "&comments=" + comments + "&userEmail=" + userEmail;
       var request = new XMLHttpRequest();
-      request.open('POST', url);
+      request.open('POST', url); // Add review to review list of this item
       request.send();
       request.onload = function() {
         let data = request.responseText;
         if (data.includes("Review added")){
           alert("Thanks for the review");
           var form = document.getElementsByClassName("add-review-form")[0];
-          form.reset();  // Reset all form data
-          navigate(`/productsitem1/${itemId}`);
-          return false;
+          
+          url="http://localhost:8080/catalog/findItem?itemId=" + itemId;
+          request = new XMLHttpRequest(); // find item from itemId passed through url
+	      request.open('GET', url);
+	      request.send(); 
+	      request.onload = function() {
+		  var data2 = request.response;
+      		if (!data2) {
+				  alert("Error: " + data2)
+			} else {
+				var userDataObj = JSON.parse(data2);
+				alert(userDataObj.reviews.length);
+				props.updateReviewCount(userDataObj.reviews.length); // update review count on parent component
+				//document.getElementById("item-review-number").innerHTML = "Number of reviews: " + userDataObj.reviews.length;
+			}
+          }
+          form.reset();  // Reset form data
         } else {
           alert("Error occurred: " + data);
         }
       }
   }
+
 	
   return (
     <div id="add-review-container" className="add-review-container">
       <h3>{props.heading}</h3>
-      <form className="add-review-form" onSubmit={submitHandler}>
+      <form className="add-review-form" 
+        action="/catalog/addReview"
+        method="GET"
+        enctype="application/x-www-form-urlencoded"
+        onSubmit={submitHandler}>
         <label
           id="email-label-review"
           htmlFor="email-input-review"
