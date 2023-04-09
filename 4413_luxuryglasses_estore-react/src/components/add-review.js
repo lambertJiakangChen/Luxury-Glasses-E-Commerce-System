@@ -1,17 +1,16 @@
 import React from 'react'
-
+import { useParams, useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import './add-review.css'
 
 const AddReview = (props) => {
+	const { itemId } = useParams();
+	const navigate = useNavigate();
 	
   const submitHandler = async(e) => {
 	  e.preventDefault();
-	  /*const urlParams = new URLSearchParams(window.location.search);
-	  const itemId = urlParams.get('id');
 	  
-	  //let itemId = document.getElementById("item-input-checkout").value;
 	  let rating = document.getElementById("rating-select-review").value;
 	  let comments = document.getElementById("comments-input-review").value;
 	  let userEmail = document.getElementById("email-input-review").value;
@@ -24,11 +23,12 @@ const AddReview = (props) => {
       request.onload = function() {
         let data = request.responseText;
         if (data.includes("Review added")){
-          // alert("Order Successfully Completed.");
+          alert("Thanks for the review");
+          navigate(`/productsitem1/${itemId}`);
         } else {
           alert("Error occurred: " + data);
         }
-      }*/
+      }
   }
 	
   return (
@@ -47,7 +47,7 @@ const AddReview = (props) => {
           type="email"
           id="email-input-review"
           name="email"
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]&#123;2,&#125;$"
+          pattern="^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"
           required
           placeholder={props.textinput_placeholder}
           className="add-review-textinput input"
@@ -78,7 +78,7 @@ const AddReview = (props) => {
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-        <button id="add-review-button" className="add-review-button button">
+        <button id="add-review-button" className="add-review-button button" type="submit">
           {props.button}
         </button>
       </form>
@@ -91,7 +91,7 @@ AddReview.defaultProps = {
   textinput_placeholder: 'email',
   text: 'COMMENTS',
   textinput_placeholder1: 'comments',
-  button: 'REGISTER',
+  button: 'Submit Review',
 }
 
 AddReview.propTypes = {

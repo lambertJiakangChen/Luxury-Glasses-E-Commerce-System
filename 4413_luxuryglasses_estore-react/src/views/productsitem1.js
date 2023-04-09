@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
@@ -12,6 +12,7 @@ import './productsitem1.css'
 const Productsitem1 = () => {
   var userDataObj;
   const { itemId } = useParams();
+  const [reviews, setReviews] = useState([]);
   
   const onLoadHandler = async(e) => {
 	e.preventDefault();
@@ -20,8 +21,7 @@ const Productsitem1 = () => {
     request.open('POST', url);
     request.send(); 
     request.onload = function() {
-	let data = request.response;
-	console.log(data);
+	  let data = request.response;
       if (data.length == 0) {
         alert ("Item not found");
       } else {
@@ -38,6 +38,18 @@ const Productsitem1 = () => {
         document.getElementById("item-framewidth").innerHTML = "framewidth:" + userDataObj.frameWidth;
         document.getElementById("item-color").innerHTML = userDataObj.color;
         document.getElementById("item-cate").innerHTML = userDataObj.category;
+        
+        document.getElementById("item-review-number").innerHTML = "Number of reviews: " + userDataObj.reviews.length;
+        
+        url="http://localhost:8080/catalog/getReviewsByItem?item=" + itemId;
+	    request.open('POST', url);
+	    request.send(); 
+	    request.onload = function() {
+			data = request.response;
+      		if (data.length == 0) {
+				  setReviews(data);
+			}
+		}
       }
 	}
   }
@@ -343,10 +355,20 @@ const recommandbycate = async(e) => {
         <div className="productsitem1-container7 item-reviews-all">
           <h1 className="reviews-title">Reviews</h1>
           <AddReview></AddReview>
-          <SingleReviewCard></SingleReviewCard>
-          <SingleReviewCard></SingleReviewCard>
-          <SingleReviewCard></SingleReviewCard>
-          <SingleReviewCard></SingleReviewCard>
+          <div className="productsitem1-container8" id="item-display-reviews">
+          	<p id="item-review-number">Number of reviews: </p>
+          	<div>
+          	{reviews.map(review => (
+				  <SingleReviewCard
+				  heading={review.userEmail}
+				  text={review.comments}></SingleReviewCard>
+			  ))}
+          	</div>
+          	<SingleReviewCard></SingleReviewCard>
+          	<SingleReviewCard></SingleReviewCard>
+          	<SingleReviewCard></SingleReviewCard>
+          	<SingleReviewCard></SingleReviewCard>
+          </div>
         </div>
       </div>
       <Footer></Footer>
