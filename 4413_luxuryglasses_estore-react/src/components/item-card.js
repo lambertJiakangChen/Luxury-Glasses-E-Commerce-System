@@ -9,8 +9,7 @@ const ItemCard = (props) => {
 const navigate = useNavigate();
   const onClickHandler = async(e) => {
     e.preventDefault();
-    var userDataObj = document.getElementById("item-card-id").innerHTML;
-    navigate(`/productsitem1/${userDataObj}`);
+    navigate(`/productsitem1/${props.itemId}`);
   }
   
   return (
@@ -58,7 +57,7 @@ const navigate = useNavigate();
         </div>
         <div className="item-card-container3">
           <span className="item-card-currency">{props.currency}</span>
-          <span className="item-card-value">{props.varOne}</span>
+          <span className="item-card-value">{props.value}</span>
           <span id="item-card-id" style={{display: 'none'}}>{props.itemId}</span>
         </div>
       </div>

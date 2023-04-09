@@ -127,13 +127,13 @@ public class CatalogController {
 	}
 	
 	@RequestMapping("/findItem")
-	String findItem(HttpServletRequest request, HttpSession session) {
+	Item findItem(HttpServletRequest request, HttpSession session) {
 		String itemId = request.getParameter("itemId");
-		String result;
+		Item result;
 		try {
-			result = catalogService.findItemById(Long.parseLong(itemId)).toString();
+			result = catalogService.findItemById(Long.parseLong(itemId));
 		} catch (Exception e) {
-			return e.getMessage();
+			return null;
 		}
 		return result;
 	}

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { useParams } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
 import Navbar from '../components/navbar'
@@ -11,17 +11,16 @@ import './productsitem1.css'
 
 const Productsitem1 = () => {
   var userDataObj;
+  const { itemId } = useParams();
   
   const onLoadHandler = async(e) => {
 	e.preventDefault();
-	const { itemId } = useParams();
-	console.log("Onloading");
 	var url="http://localhost:8080/catalog/findItem?itemId=" + itemId;
     var request = new XMLHttpRequest();
     request.open('POST', url);
     request.send(); 
     request.onload = function() {
-	let data = request.responseText;
+	let data = request.response;
 	console.log(data);
       if (data.length == 0) {
         alert ("Item not found");
@@ -29,9 +28,16 @@ const Productsitem1 = () => {
         userDataObj = JSON.parse(data);
         document.getElementById("item-name").innerHTML = userDataObj.itemName;
         document.getElementById("item-id").innerHTML = userDataObj.itemId;
-        document.getElementByClassName("productsitem1-text01").innerHTML = "Brand:" + userDataObj.brand
+        document.getElementById("item-description").innerHTML = "Brand:" + userDataObj.brand
         + "  Material:" + userDataObj.material + "  Shape:" + userDataObj.shape;
-
+        document.getElementById("item-price").innerHTML = "$" + userDataObj.price;
+        document.getElementById("item-size").innerHTML = "Size:" + userDataObj.size;
+        document.getElementById("item-weight").innerHTML = "Weight:" + userDataObj.weight;
+        document.getElementById("item-lenswidth").innerHTML = "lenswidth::" + userDataObj.lensWidth;
+        document.getElementById("item-lensheight").innerHTML = "lensheight:" + userDataObj.lensHeight;
+        document.getElementById("item-framewidth").innerHTML = "framewidth:" + userDataObj.frameWidth;
+        document.getElementById("item-color").innerHTML = userDataObj.color;
+        document.getElementById("item-cate").innerHTML = userDataObj.category;
       }
 	}
   }
@@ -201,10 +207,10 @@ const recommandbycate = async(e) => {
                Cicely
                </h1>         		
               <p id="item-id">1</p>
-              <p className="productsitem1-text01">
+              <p className="productsitem1-text01" id="item-description">
                 Brand:Oakley  Material:TR90  Shape: Cat eye
               </p>
-              <h2 className="productsitem1-text02">$99999</h2>
+              <h2 className="productsitem1-text02" id="item-price">$99999</h2>
               <form 
                 className="productsitem1-form"
                 onSubmit={submitAddToCartHandler}>
@@ -215,19 +221,19 @@ const recommandbycate = async(e) => {
               <p className="productsitem1-text03">
                 <span className="productsitem1-text04">SPECIFICATIONS</span>
                 <br className="productsitem1-text05"></br>
-                <span className="productsitem1-text06">size:15.0</span>
+                <span className="productsitem1-text06" id="item-size">size:15.0</span>
                 <br className="productsitem1-text07"></br>
-                <span className="productsitem1-text08">weight:20.0</span>
+                <span className="productsitem1-text08" id="item-weight">weight:20.0</span>
                 <br className="productsitem1-text09"></br>
-                <span className="productsitem1-text10">lenswidth:12.0</span>
+                <span className="productsitem1-text10" id="item-lenswidth">lenswidth:12.0</span>
                 <br className="productsitem1-text11"></br>
-                <span className="productsitem1-text12">lensheight:56.0</span>
+                <span className="productsitem1-text12" id="item-lensheight">lensheight:56.0</span>
                 <br className="productsitem1-text13"></br>
-                <span className="productsitem1-text14">framwidth:37.0</span>
+                <span className="productsitem1-text14" id="item-framewidth">framewidth:37.0</span>
                 <br></br>
               </p>
               <p className="productsitem1-text16">Color:</p>
-              <div className="productsitem1-container4">
+              <div className="productsitem1-container4" id="item-color">
                 <img
                   alt="image"
                   src="https://images.unsplash.com/photo-1611242320536-f12d3541249b?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDE2fHxyZWR8ZW58MHx8fHwxNjgwMzkwMjY3&amp;ixlib=rb-4.0.3&amp;w=200"
@@ -247,7 +253,7 @@ const recommandbycate = async(e) => {
               <p className="productsitem1-text17">
                 <span>Category:</span>
                 <br></br>
-                <span>full-frame   semi-rimless  rimless</span>
+                <span id="item-cate">full-frame   semi-rimless  rimless</span>
                 <br></br>
               </p>
             </div>

@@ -207,7 +207,6 @@ const Home = (props) => {
               <div className="home-right">
                 <div className="home-top">
                   <div className="home-left1">
-                    <Link to="/productsitem1" className="home-navlink1">
                       <ItemCard
                         name="Yomary"
                         itemId="2"
@@ -217,10 +216,8 @@ const Home = (props) => {
                         rootClassName="rootClassName2"
                         className="home-component11"
                       ></ItemCard>
-                    </Link>
                   </div>
                   <div className="home-right1">
-                    <Link to="/productsitem1" className="home-navlink2">
                       <ItemCard
                         name="Ace"
                         itemId="5"
@@ -230,12 +227,10 @@ const Home = (props) => {
                         rootClassName="rootClassName3"
                         className="home-component12"
                       ></ItemCard>
-                    </Link>
                   </div>
                 </div>
                 <div className="home-bottom">
                   <div className="home-left2">
-                    <Link to="/productsitem1" className="home-navlink3">
                       <ItemCard
                         name="Litisha"
                         itemId="6"
@@ -245,10 +240,8 @@ const Home = (props) => {
                         rootClassName="item-card-root-class-name1"
                         className="home-component13"
                       ></ItemCard>
-                    </Link>
                   </div>
                   <div className="home-right2">
-                    <Link to="/productsitem1" className="home-navlink4">
                       <ItemCard
                         name="Cicely"
                         itemId="3"
@@ -258,7 +251,6 @@ const Home = (props) => {
                         rootClassName="item-card-root-class-name6"
                         className="home-component14"
                       ></ItemCard>
-                    </Link>
                   </div>
                 </div>
               </div>
