@@ -150,25 +150,34 @@ public class CatalogController {
 	}
 	
 	@RequestMapping("/recommendItems")
-	String recommendation(HttpServletRequest request, HttpSession session) {
-		String recommand = "";
+	Collection<Item> recommendation(HttpServletRequest request, HttpSession session) {
+//		String recommand = "";
 		Account acc = (Account) session.getAttribute("ACCOUNT");
 		Long accId = null;
 		if (acc != null) {
 			accId = Long.valueOf(acc.getId());
 		}
-		recommand = "Customer with Id " + accId + " has " + catalogService.acountItem(accId).toString() + " in cart. ";
+//		recommand = "Customer with Id " + accId + " has " + catalogService.acountItem(accId).toString() + " in cart. ";
 		Collection<Item> Items =  catalogService.acountItem(accId);
-		if (request.getParameter("by").equals("overallsize")) {
-			recommand = recommand + "You may also need " + catalogService.recommandationbysize(Items).toString();
-		}
-		if (request.getParameter("by").equals("category")) {
-			recommand = recommand + "You may also need " + catalogService.recommandationbycate(Items).toString();
-		}
-		if (request.getParameter("by").equals("color")) {
-			recommand = recommand + "You may also need " + catalogService.recommandationbycolor(Items).toString();
-		}	
-		return recommand;
+
+		if (request.getParameter("by") != null && request.getParameter("by").equals("overallsize")) {
+			return catalogService.recommandationbysize(Items);
+	    }else if (request.getParameter("by") != null && request.getParameter("by").equals("category")) {
+	    	return catalogService.recommandationbycate(Items);
+	    }else if (request.getParameter("by") != null && request.getParameter("by").equals("color")) {
+	    	return catalogService.recommandationbycolor(Items);
+	    }
+		return null;
+//		if (request.getParameter("by").equals("overallsize")) {
+//			recommand = recommand + "You may also need " + catalogService.recommandationbysize(Items).toString();
+//		}
+//		if (request.getParameter("by").equals("category")) {
+//			recommand = recommand + "You may also need " + catalogService.recommandationbycate(Items).toString();
+//		}
+//		if (request.getParameter("by").equals("color")) {
+//			recommand = recommand + "You may also need " + catalogService.recommandationbycolor(Items).toString();
+//		}	
+//		return recommand;
 	}
 	
 	@RequestMapping("/addReview") 
