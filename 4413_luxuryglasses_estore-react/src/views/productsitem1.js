@@ -17,7 +17,6 @@ const Productsitem1 = () => {
 
 // Update the review Count -------------------------------------------------------------------  
  function updateReviewCount(newValue) {
-	 alert("review count updated!")
   document.getElementById("item-review-number").innerHTML = "Number of reviews: " + newValue;
 }
  

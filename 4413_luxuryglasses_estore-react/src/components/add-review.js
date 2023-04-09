@@ -35,7 +35,6 @@ const AddReview = (props) => {
 				  alert("Error: " + data2)
 			} else {
 				var userDataObj = JSON.parse(data2);
-				alert(userDataObj.reviews.length);
 				props.updateReviewCount(userDataObj.reviews.length); // update review count on parent component
 				//document.getElementById("item-review-number").innerHTML = "Number of reviews: " + userDataObj.reviews.length;
 			}
