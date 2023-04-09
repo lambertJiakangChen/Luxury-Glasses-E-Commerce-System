@@ -14,6 +14,10 @@ const Productsitem1 = () => {
   const { itemId } = useParams();
   const [reviews, setReviews] = useState([]);
   
+ function updateReviewCount(newValue) {
+  document.getElementById("item-review-number").innerHTML = "Number of reviews: " + newValue;
+}
+  
   const onLoadHandler = async(e) => {
 	e.preventDefault();
 	var url="http://localhost:8080/catalog/findItem?itemId=" + itemId;
@@ -46,8 +50,8 @@ const Productsitem1 = () => {
 	    request.send(); 
 	    request.onload = function() {
 			data = request.response;
-      		if (data.length == 0) {
-				  setReviews(data);
+      		if (data.length != 0) {
+				  setReviews(Array.from(data));
 			}
 		}
       }
@@ -236,11 +240,11 @@ const recommandbycate = async(e) => {
                 <br className="productsitem1-text07"></br>
                 <span className="productsitem1-text08" id="item-weight">weight:12.0</span>
                 <br className="productsitem1-text09"></br>
-                <span className="productsitem1-text10" id="item-lenswidth">lenswidth:140.0</span>
+                <span className="productsitem1-text10" id="item-lenswidth">lenswidth:56.0</span>
                 <br className="productsitem1-text11"></br>
-                <span className="productsitem1-text12" id="item-lensheight">lensheight:56.0</span>
+                <span className="productsitem1-text12" id="item-lensheight">lensheight:37.0</span>
                 <br className="productsitem1-text13"></br>
-                <span className="productsitem1-text14" id="item-framewidth">framewidth:37.0</span>
+                <span className="productsitem1-text14" id="item-framewidth">framewidth:140.0</span>
                 <br></br>
               </p>
               <p className="productsitem1-text16">Color:</p>
@@ -353,7 +357,7 @@ const recommandbycate = async(e) => {
         </div>
         <div className="productsitem1-container7 item-reviews-all">
           <h1 className="reviews-title">Reviews</h1>
-          <AddReview></AddReview>
+          <AddReview updateReviewCount={updateReviewCount}></AddReview>
           <div className="productsitem1-container8" id="item-display-reviews">
           	<p id="item-review-number">Number of reviews: </p>
           	<div>
@@ -363,9 +367,6 @@ const recommandbycate = async(e) => {
 				  text={review.comments}></SingleReviewCard>
 			  ))}
           	</div>
-          	<SingleReviewCard></SingleReviewCard>
-          	<SingleReviewCard></SingleReviewCard>
-          	<SingleReviewCard></SingleReviewCard>
           	<SingleReviewCard></SingleReviewCard>
           </div>
         </div>

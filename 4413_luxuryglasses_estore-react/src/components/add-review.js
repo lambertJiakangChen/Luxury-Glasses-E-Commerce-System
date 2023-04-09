@@ -8,6 +8,8 @@ const AddReview = (props) => {
 	const { itemId } = useParams();
 	const navigate = useNavigate();
 	
+
+	
   const submitHandler = async(e) => {
 	  e.preventDefault();
 	  
@@ -24,17 +26,38 @@ const AddReview = (props) => {
         let data = request.responseText;
         if (data.includes("Review added")){
           alert("Thanks for the review");
-          navigate(`/productsitem1/${itemId}`);
+          var form = document.getElementsByClassName("add-review-form")[0];
+          form.reset();  // Reset all form data
+          
+          url="http://localhost:8080/catalog/findItem?itemId=" + itemId;
+          //request = new XMLHttpRequest();
+	      request.open('POST', url);
+	      request.send(); 
+	      request.onload = function() {
+		  data2 = request.response;
+      		if (data.length != 0) {
+				  var userDataObj = JSON.parse(data2);
+				  alert(userDataObj.reviews.length);
+				  props.updateReviewCount(userDataObj.reviews.length);
+				  //document.getElementById("item-review-number").innerHTML = "Number of reviews: " + userDataObj.reviews.length;
+			}
+          //navigate(`/productsitem1/${itemId}`);
+          }
         } else {
           alert("Error occurred: " + data);
         }
       }
   }
+
 	
   return (
     <div id="add-review-container" className="add-review-container">
       <h3>{props.heading}</h3>
-      <form className="add-review-form" onSubmit={submitHandler}>
+      <form className="add-review-form" 
+        action="/catalog/addReview"
+        method="GET"
+        enctype="application/x-www-form-urlencoded"
+        onSubmit={submitHandler}>
         <label
           id="email-label-review"
           htmlFor="email-input-review"
