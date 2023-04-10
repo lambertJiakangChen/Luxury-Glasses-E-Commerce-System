@@ -899,7 +899,7 @@ const Products = () => {
         <div className="products-container15">
           <div className="products-container16">
             <div className="products-items">
-              <Link to="/productsitem1" className="products-navlink">
+              <Link to='/productsitem1/1' className="products-navlink">
                <div className = "firstitem">
                 <img
                   src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
@@ -923,7 +923,7 @@ const Products = () => {
                 </p>
                 </div>
               </Link>
-              <Link to="/productsitem2" className="products-navlink1">
+              <Link to="/productsitem1/2" className="products-navlink1">
                 <div className = "seconditem">
                 <img
                   src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
@@ -947,7 +947,7 @@ const Products = () => {
                 </p>
                 </div>
               </Link>
-              <Link to="/productsitem3" className="products-navlink2">
+              <Link to="/productsitem1/3" className="products-navlink2">
                 <div className = "thirditem">
                 <img
                   src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDV8fGdsYXNzZXN8ZW58MHx8fHwxNjgwOTAzMDk1&amp;ixlib=rb-4.0.3&amp;w=1500"
