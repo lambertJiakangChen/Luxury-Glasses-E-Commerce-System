@@ -306,12 +306,17 @@
   padding-bottom: var(--dl-space-space-twounits);
 }
 .productsitem1-container8 {
-  width: var(--dl-size-size-maxwidth);
-}
-#item-review-cards{
-  width: 90%;
+  margin: var(--dl-space-space-twounits);
+  padding: var(--dl-space-space-unit);
   position: relative;
+  width: 80%;
 }
+/* #item-review-cards{
+  margin: var(--dl-space-space-twounits);
+  padding: var(--dl-space-space-unit);
+  position: relative;
+  width: 80%;
+} */
 .firstitem {
   flex: 0 0 auto;
   width: 220px;
