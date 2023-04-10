@@ -97,7 +97,7 @@
 }
 .ordersummary-total-output {
   top: 651px;
-  left: 336px;
+  right: var(--dl-space-space-halfunit);
   color: var(--dl-color-default-800);
   height: auto;
   position: absolute;
@@ -115,7 +115,7 @@
 }
 .ordersummary-shipping-output {
   top: 590px;
-  left: 377px;
+  right: var(--dl-space-space-halfunit);
   color: var(--dl-color-default-500);
   height: auto;
   position: absolute;
@@ -133,7 +133,7 @@
 }
 .ordersummary-tax-output {
   top: 520px;
-  left: 362px;
+  right: var(--dl-space-space-halfunit);
   color: var(--dl-color-default-800);
   height: auto;
   position: absolute;
@@ -151,7 +151,7 @@
 }
 .ordersummary-subTotal-output {
   top: 459px;
-  left: 340px;
+  right: var(--dl-space-space-halfunit);
   color: var(--dl-color-default-800);
   height: auto;
   position: absolute;
