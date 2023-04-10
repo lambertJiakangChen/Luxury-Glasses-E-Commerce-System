@@ -308,6 +308,10 @@
 .productsitem1-container8 {
   width: var(--dl-size-size-maxwidth);
 }
+#item-review-cards{
+  width: 90%;
+  position: relative;
+}
 .firstitem {
   flex: 0 0 auto;
   width: 220px;
