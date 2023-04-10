@@ -83,10 +83,10 @@ public class CheckoutController {
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
 		String email = request.getParameter("email");
-		AccountType type = AccountType.valueOf(request.getParameter("type"));
+//		AccountType type = AccountType.valueOf(request.getParameter("type"));
 		
 		try {
-			identityService.registerAccount(username, fname, lname, email, password, type);
+			identityService.registerAccount(username, fname, lname, email, password, AccountType.REGULAR);
 		} catch (Exception e) {
 			return "Unable to register account: " + e.getMessage();
 		}
@@ -124,7 +124,7 @@ public class CheckoutController {
 		}
 		checkoutService.setShippingAddress(shippingAddress);
 		
-		return "Shipping Address successfully set: /n" + shippingAddress.toString() 
+		return "Shipping Address successfully set: \n" + shippingAddress.toString() 
 				+ "\n User may proceed to Payment details";
 
 	}
@@ -132,13 +132,13 @@ public class CheckoutController {
 	@RequestMapping("/payment")
 	String modifyPayment(HttpServletRequest request, HttpSession session) {
 //		long cardNum = Long.parseLong(request.getParameter("card_number"));
-		String name = request.getParameter("name");
-		@Valid String card_number = request.getParameter("card");
+		@Valid String name = request.getParameter("fullname");
+		@Valid String card = request.getParameter("card");
 		@Valid String exp = request.getParameter("exp"); // in "MM/YY" format
 		@Valid String cvv = request.getParameter("cvv");
 		
 		try {
-			Payment card = new Payment(card_number, exp, cvv);
+			Payment payment = new Payment(card, exp, cvv);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return e.getMessage();

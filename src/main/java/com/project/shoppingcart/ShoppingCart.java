@@ -87,11 +87,11 @@ public class ShoppingCart {
 		return "ShoppingCart [items=" + items + ", orderId=" + orderId + "]";
 	}
 	
-	public String getAllItems() throws Exception {
+	public List<OrderItem> getAllItems() throws Exception {
 		if (items == null || items.isEmpty()) {
 			throw new Exception("no items in cart");
 		}
-		return toString();
+		return this.items;
 	}
 
 	/**

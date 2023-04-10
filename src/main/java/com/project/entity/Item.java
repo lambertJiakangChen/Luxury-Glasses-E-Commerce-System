@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -32,7 +34,7 @@ public class Item {
 	private Set<String> category = new HashSet<String>();
 	private Set<String> colors = new HashSet<String>();
 	
-	@OneToMany
+	@OneToMany(mappedBy = "item", fetch = FetchType.EAGER) //, cascade = CascadeType.ALL
 	private List<Review> reviews;
 	
 //	private int stock; 
@@ -274,12 +276,12 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "Item\n[id=" + getId() + ", brand=" + getBrand() +", itemName=" + getItemName() + ", shape=" + getShape() 
+		return "Item [id=" + getId() + ", brand=" + getBrand() +", itemName=" + getItemName() + ", shape=" + getShape() 
 				+ ", size=" + getSize() + ", price=" + getPrice() 
-				+ ", weight=" + getWeight() + ", material=" + getMaterial() + ", demiension=" 
-				+ getLensWidth() + "-" + getLensHeight() + "-" 
+				+ ", weight=" + getWeight() + ", material=" + getMaterial() + ", lensWidth=" 
+				+ getLensWidth() + ", lensHeight=" + getLensHeight() + ", frameWidth=" 
 				+ getFrameWidth() + ", category=" + getCategory()
-				+ ", colors=" + getColor() + "]\n";
+				+ ", colors=" + getColor() + "]";
 	}
 
 	@Override

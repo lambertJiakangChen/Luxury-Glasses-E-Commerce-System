@@ -1,0 +1,37 @@
+.single-review-card-container {
+  width: 90%;
+  position: relative;
+  margin-bottom: var(--dl-space-space-twounits);
+}
+.single-review-card-text {
+  width: auto;
+  margin-top: var(--dl-space-space-halfunit);
+  margin-left: var(--dl-space-space-oneandhalfunits);
+  margin-right: var(--dl-space-space-oneandhalfunits);
+  margin-bottom: var(--dl-space-space-oneandhalfunits);
+}
+.single-review-card-icon {
+  fill: var(--dl-color-pallet-yellow);
+  width: 24px;
+  height: 24px;
+}
+.single-review-card-icon02 {
+  fill: var(--dl-color-pallet-yellow);
+  width: 24px;
+  height: 24px;
+}
+.single-review-card-icon04 {
+  fill: var(--dl-color-pallet-yellow);
+  width: 24px;
+  height: 24px;
+}
+.single-review-card-icon06 {
+  fill: var(--dl-color-pallet-yellow);
+  width: 24px;
+  height: 24px;
+}
+.single-review-card-icon08 {
+  fill: var(--dl-color-pallet-yellow);
+  width: 24px;
+  height: 24px;
+}

@@ -1,0 +1,17 @@
+.cart-empty-container {
+  flex: 0 0 auto;
+  width: 75%;
+  display: none;
+  padding: var(--dl-space-space-unit);
+  position: relative;
+  align-self: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.cart-empty-text {
+  font-size: 24px;
+  align-self: center;
+}
+/* .cart-empty-root-class-name {
+  display: none;
+} */

@@ -1,11 +1,14 @@
 package com.project.ctrl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.entity.Account;
 import com.project.entity.Address;
+import com.project.entity.OrderItem;
 import com.project.shoppingcart.ShoppingCart;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -65,12 +68,12 @@ public class ShoppingCartController {
 	}
 	
 	@RequestMapping("getAllItems") 
-	String getallItems(HttpServletRequest request, HttpSession session) {
-		String result;
+	List<OrderItem> getallItems(HttpServletRequest request, HttpSession session) {
+		List<OrderItem> result;
 		try {
 			result = shoppingCartService.getAllItems();
 		} catch (Exception e) {
-			return "Unable to get items: " + e.getMessage();
+			return null; // "Unable to get items: " + e.getMessage();
 		}
 		return result;
 		

@@ -1,7 +1,9 @@
 package com.project.entity;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -11,7 +13,7 @@ import jakarta.validation.constraints.*;
 
 @Entity
 public class Payment {
-	
+
 	@Id
 	private long id;
 	@NotNull
@@ -24,16 +26,24 @@ public class Payment {
 	@NotBlank(message = "Please enter your cvv code")
 	@Size(min = 3, max = 3, message = "cvv code must be 3 characters long") 
 	private String cvv;
-	
-	
+
+
 	public Payment(String cardNum, String mmyy, String cvv) throws Exception {
 		super();
 		this.cardNum = cardNum;
 		this.id = Long.parseLong(cardNum);
-		SimpleDateFormat input = new SimpleDateFormat("MM/YY");
-		this.exp = input.parse(mmyy);
-		this.cvv = cvv;
 		
+		SimpleDateFormat input = new SimpleDateFormat("MM/yy");
+		input.setLenient(false);
+		Date d = input.parse(mmyy);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(d);
+		cal.set(Calendar.DATE, cal.getActualMaximum(Calendar.DAY_OF_MONTH));; // sets to last day of the month
+		this.exp = cal.getTime(); // exp is set to last day of the month/year given
+//		System.out.println(this.exp);
+		
+		this.cvv = cvv;
+
 		if (this.cardNum == null || this.exp == null || this.cvv == null) {
 			throw new Exception("Missing fields! Please re-enter payment details");
 		}
@@ -43,7 +53,7 @@ public class Payment {
 		if (!isExpValidPattern(mmyy)) {
 			throw new Exception("Please enter the expiry date on your card in MM/YY");
 		}
-		
+
 		if (!isCvvValid()) {
 			throw new Exception("cvv code must be 3 characters long");
 		}
@@ -51,8 +61,8 @@ public class Payment {
 			throw new Exception("Card is expired");
 		}
 	}
-	
-	
+
+
 	/**
 	 * @return the exp
 	 */
@@ -90,26 +100,36 @@ public class Payment {
 	public void setCvv(String cvv) {
 		this.cvv = cvv;
 	}
-	
+
 	boolean isExpired() {
-		Date curr = new Date(System.currentTimeMillis());
-		return this.exp.before(curr);
+	    Date now = new Date();
+	    Calendar expCal = Calendar.getInstance();
+	    expCal.setTime(exp);
+	    int expMonth = expCal.get(Calendar.MONTH);
+	    int expYear = expCal.get(Calendar.YEAR);
+	    Calendar nowCal = Calendar.getInstance();
+	    nowCal.setTime(now);
+	    int nowMonth = nowCal.get(Calendar.MONTH);
+	    int nowYear = nowCal.get(Calendar.YEAR);
+//	    System.out.println(expMonth + "/" + expYear + " " + nowMonth + "/" + nowYear); 
+	    return (expYear < nowYear || (expYear == nowYear && expMonth < nowMonth));
 	}
+	
 	
 	boolean isCardNumberValid() {
 		return cardNum.length() == 16;
 	}
-	
+
 	boolean isExpValidPattern(String mmyy) {
 		String ePattern = "^(0[1-9]|1[0-2])\\/[0-9]{2}$";
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-        java.util.regex.Matcher m = p.matcher(mmyy);
-        return m.matches();
+		java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+		java.util.regex.Matcher m = p.matcher(mmyy);
+		return m.matches();
 	}
-	
+
 	boolean isCvvValid() {
 		return cvv.length() == 3;
 	}
-	
+
 
 }
