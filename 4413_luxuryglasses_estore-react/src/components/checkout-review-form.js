@@ -17,12 +17,14 @@ const CheckoutReviewForm = (props) => {
 	  
 	  let confirm = isChecked;
 	  
-      var url= "http://localhost:8080/checkout/payment?confirm=" + confirm;
+      var url= "http://localhost:8080/checkout/reviewOrder?confirm=" + confirm.toString();
+      //console.log("var:" + confirm);
       var request = new XMLHttpRequest();
-      request.open('POST', url);
+      request.open('GET', url);
       request.send();
       request.onload = function() {
-        let data = request.responseText;
+        let data = request.response;
+        //console.log(data);
         if (data.includes("Order Confirmed")){
           alert("Order Successfully Completed.");
         } else {

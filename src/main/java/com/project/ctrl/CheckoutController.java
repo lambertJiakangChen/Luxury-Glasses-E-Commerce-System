@@ -58,8 +58,6 @@ public class CheckoutController {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-//		session.invalidate();
-		
 		// not registered >> return error
 		if (!identityService.isRegisteredAccount(username, password)) {
 			return "User not found. Username or password is incorrect";
@@ -68,7 +66,8 @@ public class CheckoutController {
 		HttpSession newSession = request.getSession();
 		Account acc =  this.identityService.findAccountbyUserAndPass(username, password);
 		newSession.setAttribute("ACCOUNT", acc);
-		ShoppingCart cart = (ShoppingCart) newSession.getAttribute("CART");
+		ShoppingCart cart = (ShoppingCart) session.getAttribute("CART");
+		newSession.setAttribute("CART", cart);
 		checkoutService.setCheckout(acc, cart);
 		
 		return "Login Success. \n Session account: " + newSession.getAttribute("ACCOUNT").toString() 
@@ -162,6 +161,8 @@ public class CheckoutController {
 					checkoutService.getShippingAddress(), Calendar.getInstance());
 			checkoutService.confirmedCheckout(newOrder);
 			session.removeAttribute("CART");
+		} else {
+			return "Please confirm order";
 		}
 		
 		return "Order Confirmed: " + confirm + "\n Order ID: " + cart.getOrderId().toString(); 
