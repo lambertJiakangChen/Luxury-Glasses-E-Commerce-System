@@ -18,7 +18,6 @@ const CheckoutReviewForm = (props) => {
 	  let confirm = isChecked;
 	  
       var url= "http://localhost:8080/checkout/reviewOrder?confirm=" + confirm.toString();
-      //console.log("var:" + confirm);
       var request = new XMLHttpRequest();
       request.open('GET', url);
       request.send();
@@ -123,6 +122,7 @@ const CheckoutReviewForm = (props) => {
           type="checkbox"
           id="confirm-checkbox-checkout"
           name="confirm"
+          required
           className="checkout-review-form-checkbox"
           checked={isChecked}
           onChange={checkboxChangeHandler}

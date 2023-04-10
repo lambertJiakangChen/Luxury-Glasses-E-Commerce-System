@@ -159,7 +159,7 @@ public class CheckoutService {
 
 
 	public void confirmedCheckout(Order newOrder) {
-		log.info("Preloading " + eventDao.save(new VisitEvent((long) eventDao.count()+1, EventStatus.PURCHASE, (long) 1, Calendar.getInstance())));
+		log.info("Preloading " + eventDao.save(new VisitEvent((long) eventDao.count()+1, EventStatus.PURCHASE, (long) newOrder.getaccountId(), Calendar.getInstance())));
 		newOrder.setStatus(OrderStatus.ORDERED);
 		orderDao.save(newOrder);
 		

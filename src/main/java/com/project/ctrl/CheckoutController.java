@@ -122,6 +122,7 @@ public class CheckoutController {
 			return e.getMessage();
 		}
 		checkoutService.setShippingAddress(shippingAddress);
+		addressDao.save(shippingAddress);
 		
 		return "Shipping Address successfully set: \n" + shippingAddress.toString() 
 				+ "\n User may proceed to Payment details";
@@ -156,8 +157,10 @@ public class CheckoutController {
 		if (confirm.equals("true"))
 			confirmed = true;
 		
+		
+		Account acc = (Account) session.getAttribute("ACCOUNT");
 		if (confirmed) {
-			Order newOrder = new Order(cart.getOrderId(), (long) 1234324, OrderStatus.ORDERED, 
+			Order newOrder = new Order(orderDao.count()+1, acc.getId(), OrderStatus.ORDERED, 
 					checkoutService.getShippingAddress(), Calendar.getInstance());
 			checkoutService.confirmedCheckout(newOrder);
 			session.removeAttribute("CART");
@@ -165,7 +168,7 @@ public class CheckoutController {
 			return "Please confirm order";
 		}
 		
-		return "Order Confirmed: " + confirm + "\n Order ID: " + cart.getOrderId().toString(); 
+		return "Order Confirmed: " + confirm ; 
 
 	}
 
