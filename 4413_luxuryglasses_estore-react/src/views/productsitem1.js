@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import ReactDOM from 'react-dom'
 
 import { Helmet } from 'react-helmet'
 import Navbar from '../components/navbar'
@@ -14,10 +15,19 @@ const Productsitem1 = () => {
   const { itemId } = useParams();
   const [reviews, setReviews] = useState([]);
 
+// Render all reviews -------------------------------------------------------------------  
+function renderReviews(reviews) {
+  const reviewCards = reviews.map((review) => (
+    <SingleReviewCard heading={review.userEmail} text={review.comments} rating={review.rating}></SingleReviewCard>
+  ));
+  
+  ReactDOM.render(<div>{reviewCards}</div>, document.getElementById("item-review-cards"));
+ }
 
 // Update the review Count -------------------------------------------------------------------  
- function updateReviewCount(newValue) {
+ function updateReviewCount(newValue, newReviews) {
   document.getElementById("item-review-number").innerHTML = "Number of reviews: " + newValue;
+  renderReviews(newReviews);
 }
  
  
@@ -47,9 +57,6 @@ const Productsitem1 = () => {
         document.getElementById("item-color").innerHTML = userDataObj.color;
         document.getElementById("item-cate").innerHTML = userDataObj.category;
         
-        //document.getElementById("item-review-number").innerHTML = "Number of reviews: " + userDataObj.reviews.length;
-        updateReviewCount(userDataObj.reviews.length);
-        
         url="http://localhost:8080/catalog/getReviewsByItem?item=" + itemId;
         request = new XMLHttpRequest();
 	    request.open('GET', url); // get the reviews for this item
@@ -59,13 +66,15 @@ const Productsitem1 = () => {
       		if (!data) {
 				  alert ("Item not found");
 			} else {
-				userDataObj = JSON.parse(data);
-				setReviews(Array.from(userDataObj));
+				var newUserDataObj = JSON.parse(data);
+				setReviews(Array.from(newUserDataObj));
+				updateReviewCount(userDataObj.reviews.length, reviews);
 			}
 		}
       }
 	}
   }
+  
 //  Add Item to cart --------------------------------------------------------------------------
   const submitAddToCartHandler = async(e) => {
     e.preventDefault();
@@ -365,15 +374,9 @@ const Productsitem1 = () => {
         <div className="productsitem1-container7 item-reviews-all">
           <h1 className="reviews-title">Reviews</h1>
           <AddReview updateReviewCount={updateReviewCount}></AddReview>
-          <div className="productsitem1-container8" id="item-display-reviews">
+          <div className="productsitem1-container8" id="item-reviews-display">
           	<p id="item-review-number">Number of reviews: </p>
-          	<div>
-          	{reviews.map(review => (
-				  <SingleReviewCard
-				  heading={review.userEmail}
-				  text={review.comments}></SingleReviewCard>
-			  ))}
-          	</div>
+          	<div id="item-review-cards"></div>
           </div>
         </div>
       </div>

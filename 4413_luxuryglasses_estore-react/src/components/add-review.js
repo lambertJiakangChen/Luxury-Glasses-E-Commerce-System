@@ -35,8 +35,7 @@ const AddReview = (props) => {
 				  alert("Error: " + data2)
 			} else {
 				var userDataObj = JSON.parse(data2);
-				props.updateReviewCount(userDataObj.reviews.length); // update review count on parent component
-				//document.getElementById("item-review-number").innerHTML = "Number of reviews: " + userDataObj.reviews.length;
+				props.updateReviewCount(userDataObj.reviews.length, userDataObj.reviews); // update review count on parent component
 			}
           }
           form.reset();  // Reset form data
