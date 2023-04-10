@@ -1,44 +1,44 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import PropTypes from 'prop-types'
 
 import './ordersummary.css'
 
 const Ordersummary = (props) => {
+	
+  useEffect(() => {
+    //getOrderSummary();
+    var url="http://localhost:8080/cart/getTotal";
+    var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.send();
+    request.onload = function() {
+      let data = request.responseText;
+      if (data.length == 0) {
+		  document.getElementsByClassName("ordersummary-subTotal-output")[0].innerHTML = "$0.0";
+		  document.getElementsByClassName("ordersummary-tax-output")[0].innerHTML  = "$0.0";
+		  document.getElementsByClassName("ordersummary-total-output")[0].innerHTML  = "$0.0";
+      } else {
+		  var cartDataObj = JSON.parse(data);
+		  
+		  var total = parseFloat(cartDataObj);
+		  document.getElementsByClassName("ordersummary-subTotal-output")[0].innerHTML  = "$" + total.toFixed(2);
+		  var tax = 0.13 * total;
+		  total += tax;
+		  document.getElementsByClassName("ordersummary-tax-output")[0].innerHTML = "$" + tax.toFixed(2);
+		  document.getElementsByClassName("ordersummary-total-output")[0].innerHTML = "$" + total.toFixed(2);
+      }
+    }
+  }, []);
 
-	const getOrderSummary = async(e) => {
-	    var total = 0.0;
-	    e.preventDefault();
-	
-	    var url="http://localhost:8080/cart/getTotal";
-	    var request = new XMLHttpRequest();
-	    request.open('POST', url);
-	    request.send();
-	    request.onload = function() {
-	      let data = request.responseText;
-	      if (data.length == 0) {
-			  document.getElementById("ordersummary-subTotal-output").innerHTML = "Error";
-			  document.getElementById("ordersummary-tax-output").innerHTML = "Error";
-			  document.getElementById("ordersummary-total-output").innerHTML = "Error";
-	      } else {
-			  var cartDataObj = JSON.parse(data);
-			  
-			  total += parseFloat(cartDataObj);
-			  var tax = 0.02 * parseFloat(cartDataObj);
-			  total += tax;
-			  
-			  document.getElementById("ordersummary-subTotal-output").innerHTML = "$" + cartDataObj;
-			  document.getElementById("ordersummary-tax-output").innerHTML = "$" + tax;
-			  document.getElementById("ordersummary-total-output").innerHTML = "$" + total;
-	      }
-	    }
+  /*const getOrderSummary = async(e) => {
+    e.preventDefault();
   }
-	
+*/	
   return (
     <div
       id="ordersummary"
       className={`ordersummary-ordersummary ${props.rootClassName} `}
-      onLoad={getOrderSummary}
     >
       <span className="ordersummary-title">
         <span className="">Order Summary</span>

@@ -265,7 +265,6 @@ const Home = (props) => {
             <span>View Recommendations by Color</span>
           </a>
         </div>
-        <ChatBot></ChatBot>
       </div>
       <Footer></Footer>
     </div>
